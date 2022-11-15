@@ -1,11 +1,13 @@
 from flask import *
 import mysql.connector
+import getpass
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
+
 config = {
   "user": "root",
-  "password": "123456",
+  "password": getpass.getpass('SQL password:'),
   "host": "127.0.0.1",
   "database": "attractions",
   "pool_size":5,
