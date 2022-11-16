@@ -1,18 +1,11 @@
 from flask import *
 import mysql.connector
-import getpass
+from utils import mysql_config
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
-config = {
-  "user": "root",
-  "password": getpass.getpass('SQL password:'),
-  "host": "127.0.0.1",
-  "database": "attractions",
-  "pool_size":5,
-  "pool_reset_session":"True"
-}
+config = mysql_config.config()
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(**config)
 
 
@@ -31,90 +24,95 @@ def booking():
 def thankyou():
 	return render_template("thankyou.html")
 
+@app.errorhandler(Exception)
+def all_exception_handler(error):
+    res = {
+		"error": True,
+		"message": "伺服器內部錯誤"
+		}
+    return Response(status=500, mimetype="application/json", response=json.dumps(res))
 
 @app.route("/api/attractions")
 def attractions():
 	page=int(request.args.get("page", ""))
 	keyword=request.args.get("keyword", "")
-	try:        
-		mySql_query = ("SELECT * FROM site")
+	display=12
+	try:       	
 		connection = connection_pool.get_connection()
+		if keyword:  #if have keyword
+			mySql_query_count = ("""SELECT count(*) FROM site
+								WHERE CAT=%s or name LIKE %s """
+			)
+			mySql_query = ("""SELECT * FROM site
+							WHERE CAT=%s or name LIKE %s 
+							LIMIT %s, %s """
+			)			
+			if connection.is_connected():
+				count_cursor = connection.cursor()
+				count_cursor.execute(mySql_query_count, (keyword,"%"+keyword+"%"))   
+				count_records=count_cursor.fetchone()      
+				count=count_records[0]  #get total count
+				total_page=count//12
+				if count==0 or total_page<page: #prevent useless query
+					return{"nextPage":None,"data":[]}, 200							
+				cursor = connection.cursor()
+				cursor.execute(mySql_query, (keyword,"%"+keyword+"%",page , display ))   
+				records=cursor.fetchall()   
+				cursor.close()   
+				output=[] #use for return 
+			
+		else:
+			mySql_query_count = ("""SELECT count(*) FROM site""")
+			mySql_query = ("""SELECT * FROM site LIMIT %s, %s """)			
+			if connection.is_connected():
+				count_cursor = connection.cursor()
+				count_cursor.execute(mySql_query_count)   
+				count_records=count_cursor.fetchone()      
+				count=count_records[0]  #get total count
+				total_page=count//12
+				if count==0 or total_page<page: #prevent useless query
+					return{"nextPage":None,"data":[]}, 200							
+				cursor = connection.cursor()
+				cursor.execute(mySql_query, (page , display))
+				records=cursor.fetchall()
+				cursor.close()
+				output=[] #use for return 
+				 
+		for info in records:			
+			attraction={
+				"id": int(info[18]),
+				"name": info[2],
+				"category": info[11],
+				"description": info[17],
+				"address": info[20],
+				"transport": info[1],
+				"mrt": info[8],
+				"lat": float(info[16]),
+				"lng": float(info[4]),
+				"images": info[14].split(" ")
+			}
+			output.append(attraction)
 		
-		if connection.is_connected():
-			cursor = connection.cursor()
-			cursor.execute(mySql_query)       
-			records=cursor.fetchall()      
-			output=[] #use for return
-			total_page=len(records)//12  
-			attractions=[]	# use for page output
-			
-			for i, info in enumerate(records):					
-				if keyword:  #if have keyword
-					if len(attractions)==12: 	#check page full or not
-						output.append(attractions)
-						attractions=[]	
-					if keyword == info[11] or keyword in info[2]:
-						attraction={
-							"id": int(info[18]),
-							"name": info[2],
-							"category": info[11],
-							"description": info[17],
-							"address": info[20],
-							"transport": info[1],
-							"mrt": info[8],
-							"lat": float(info[16]),
-							"lng": float(info[4]),
-							"images": info[14].split(" ")
-						}
-						attractions.append(attraction)
+		if total_page==page:
+			nextPage=None
+		else:
+			nextPage=page+1
 
-				else: 
-					if len(attractions)==12:
-						output.append(attractions)
-						attractions=[]
-
-					attraction={
-						"id": int(info[18]),
-						"name": info[2],
-						"category": info[11],
-						"description": info[17],
-						"address": info[20],
-						"transport": info[1],
-						"mrt": info[8],
-						"lat": float(info[16]),
-						"lng": float(info[4]),
-						"images": info[14].split(" ")
-					}
-					attractions.append(attraction)
-			output.append(attractions)		#append the rest
-			
-			if len(output[page])<12 or page==total_page :
-				nextPage=None
-			else: 				
-				nextPage=page+1
-
-			return({
-				"nextPage":nextPage,
-				"data":output[page] 
-			}, 200)
+		return{"nextPage":nextPage,"data":output}, 200
 		
 	except mysql.connector.Error as e:
 		print("attractions Error Message:", e)
-		return ({
-			"error": True,
-			"message": "伺服器內部錯誤"
-			}, 500)
+		raise Exception()
 	finally:
 		if connection.is_connected():
-			cursor.close()
+			count_cursor.close()			
 			connection.close()            
 			print("End MySQL connection")   
-
 
 @app.route("/api/attraction/<attractionId>")
 def query_attraction(attractionId):		
 	try:        
-		mySql_query = ("SELECT * FROM site WHERE _id=%s")
+		mySql_query = ("""SELECT * FROM site WHERE _id=%s""")
 		connection = connection_pool.get_connection()
 		
 		if connection.is_connected():
@@ -134,19 +132,13 @@ def query_attraction(attractionId):
 					"lng": float(records[4]),
 					"images": records[14].split(" ")
 				}
-				return ({"data":attraction}, 200)
+				return {"data":attraction}, 200
 			else:
-				return ({
-					"error": True,
-					"message": "景點編號不正確"
-					},400)
+				return {"error": True,"message": "景點編號不正確"}, 400
 		
 	except mysql.connector.Error as e:
 		print("attractions Error Message:", e)
-		return ({
-			"error": True,
-			"message": "伺服器內部錯誤"
-			}, 500)
+		raise Exception()
 	finally:
 		if connection.is_connected():
 			cursor.close()
@@ -156,7 +148,7 @@ def query_attraction(attractionId):
 @app.route("/api/categories")
 def categories():		
 	try:        
-		mySql_query = ("SELECT CAT FROM site GROUP BY CAT")
+		mySql_query = ("""SELECT CAT FROM site GROUP BY CAT""")
 		connection = connection_pool.get_connection()
 		
 		if connection.is_connected():
@@ -166,14 +158,11 @@ def categories():
 			output=[]
 			for record in records:
 				output.append(record[0])
-			return ({"data":output}, 200)
+			return {"data":output}, 200
 		
 	except mysql.connector.Error as e:
 		print("attractions Error Message:", e)
-		return ({
-			"error": True,
-			"message": "伺服器內部錯誤"
-			}, 500)
+		raise Exception()
 	finally:
 		if connection.is_connected():
 			cursor.close()
@@ -181,4 +170,5 @@ def categories():
 			print("End MySQL connection")   
 
 app.run(host="0.0.0.0", port=3000)
+#app.run(port=3000, debug=True) 
 
