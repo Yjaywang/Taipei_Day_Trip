@@ -1,3 +1,7 @@
+# shell script and nohup
+nohup*
+*.sh
+
 # sql congig
 mysql_config.py
 
