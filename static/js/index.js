@@ -123,6 +123,7 @@ search_btn.onclick = function query(){
 
 // search key word
 async function getQueryResult(){
+	next_page=null;
 	loading=true;
 	let api ="api/attractions";
 	let url="";
