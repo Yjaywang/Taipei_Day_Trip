@@ -111,6 +111,7 @@ observer.observe(target);
 //click search button
 const search_btn = document.querySelector(".search_btn");
 search_btn.onclick = function query(){ 
+	document.querySelector("footer").style.display = "none";
     keyword = document.querySelector(".search_bar_text").value;
 	//delete exist group
 	const groups = document.querySelectorAll(".attraction_desk");
@@ -144,10 +145,12 @@ async function getQueryResult(){
 	
 	if (response.length===0){
 		attractions_container.textContent="no results!";
+		document.querySelector("footer").style.display = "flex";
 		return;
 	}
 	else{
 		processData(response);
+		document.querySelector("footer").style.display = "flex";
 		}	
 	}
 	
