@@ -1,13 +1,15 @@
 from flask import *
 import mysql.connector
 from utils import mysql_config
+from flask_cors import CORS
+
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
 config = mysql_config.config()
 connection_pool = mysql.connector.pooling.MySQLConnectionPool(**config)
-
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
 # Pages
@@ -56,7 +58,7 @@ def attractions():
 				if count==0 or total_page<page: #prevent useless query
 					return{"nextPage":None,"data":[]}, 200							
 				cursor = connection.cursor()
-				cursor.execute(mySql_query, (keyword,"%"+keyword+"%",page , display ))   
+				cursor.execute(mySql_query, (keyword,"%"+keyword+"%",page*12 , display ))   
 				records=cursor.fetchall()   
 				cursor.close()   
 				output=[] #use for return 
@@ -73,7 +75,7 @@ def attractions():
 				if count==0 or total_page<page: #prevent useless query
 					return{"nextPage":None,"data":[]}, 200							
 				cursor = connection.cursor()
-				cursor.execute(mySql_query, (page , display))
+				cursor.execute(mySql_query, (page*12 , display))
 				records=cursor.fetchall()
 				cursor.close()
 				output=[] #use for return 
@@ -170,5 +172,5 @@ def categories():
 			print("End MySQL connection")   
 
 app.run(host="0.0.0.0", port=3000)
-#app.run(port=3000, debug=True) 
+# app.run(port=3000, debug=True) 
 

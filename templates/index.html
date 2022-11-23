@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/style.css') }}" />
+    <title>Document</title>
+</head>
+<body>
+
+    <nav class="nav_desk">
+        <div class="nav_container">
+            <div class="nav_left">台北一日遊</div>
+            <div class="nav_right">
+                <div class="nav_right_btn">
+                    <div class="btn_schedule">
+                        <div class="btn_schedule_text">預定行程</div>
+                    </div>                    
+                    <div class="btn_signin">
+                        <div class="btn_signin_text">登入/註冊</div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero_desk">
+        <img src="/static/images/welcome.png" alt="" class="welcome_img">        
+    </div>
+
+    <div class="slogan">
+        <div class="slogan_container">
+            <div class="slogan_box">
+                <div class="slogan_info_upper">輕鬆享受台北一日悠閒</div>
+                <div class="slogan_info_lower">探索每個角落，體驗城市的深度旅遊行程</div>
+            </div>
+            <div class="search_box">     
+                <div class="search_bar_desk_container">
+                    <div class="search_bar">
+                        <input type="text" class="search_bar_text" placeholder="輸入景點名稱查詢">
+                    </div>    
+                    <div class="search_btn">
+                        <img src="/static/images/icon_search.png" alt="" class="search_icon">
+                    </div>    
+                </div>    
+            <div class="search_category">
+                <!-- <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div> -->
+
+            </div>      
+   
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="attractions">
+        <div class="attractions_container">          
+            <!-- <div class="attraction_desk">
+                <div class="attraction_img_box">
+                    <img src="welcome.png" alt="" class="attraction_img" >
+                </div>
+                <div class="details_upper">                    
+                    <div class="info_upper" >test</div>                    
+                </div>
+                <div class="details_lower">
+                    <div class="info_lower">
+                        <div class="mrt" >mrt</div>
+                        <div class="cat" >cat</div>
+                    </div>
+                </div>
+            </div> --> 
+
+          
+        </div>
+    </div>
+    <footer>
+        <div class="copyright_block">COPYRIGHT © 2021 台北一日遊
+            <div class="copyright_text"></div>
+        </div>
+    </footer>
+
+    <!-- <script src="index.js"></script> -->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

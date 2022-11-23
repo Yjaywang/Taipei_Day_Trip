@@ -1,3 +1,10 @@
+# shell script and nohup
+nohup*
+*.sh
+
+# sql congig
+mysql_config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
