@@ -58,7 +58,7 @@ def attractions():
 				if count==0 or total_page<page: #prevent useless query
 					return{"nextPage":None,"data":[]}, 200							
 				cursor = connection.cursor()
-				cursor.execute(mySql_query, (keyword,"%"+keyword+"%",page , display ))   
+				cursor.execute(mySql_query, (keyword,"%"+keyword+"%",page*12 , display ))   
 				records=cursor.fetchall()   
 				cursor.close()   
 				output=[] #use for return 
@@ -75,7 +75,7 @@ def attractions():
 				if count==0 or total_page<page: #prevent useless query
 					return{"nextPage":None,"data":[]}, 200							
 				cursor = connection.cursor()
-				cursor.execute(mySql_query, (page , display))
+				cursor.execute(mySql_query, (page*12 , display))
 				records=cursor.fetchall()
 				cursor.close()
 				output=[] #use for return 
@@ -171,6 +171,6 @@ def categories():
 			connection.close()            
 			print("End MySQL connection")   
 
-app.run(host="0.0.0.0", port=3000)
-# app.run(port=3000, debug=True) 
+# app.run(host="0.0.0.0", port=3000)
+app.run(port=3000, debug=True) 
 
