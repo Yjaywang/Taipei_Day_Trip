@@ -22,7 +22,8 @@ async function getInitData(){
 //process data to html
 function processData(response){
 	for(let i =0;i<response.length;i++){
-		const div_attraction_desk=document.createElement("div");
+		const a_attraction_url=document.createElement("a");
+		const div_attraction_group=document.createElement("div");
 		const div_attraction_img_box=document.createElement("div");
 		const img_attraction_img=document.createElement("img");
 		const div_details_upper=document.createElement("div");
@@ -33,7 +34,8 @@ function processData(response){
 		const div_cat=document.createElement("div");
 		let div_attractions_container=document.getElementsByClassName("attractions_container");
 		
-		div_attraction_desk.className="attraction_desk";
+		a_attraction_url.className="attraction_url";
+		div_attraction_group.className="attraction_group";
 		div_attraction_img_box.className="attraction_img_box";
 		img_attraction_img.className="attraction_img";
 		div_details_upper.className="details_upper";
@@ -47,16 +49,18 @@ function processData(response){
 		div_info_upper.textContent=response[i]["name"];
 		div_mrt.textContent=response[i]["mrt"];
 		div_cat.textContent=response[i]["category"];
+		a_attraction_url.href="/attraction/"+response[i]["id"];
 		
 		div_info_lower.appendChild(div_mrt);
 		div_info_lower.appendChild(div_cat);
 		div_details_lower.appendChild(div_info_lower);
 		div_details_upper.appendChild(div_info_upper);
 		div_attraction_img_box.appendChild(img_attraction_img);
-		div_attraction_desk.appendChild(div_attraction_img_box);
-		div_attraction_desk.appendChild(div_details_upper);
-		div_attraction_desk.appendChild(div_details_lower);
-		div_attractions_container[0].insertBefore(div_attraction_desk, div_attractions_container.lastElementChild);
+		div_attraction_group.appendChild(div_attraction_img_box);
+		div_attraction_group.appendChild(div_details_upper);
+		div_attraction_group.appendChild(div_details_lower);
+		a_attraction_url.appendChild(div_attraction_group);
+		div_attractions_container[0].insertBefore(a_attraction_url, div_attractions_container.lastElementChild);
 	}	
   	loading=false;	
 }
@@ -111,7 +115,7 @@ search_btn.onclick = function query(){
 	current_page=0;
     keyword = document.querySelector(".search_bar_text").value;
 	//delete exist group
-	const groups = document.querySelectorAll(".attraction_desk");
+	const groups = document.querySelectorAll(".attraction_group");
 	groups.forEach(function(group){
 		group.remove();
 	});

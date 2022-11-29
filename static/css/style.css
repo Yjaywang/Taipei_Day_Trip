@@ -276,19 +276,19 @@ body{
     display: flex;    
     justify-content: center;
     gap: 30px 30px;
-
-
-
 }
-.attraction_desk{
-    position: relative;
-    box-sizing: border-box;
+.attraction_url{
     width: 270px;
     height: 242px;
+    margin: 0px;
+}
+.attraction_group{
+    position: relative;
+    box-sizing: border-box;
+
     /* White */
     background: #FFFFFF;
     /* Secondary Color/Gray 20 */
-
     border: 1px solid #E8E8E8;
     border-radius: 5px;
 
@@ -423,20 +423,22 @@ footer{
 }
 
 @media (max-width:1200px){
-.attractions{
-    width: 90%;
-}
+    .attractions{
+        width: 90%;
+    }
 
-.attractions_container{
-    width: 90%;
-}
-.attraction_desk{
-    width: 45%;
-}
-
-.slogan{
-    width: 95%;
-}
+    .attractions_container{
+        width: 90%;
+    }
+    .attraction_url{
+        width: 45%;
+    }
+    .attractions_container{
+        width: 100%;
+    }
+    .slogan{
+        width: 95%;
+    }
 
 /* .slogan_container{
     width: 100%;
@@ -447,7 +449,7 @@ footer{
 @media(max-width:600px){
 
 
-    .attraction_desk{
+    .attraction_url{
         width: 90%;
     }
 
