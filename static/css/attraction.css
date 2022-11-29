@@ -276,7 +276,7 @@ input[type="radio"]{
     align-items: center;
 }
 .book_form_price_title{
-    width: 81px;    
+       
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
