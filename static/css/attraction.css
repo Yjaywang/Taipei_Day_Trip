@@ -15,10 +15,8 @@ nav{
     align-items: center;
 }
 .nav_left{
-    width: 150px;
-    height: 34px;
+
     text-decoration:none;
-    padding: 10px;
 }
 .nav_left_content{
     font-family: 'Noto Sans TC';
