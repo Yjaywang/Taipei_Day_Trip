@@ -94,10 +94,10 @@ function createImg(response){
         img_profile_pic.className="profile_pic";
         span_circle.className="circle";
         img_profile_pic.src=response["images"][i];
-        span_circle.onclick=function(event){
-            currentSlide(i+1);
-        }
-        
+        // span_circle.onclick=function(event){
+        //     currentSlide(i+1);
+        // }
+        // can not work, all events are currentSlide(1)
         div_slides.appendChild(img_profile_pic);
         div_slide_container.appendChild(div_slides);
         div_circle_container.appendChild(span_circle);
@@ -108,7 +108,12 @@ function createImg(response){
             div_profile_pic_container.insertBefore(div_slide_btn_container, div_profile_pic_container.lastElementChild);
             
         }
-    }  
+    }
+    const span_circle = document.querySelectorAll(".circle");
+    for(i=0;i<span_circle.length;i++){
+        span_circle[i].setAttribute("onclick", "currentSlide("+String(i+1)+")");
+    }
+    //add currentslide event to circle by set attribute
 }
 
 // silde function
