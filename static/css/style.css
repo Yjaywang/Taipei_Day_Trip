@@ -19,12 +19,17 @@ body{
 .nav_left{
     width: 150px;
     height: 34px;
+    text-decoration:none;
+    padding: 10px;
+}
+.nav_left_content{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
     font-size: 30px;
     line-height: 34px;
     color: #448899;
+    cursor: pointer;
 }
 .nav_right{
     padding: 0px;
@@ -281,6 +286,7 @@ body{
     width: 270px;
     height: 242px;
     margin: 0px;
+    text-decoration:none;
 }
 .attraction_group{
     position: relative;
