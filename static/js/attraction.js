@@ -23,7 +23,7 @@ const div_slides=document.createElement("div");
 async function Initialize(){
     let current_url=window.location.href.split("/");
     let id=current_url.slice(-1)[0];
-    let url ="api/attraction/"+String(id);
+    let url ="/api/attraction/"+String(id);
     
     const response = await fetch(url)
         .then(function(response){
