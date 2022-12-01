@@ -1,236 +1,219 @@
-let keyword="";
-let next_page=null;
-let loading=true;
-let current_page=0;
 // get initial data
-async function getInitData(){
+let keyword="";
+let nextPage=null;
+let loading=true;
+let currentPage=0;
+
+(async function getInitData() {
 	loading=true;
-	let api ="api/attractions";
-	let url=api+"?page=0";	 	
+	const url="api/attractions?page=0";	 	
 	const response = await fetch(url)
-		.then(function(response){
+		.then(function(response) {
 			return response.json();
 		})
-		.then(function(data){  
-			next_page=data["nextPage"];
+		.then(function(data) {  
+			nextPage=data["nextPage"];
 			return data["data"];   	
-    	}); 		
+    }); 		
 	processData(response);
 	document.querySelector("footer").style.display = "flex";		
-} getInitData();
+})();
+
+//category panel initialize
+(async function category_panel() {
+	const searchBarTextEl = document.querySelector(".search_bar_text");
+	const url="api/categories";
+	const searchCategoryEls=document.querySelectorAll(".search_category");
+	
+	const response = await fetch(url)
+  .then(function(response) {                
+		return response.json();
+	}).then(function(data) {
+		return data["data"];				
+	});      
+  
+	response.forEach(function(data) {
+		const divCatItem=document.createElement("div");
+		divCatItem.className="cat_item";
+		divCatItem.textContent=data;
+		
+		divCatItem.addEventListener("click", function (event) {
+			searchBarTextEl.value=event.srcElement.textContent;
+			searchCategoryEls[0].style.display = "none";
+		});
+		searchCategoryEls[0].insertBefore(divCatItem, searchCategoryEls.lastElementChild);
+		addCatShadow();
+	});	
+})();
 
 //process data to html
-function processData(response){
-	for(let i =0;i<response.length;i++){
-		const a_attraction_url=document.createElement("a");
-		const div_attraction_group=document.createElement("div");
-		const div_attraction_img_box=document.createElement("div");
-		const img_attraction_img=document.createElement("img");
-		const div_details_upper=document.createElement("div");
-		const div_info_upper=document.createElement("div");
-		const div_details_lower=document.createElement("div");
-		const div_info_lower=document.createElement("div");
-		const div_mrt=document.createElement("div");
-		const div_cat=document.createElement("div");
-		let div_attractions_container=document.getElementsByClassName("attractions_container");
-		
-		a_attraction_url.className="attraction_url";
-		div_attraction_group.className="attraction_group";
-		div_attraction_img_box.className="attraction_img_box";
-		img_attraction_img.className="attraction_img";
-		div_details_upper.className="details_upper";
-		div_info_upper.className="info_upper";
-		div_details_lower.className="details_lower";
-		div_info_lower.className="info_lower";
-		div_mrt.className="mrt";
-		div_cat.className="cat";		
-		
-		img_attraction_img.src=response[i]["images"][0];
-		div_info_upper.textContent=response[i]["name"];
-		div_mrt.textContent=response[i]["mrt"];
-		div_cat.textContent=response[i]["category"];
-		a_attraction_url.href="/attraction/"+response[i]["id"];
-		
-		div_info_lower.appendChild(div_mrt);
-		div_info_lower.appendChild(div_cat);
-		div_details_lower.appendChild(div_info_lower);
-		div_details_upper.appendChild(div_info_upper);
-		div_attraction_img_box.appendChild(img_attraction_img);
-		div_attraction_group.appendChild(div_attraction_img_box);
-		div_attraction_group.appendChild(div_details_upper);
-		div_attraction_group.appendChild(div_details_lower);
-		a_attraction_url.appendChild(div_attraction_group);
-		div_attractions_container[0].insertBefore(a_attraction_url, div_attractions_container.lastElementChild);
-	}	
+function processData(response) {
+	loading=true;	
+	response.forEach( function(data) {
+		//variables
+		const aAttractionUrl=document.createElement("a");
+		const divAttractionGroup=document.createElement("div");
+		const divAttractionImgBox=document.createElement("div");
+		const imgAttractionImg=document.createElement("img");
+		const divDetailsUpper=document.createElement("div");
+		const divInfoUpper=document.createElement("div");
+		const divDetailsLower=document.createElement("div");
+		const divInfoLower=document.createElement("div");
+		const divMrt=document.createElement("div");
+		const divCat=document.createElement("div");
+    const AttractionsContainerEls=document.querySelectorAll(".attractions_container"); 
+    //.attractions_container use querySelector to append will have sequence problem, keep use querySelectorAll or getElementByClassName
+
+		//add class name
+		aAttractionUrl.className="attraction_url";
+		divAttractionGroup.className="attraction_group";
+		divAttractionImgBox.className="attraction_img_box";
+		imgAttractionImg.className="attraction_img";
+		divDetailsUpper.className="details_upper";
+		divInfoUpper.className="info_upper";
+		divDetailsLower.className="details_lower";
+		divInfoLower.className="info_lower";
+		divMrt.className="mrt";
+		divCat.className="cat";		
+		//load data
+		imgAttractionImg.src=data["images"][0];
+		divInfoUpper.textContent=data["name"];
+		divMrt.textContent=data["mrt"];
+		divCat.textContent=data["category"];
+		aAttractionUrl.href=`/attraction/+${data["id"]}`;
+		//construction
+		divInfoLower.appendChild(divMrt);
+		divInfoLower.appendChild(divCat);
+		divDetailsLower.appendChild(divInfoLower);
+		divDetailsUpper.appendChild(divInfoUpper);
+		divAttractionImgBox.appendChild(imgAttractionImg);
+		divAttractionGroup.appendChild(divAttractionImgBox);
+		divAttractionGroup.appendChild(divDetailsUpper);
+		divAttractionGroup.appendChild(divDetailsLower);
+		aAttractionUrl.appendChild(divAttractionGroup);
+		AttractionsContainerEls[0].insertBefore(aAttractionUrl, AttractionsContainerEls.lastElementChild);
+	})	
   	loading=false;	
 }
-	
-	
 
 
-
-//IntersectionObserver
-//load more function
-async function load_more(){	
-	if (!next_page || loading){
-		return;
-	}
-	else if(current_page===next_page){
-		return;
-	}
-	current_page=next_page;	
-	let api ="api/attractions";
-	let url="";	
-	if(keyword===""){
-		url= api+"?page="+String(next_page);
-	}
-	else{
-		url= api+"?page="+String(next_page)+"&keyword="+keyword;
-	}	 
-	const response = await fetch(url)
-		.then(function(response){
-			return response.json();
-		})
-		.then(function(data){  
-			next_page=data["nextPage"];
-			return data["data"];   	
-    	});  
-	processData(response);	
-}
-const options = {
-	root: null,
-	rootMargin: '10px',
-	threshold: 0.5,
-};
-
-const observer = new IntersectionObserver(load_more, options);
-const target = document.querySelector(".copyright_text");
-observer.observe(target);
-
-  
-//click search button
-const search_btn = document.querySelector(".search_btn");
-search_btn.onclick = function query(){ 
-	//reset status
-	current_page=0;
-    keyword = document.querySelector(".search_bar_text").value;
-	//delete exist group
-	const groups = document.querySelectorAll(".attraction_group");
-	groups.forEach(function(group){
-		group.remove();
-	});
-	getQueryResult();
-}
-
-
-// search key word
-async function getQueryResult(){
-	loading=true;
-	let api ="api/attractions";
-	let url="";
-	if(keyword===""){
-		url= api+"?page=0";
-	}
-	else{
-		url= api+"?page=0"+"&keyword="+keyword;
-	}
-	const attractions_container = document.querySelector(".attractions_container");
-	attractions_container.textContent="";
-	const response = await fetch(url).then(function(response){                
-		return response.json();
-	}).then(function(data){
-		next_page=data["nextPage"];
-		return data["data"];   	
-	});         
-	
-	if (response.length===0){
-		attractions_container.textContent="no results!";
-		return;
-	}
-	else{
-		processData(response);
-		}	
-	}
-	
-
-//click search bar pop up and other place to close category
-document.addEventListener('click', function display_category(e){
-	let search_bar_text = document.querySelector(".search_bar");
-	if (search_bar_text.contains(e.target)) {
-        document.querySelector(".search_category").style.display = "flex";		
-    }
+//click search bar pop up and other place to close category panel
+document.addEventListener('click', function displayCategory(e) {
+	const searchBarEl = document.querySelector(".search_bar");
+	if (searchBarEl.contains(e.target)) {
+    document.querySelector(".search_category").style.display = "flex";		
+  }
 });
-document.addEventListener('click', function hide_category(e) {
-	let search_bar_text = document.querySelector(".search_bar");
-    let category_container = document.querySelector(".search_category");
-    if (!category_container.contains(e.target) && !search_bar_text.contains(e.target)) {
-        category_container.style.display = "none";
+document.addEventListener('click', function hideCategory(e) {
+	const searchBarEl = document.querySelector(".search_bar");
+    const categoryContainerEl = document.querySelector(".search_category");
+    if (!categoryContainerEl.contains(e.target) && !searchBarEl.contains(e.target)) {
+      categoryContainerEl.style.display = "none";
     }
 });
 
 
-//category
-async function category_panel(){
-	let search_bar_text = document.querySelector(".search_bar_text");
-	let url="api/categories";
-	let div_search_category=document.querySelector(".search_category");
-	//remove already existed
-	// let previous_cat_items = document.querySelectorAll(".cat_item");
-	// previous_cat_items.forEach(function(previous_cat_item){
-	// 	previous_cat_item.remove();
-	// });
-	
-	const response = await fetch(url).then(function(response){                
-		return response.json();
-	}).then(function(data){
-		return data["data"];				
-	});       
-	response.forEach(function(item){
-		const div_cat_item=document.createElement("div");
-		div_cat_item.className="cat_item";
-		div_cat_item.textContent=item;
-		
-		div_cat_item.addEventListener("click", function put_in_bar(item){
-			search_bar_text.value=item.srcElement.textContent;
-			document.querySelector(".search_category").style.display = "none";
-		});
-		div_search_category.insertBefore(div_cat_item, div_search_category.lastElementChild);
-		add_cat_shadow();
-	});	
-}category_panel();
+//IntersectionObserver setting
+{
+  const options = {
+    root: null,
+    rootMargin: '10px',
+    threshold: 0.5,
+  };
+  const observer = new IntersectionObserver(scrollLoadMore, options);
+  const targetEl = document.querySelector(".copyright_text");
+  observer.observe(targetEl);
+}
 
-//category shadow
-function add_cat_shadow(){
-	let cat_items=document.querySelectorAll(".cat_item");
-	for(let i=0;i<cat_items.length;i++){
-		cat_items[i].addEventListener("mouseover", mouseOver);
-		cat_items[i].addEventListener("mouseout", mouseOut);
-	}
-	function mouseOver(){
+//scroll load more 
+function scrollLoadMore(entries) {	
+  entries.forEach(async function(entry) {
+    if(entry.isIntersecting) {
+      //entry.isIntersecting=> true, see the element 
+      if (!nextPage || loading || currentPage===nextPage) {
+        return;
+      }
+      currentPage=nextPage;	 //if can fetch data, set current page as next page
+      let url ="api/attractions";
+      if(!keyword) {
+        url= url+`?page=${String(nextPage)}`;
+      } else {
+        url= url+`?page=${String(nextPage)}&keyword=${keyword}`;
+      }	   
+      const response = await fetch(url)
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(data) {  
+          nextPage=data["nextPage"];
+          return data["data"];   	
+        });  
+      processData(response);	
+    }    
+  })	
+}
+
+
+
+//category shadow effect
+function addCatShadow() {
+	let catItemEls=document.querySelectorAll(".cat_item");
+	catItemEls.forEach(function(catItemEl) {
+		catItemEl.addEventListener("mouseover", mouseOver);
+		catItemEl.addEventListener("mouseout", mouseOut);
+	})
+	function mouseOver() {
 		this.classList.add("cat_item_change_color");
 	}
-	function mouseOut(){
+	function mouseOut() {
 		this.classList.remove("cat_item_change_color");
 	}	
 }	
+  
+//click search button
+{
+  const searchBtnEl = document.querySelector(".search_btn");
+  searchBtnEl.onclick = async function query() { 
+    currentPage=0; 	//reset status
+    keyword = document.querySelector(".search_bar_text").value;
+    await getQueryResult();
+  }
+}
 
 
 
+// search key word
+async function getQueryResult() {
+	loading=true;
+  const attractionsContainerEl = document.querySelector(".attractions_container");
+	let url ="api/attractions";
+	if(!keyword) {
+		url= url+"?page=0";
+	} else {
+		url= url+`?page=0&keyword=${keyword}`;
+	}
 
+	attractionsContainerEl.textContent=""; //remove all elements inside attractions_container 
+  
+	const response = await fetch(url)
+  .then(function(response) {                
+		return response.json();
+	}).then(function(data) {
+		nextPage=data["nextPage"];
+		return data["data"];   	
+	});         
+	
+	if (response.length===0) {
+		//create img tag in attractions_container
+    console.log(response);
+    const imgNoResultImg = document.createElement("img");
+    imgNoResultImg.className="no_result_img";
+    imgNoResultImg.src="/static/images/no_results.png";
+    attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
+		return;
 
-
-//   	let btn_more = document.getElementById('load_more');
-//     let current=2;
-//     btn_more.onclick =()=>{
-//         let layer=[...document.querySelectorAll('.mainbox .layer_box .layer_2')]
-//         for(let i=current;i<current+2;i++){
-//             layer[i].style.display='flex';
-//         }
-//         current+=2;
-//         if(current>=layer.length){
-//             btn_more.style.display='none';
-//         }
-//     }
-
-// }
-// console.log(getData());
+	} else {
+		processData(response);
+  }	
+}
+	

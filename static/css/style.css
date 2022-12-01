@@ -270,15 +270,17 @@ body{
     
     display: flex;
     justify-content: center;
-    
-
+}
+.no_result_img{
+    margin: auto;
+    width: 50%;
 }
 .attractions_container{
     flex-wrap: wrap;
     width: 1170px;
     display: flex;    
     justify-content: center;
-    gap: 30px 30px;
+    gap: 30px 30px;    
 }
 .attraction_url{
     width: 270px;
