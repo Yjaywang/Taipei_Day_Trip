@@ -80,7 +80,7 @@ function processData(response) {
 		divInfoUpper.textContent=data["name"];
 		divMrt.textContent=data["mrt"];
 		divCat.textContent=data["category"];
-		aAttractionUrl.href=`/attraction/+${data["id"]}`;
+		aAttractionUrl.href=`/attraction/${data["id"]}`;
 		//construction
 		divInfoLower.appendChild(divMrt);
 		divInfoLower.appendChild(divCat);
