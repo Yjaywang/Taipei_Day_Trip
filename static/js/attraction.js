@@ -60,7 +60,7 @@ function createImg(response){
   const descriptionContentEl=document.querySelector(".description_content");
   const addressContentEl=document.querySelector(".address_content");
   const transportContentEl=document.querySelector(".transport_content");
-  const ProfilePicContainerEls=document.querySelectorAll(".profile_pic_container");
+  const profilePicContainerEls=document.querySelectorAll(".profile_pic_container");
   // slide part variables
   const divSlideContainer=document.createElement("div");
   const divCircleContainer=document.createElement("div");
@@ -111,9 +111,9 @@ function createImg(response){
 
     //the last one, final construction
     if(i+1===response["images"].length){
-      ProfilePicContainerEls[0].insertBefore(divSlideContainer, ProfilePicContainerEls.lastElementChild);
-      ProfilePicContainerEls[0].insertBefore(divSlideBtnContainer, ProfilePicContainerEls.lastElementChild);            
-      ProfilePicContainerEls[0].insertBefore(divCircleContainer, ProfilePicContainerEls.lastElementChild);
+      profilePicContainerEls[0].insertBefore(divSlideContainer, profilePicContainerEls.lastElementChild);
+      profilePicContainerEls[0].insertBefore(divSlideBtnContainer, profilePicContainerEls.lastElementChild);            
+      profilePicContainerEls[0].insertBefore(divCircleContainer, profilePicContainerEls.lastElementChild);
     }
   }
 
