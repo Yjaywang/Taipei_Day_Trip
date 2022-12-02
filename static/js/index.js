@@ -6,17 +6,16 @@ let currentPage=0;
 
 (async function getInitData() {
   loading=true;
-  const url="api/attractions?page=0";	 	
-  const response = await fetch(url)
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(data) {  
-      nextPage=data["nextPage"];
-      return data["data"];   	
-    }); 		
-  processData(response);
-  document.querySelector("footer").style.display = "flex";		
+  const url="api/attractions?page=0";	
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    nextPage=data.nextPage;
+    processData(data.data);
+    document.querySelector("footer").style.display = "flex";		
+  } catch (error) {
+    console.log(error);
+  } 	
 })();
 
 //category panel initialize
@@ -24,26 +23,25 @@ let currentPage=0;
   const searchBarTextEl = document.querySelector(".search_bar_text");
   const url="api/categories";
   const searchCategoryEls=document.querySelectorAll(".search_category");
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
 
-  const response = await fetch(url)
-  .then(function(response) {                
-    return response.json();
-  }).then(function(data) {
-    return data["data"];				
-  });      
-
-  response.forEach(function(data) {
-    const divCatItem=document.createElement("div");
-    divCatItem.className="cat_item";
-    divCatItem.textContent=data;
-    
-    divCatItem.addEventListener("click", function (event) {
-      searchBarTextEl.value=event.srcElement.textContent;
-      searchCategoryEls[0].style.display = "none";
-    });
-    searchCategoryEls[0].insertBefore(divCatItem, searchCategoryEls.lastElementChild);
-    addCatShadow();
-  });	
+    data.data.forEach(function(category) {
+      const divCatItem=document.createElement("div");
+      divCatItem.className="cat_item";
+      divCatItem.textContent=category;
+      
+      divCatItem.addEventListener("click", function (event) {
+        searchBarTextEl.value=event.srcElement.textContent;
+        searchCategoryEls[0].style.display = "none";
+      });
+      searchCategoryEls[0].insertBefore(divCatItem, searchCategoryEls.lastElementChild);
+      addCatShadow();
+    });	
+  } catch (error) {
+    console.log(error);
+  }
 })();
 
 //process data to html
@@ -76,11 +74,11 @@ function processData(response) {
     divMrt.className="mrt";
     divCat.className="cat";		
     //load data
-    imgAttractionImg.src=data["images"][0];
-    divInfoUpper.textContent=data["name"];
-    divMrt.textContent=data["mrt"];
-    divCat.textContent=data["category"];
-    aAttractionUrl.href=`/attraction/${data["id"]}`;
+    imgAttractionImg.src=data.images[0];
+    divInfoUpper.textContent=data.name;
+    divMrt.textContent=data.mrt;
+    divCat.textContent=data.category;
+    aAttractionUrl.href=`/attraction/${data.id}`;
     //construction
     divInfoLower.appendChild(divMrt);
     divInfoLower.appendChild(divCat);
@@ -140,19 +138,17 @@ function scrollLoadMore(entries) {
       } else {
         url= url+`?page=${String(nextPage)}&keyword=${keyword}`;
       }	   
-      const response = await fetch(url)
-        .then(function(response) {
-          return response.json();
-        })
-        .then(function(data) {  
-          nextPage=data["nextPage"];
-          return data["data"];   	
-        });  
-      processData(response);	
+      try {
+        const response = await fetch(url);
+        const data =  await response.json();
+        nextPage=data.nextPage;
+        processData(data.data);	
+      } catch (error) {
+        console.log(error);
+      }
     }    
   })	
 }
-
 
 
 //category shadow effect
@@ -194,26 +190,23 @@ async function getQueryResult() {
   }
 
   attractionsContainerEl.textContent=""; //remove all elements inside attractions_container 
-
-  const response = await fetch(url)
-  .then(function(response) {                
-    return response.json();
-  }).then(function(data) {
-    nextPage=data["nextPage"];
-    return data["data"];   	
-  });         
-
-  if (response.length===0) {
-    //create img tag in attractions_container
-    console.log(response);
-    const imgNoResultImg = document.createElement("img");
-    imgNoResultImg.className="no_result_img";
-    imgNoResultImg.src="/static/images/no_results.png";
-    attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
-    return;
-
-  } else {
-    processData(response);
-  }	
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    nextPage=data.nextPage;
+    if (data.data.length===0) {
+      //create img tag in attractions_container
+      const imgNoResultImg = document.createElement("img");
+      imgNoResultImg.className="no_result_img";
+      imgNoResultImg.src="/static/images/no_results.png";
+      attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
+      return;
+  
+    } else {
+      processData(data.data);
+    }	
+  } catch (error) {
+    console.log(error);
+  }
 }
 	

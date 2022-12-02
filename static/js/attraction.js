@@ -3,16 +3,14 @@
   let currentUrl=window.location.href.split("/");
   const id=currentUrl.slice(-1)[0];
   const url =`/api/attraction/${String(id)}`;
-
-  const response = await fetch(url)
-      .then(function(response){
-          return response.json();
-      })
-      .then(function(data){  
-          return data["data"];   	
-      }); 		
-  createImg(response);   //construct html elements
-  showSlides(slideIdx);  //pic_slides
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    createImg(data.data);   //construct html elements
+    showSlides(slideIdx);  //pic_slides
+  } catch (error) {
+    console.log(error);
+  }
 
   document.querySelector("section").style.display = "flex";		
   document.querySelector(".information_container").style.display = "block";		
@@ -68,12 +66,12 @@ function createImg(response){
   const imgPrev=document.createElement("img");
   const imgNext=document.createElement("img");
   //load data
-  nameEl.textContent = response["name"];
-  catEl.textContent=response["category"];
-  mrtEl.textContent=response["mrt"];
-  descriptionContentEl.textContent=response["description"];
-  addressContentEl.textContent=response["address"];
-  transportContentEl.textContent=response["transport"];  
+  nameEl.textContent = response.name;
+  catEl.textContent=response.category;
+  mrtEl.textContent=response.mrt;
+  descriptionContentEl.textContent=response.description;
+  addressContentEl.textContent=response.address;
+  transportContentEl.textContent=response.transport;  
   //previous and next slide part
   divSlideContainer.className="slide_container";
   divCircleContainer.className="circle_container";
@@ -92,7 +90,7 @@ function createImg(response){
   divSlideBtnContainer.appendChild(imgNext);
 
   //circles, images and final construction
-  for(let i=0;i<response["images"].length;i++){
+  for(let i=0;i<response.images.length;i++){
     const divSlide=document.createElement("div");            
     const imgProfile=document.createElement("img");
     const spanCircle=document.createElement("span");
@@ -100,7 +98,7 @@ function createImg(response){
     divSlide.classList.add("slides", "fade");
     imgProfile.className="profile_pic";
     spanCircle.className="circle";
-    imgProfile.src=response["images"][i];
+    imgProfile.src=response.images[i];
     // spanCircle.onclick=function(event){
     //     currentSlide(i+1);
     // }
@@ -110,7 +108,7 @@ function createImg(response){
     divCircleContainer.appendChild(spanCircle);
 
     //the last one, final construction
-    if(i+1===response["images"].length){
+    if(i+1===response.images.length){
       profilePicContainerEls[0].insertBefore(divSlideContainer, profilePicContainerEls.lastElementChild);
       profilePicContainerEls[0].insertBefore(divSlideBtnContainer, profilePicContainerEls.lastElementChild);            
       profilePicContainerEls[0].insertBefore(divCircleContainer, profilePicContainerEls.lastElementChild);
