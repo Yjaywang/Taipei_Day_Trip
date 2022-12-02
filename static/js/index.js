@@ -5,107 +5,107 @@ let loading=true;
 let currentPage=0;
 
 (async function getInitData() {
-	loading=true;
-	const url="api/attractions?page=0";	 	
-	const response = await fetch(url)
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(data) {  
-			nextPage=data["nextPage"];
-			return data["data"];   	
+  loading=true;
+  const url="api/attractions?page=0";	 	
+  const response = await fetch(url)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {  
+      nextPage=data["nextPage"];
+      return data["data"];   	
     }); 		
-	processData(response);
-	document.querySelector("footer").style.display = "flex";		
+  processData(response);
+  document.querySelector("footer").style.display = "flex";		
 })();
 
 //category panel initialize
 (async function category_panel() {
-	const searchBarTextEl = document.querySelector(".search_bar_text");
-	const url="api/categories";
-	const searchCategoryEls=document.querySelectorAll(".search_category");
-	
-	const response = await fetch(url)
+  const searchBarTextEl = document.querySelector(".search_bar_text");
+  const url="api/categories";
+  const searchCategoryEls=document.querySelectorAll(".search_category");
+
+  const response = await fetch(url)
   .then(function(response) {                
-		return response.json();
-	}).then(function(data) {
-		return data["data"];				
-	});      
-  
-	response.forEach(function(data) {
-		const divCatItem=document.createElement("div");
-		divCatItem.className="cat_item";
-		divCatItem.textContent=data;
-		
-		divCatItem.addEventListener("click", function (event) {
-			searchBarTextEl.value=event.srcElement.textContent;
-			searchCategoryEls[0].style.display = "none";
-		});
-		searchCategoryEls[0].insertBefore(divCatItem, searchCategoryEls.lastElementChild);
-		addCatShadow();
-	});	
+    return response.json();
+  }).then(function(data) {
+    return data["data"];				
+  });      
+
+  response.forEach(function(data) {
+    const divCatItem=document.createElement("div");
+    divCatItem.className="cat_item";
+    divCatItem.textContent=data;
+    
+    divCatItem.addEventListener("click", function (event) {
+      searchBarTextEl.value=event.srcElement.textContent;
+      searchCategoryEls[0].style.display = "none";
+    });
+    searchCategoryEls[0].insertBefore(divCatItem, searchCategoryEls.lastElementChild);
+    addCatShadow();
+  });	
 })();
 
 //process data to html
 function processData(response) {
-	loading=true;	
-	response.forEach( function(data) {
-		//variables
-		const aAttractionUrl=document.createElement("a");
-		const divAttractionGroup=document.createElement("div");
-		const divAttractionImgBox=document.createElement("div");
-		const imgAttractionImg=document.createElement("img");
-		const divDetailsUpper=document.createElement("div");
-		const divInfoUpper=document.createElement("div");
-		const divDetailsLower=document.createElement("div");
-		const divInfoLower=document.createElement("div");
-		const divMrt=document.createElement("div");
-		const divCat=document.createElement("div");
+  loading=true;	
+  response.forEach( function(data) {
+    //variables
+    const aAttractionUrl=document.createElement("a");
+    const divAttractionGroup=document.createElement("div");
+    const divAttractionImgBox=document.createElement("div");
+    const imgAttractionImg=document.createElement("img");
+    const divDetailsUpper=document.createElement("div");
+    const divInfoUpper=document.createElement("div");
+    const divDetailsLower=document.createElement("div");
+    const divInfoLower=document.createElement("div");
+    const divMrt=document.createElement("div");
+    const divCat=document.createElement("div");
     const AttractionsContainerEls=document.querySelectorAll(".attractions_container"); 
     //.attractions_container use querySelector to append will have sequence problem, keep use querySelectorAll or getElementByClassName
 
-		//add class name
-		aAttractionUrl.className="attraction_url";
-		divAttractionGroup.className="attraction_group";
-		divAttractionImgBox.className="attraction_img_box";
-		imgAttractionImg.className="attraction_img";
-		divDetailsUpper.className="details_upper";
-		divInfoUpper.className="info_upper";
-		divDetailsLower.className="details_lower";
-		divInfoLower.className="info_lower";
-		divMrt.className="mrt";
-		divCat.className="cat";		
-		//load data
-		imgAttractionImg.src=data["images"][0];
-		divInfoUpper.textContent=data["name"];
-		divMrt.textContent=data["mrt"];
-		divCat.textContent=data["category"];
-		aAttractionUrl.href=`/attraction/${data["id"]}`;
-		//construction
-		divInfoLower.appendChild(divMrt);
-		divInfoLower.appendChild(divCat);
-		divDetailsLower.appendChild(divInfoLower);
-		divDetailsUpper.appendChild(divInfoUpper);
-		divAttractionImgBox.appendChild(imgAttractionImg);
-		divAttractionGroup.appendChild(divAttractionImgBox);
-		divAttractionGroup.appendChild(divDetailsUpper);
-		divAttractionGroup.appendChild(divDetailsLower);
-		aAttractionUrl.appendChild(divAttractionGroup);
-		AttractionsContainerEls[0].insertBefore(aAttractionUrl, AttractionsContainerEls.lastElementChild);
-	})	
-  	loading=false;	
+    //add class name
+    aAttractionUrl.className="attraction_url";
+    divAttractionGroup.className="attraction_group";
+    divAttractionImgBox.className="attraction_img_box";
+    imgAttractionImg.className="attraction_img";
+    divDetailsUpper.className="details_upper";
+    divInfoUpper.className="info_upper";
+    divDetailsLower.className="details_lower";
+    divInfoLower.className="info_lower";
+    divMrt.className="mrt";
+    divCat.className="cat";		
+    //load data
+    imgAttractionImg.src=data["images"][0];
+    divInfoUpper.textContent=data["name"];
+    divMrt.textContent=data["mrt"];
+    divCat.textContent=data["category"];
+    aAttractionUrl.href=`/attraction/${data["id"]}`;
+    //construction
+    divInfoLower.appendChild(divMrt);
+    divInfoLower.appendChild(divCat);
+    divDetailsLower.appendChild(divInfoLower);
+    divDetailsUpper.appendChild(divInfoUpper);
+    divAttractionImgBox.appendChild(imgAttractionImg);
+    divAttractionGroup.appendChild(divAttractionImgBox);
+    divAttractionGroup.appendChild(divDetailsUpper);
+    divAttractionGroup.appendChild(divDetailsLower);
+    aAttractionUrl.appendChild(divAttractionGroup);
+    AttractionsContainerEls[0].insertBefore(aAttractionUrl, AttractionsContainerEls.lastElementChild);
+  })	
+    loading=false;	
 }
 
 
 //click search bar pop up and other place to close category panel
 document.addEventListener('click', function displayCategory(e) {
-	const searchBarEl = document.querySelector(".search_bar");
-	if (searchBarEl.contains(e.target)) {
+  const searchBarEl = document.querySelector(".search_bar");
+  if (searchBarEl.contains(e.target)) {
     document.querySelector(".search_category").style.display = "flex";		
   }
 });
 document.addEventListener('click', function hideCategory(e) {
-	const searchBarEl = document.querySelector(".search_bar");
+  const searchBarEl = document.querySelector(".search_bar");
     const categoryContainerEl = document.querySelector(".search_category");
     if (!categoryContainerEl.contains(e.target) && !searchBarEl.contains(e.target)) {
       categoryContainerEl.style.display = "none";
@@ -157,17 +157,17 @@ function scrollLoadMore(entries) {
 
 //category shadow effect
 function addCatShadow() {
-	let catItemEls=document.querySelectorAll(".cat_item");
-	catItemEls.forEach(function(catItemEl) {
-		catItemEl.addEventListener("mouseover", mouseOver);
-		catItemEl.addEventListener("mouseout", mouseOut);
-	})
-	function mouseOver() {
-		this.classList.add("cat_item_change_color");
-	}
-	function mouseOut() {
-		this.classList.remove("cat_item_change_color");
-	}	
+  let catItemEls=document.querySelectorAll(".cat_item");
+  catItemEls.forEach(function(catItemEl) {
+    catItemEl.addEventListener("mouseover", mouseOver);
+    catItemEl.addEventListener("mouseout", mouseOut);
+  })
+  function mouseOver() {
+    this.classList.add("cat_item_change_color");
+  }
+  function mouseOut() {
+    this.classList.remove("cat_item_change_color");
+  }	
 }	
   
 //click search button
@@ -184,36 +184,36 @@ function addCatShadow() {
 
 // search key word
 async function getQueryResult() {
-	loading=true;
+  loading=true;
   const attractionsContainerEl = document.querySelector(".attractions_container");
-	let url ="api/attractions";
-	if(!keyword) {
-		url= url+"?page=0";
-	} else {
-		url= url+`?page=0&keyword=${keyword}`;
-	}
+  let url ="api/attractions";
+  if(!keyword) {
+    url= url+"?page=0";
+  } else {
+    url= url+`?page=0&keyword=${keyword}`;
+  }
 
-	attractionsContainerEl.textContent=""; //remove all elements inside attractions_container 
-  
-	const response = await fetch(url)
+  attractionsContainerEl.textContent=""; //remove all elements inside attractions_container 
+
+  const response = await fetch(url)
   .then(function(response) {                
-		return response.json();
-	}).then(function(data) {
-		nextPage=data["nextPage"];
-		return data["data"];   	
-	});         
-	
-	if (response.length===0) {
-		//create img tag in attractions_container
+    return response.json();
+  }).then(function(data) {
+    nextPage=data["nextPage"];
+    return data["data"];   	
+  });         
+
+  if (response.length===0) {
+    //create img tag in attractions_container
     console.log(response);
     const imgNoResultImg = document.createElement("img");
     imgNoResultImg.className="no_result_img";
     imgNoResultImg.src="/static/images/no_results.png";
     attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
-		return;
+    return;
 
-	} else {
-		processData(response);
+  } else {
+    processData(response);
   }	
 }
 	

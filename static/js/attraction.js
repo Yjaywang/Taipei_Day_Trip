@@ -3,7 +3,7 @@
   let currentUrl=window.location.href.split("/");
   const id=currentUrl.slice(-1)[0];
   const url =`/api/attraction/${String(id)}`;
-  
+
   const response = await fetch(url)
       .then(function(response){
           return response.json();
@@ -13,7 +13,7 @@
       }); 		
   createImg(response);   //construct html elements
   showSlides(slideIdx);  //pic_slides
-  
+
   document.querySelector("section").style.display = "flex";		
   document.querySelector(".information_container").style.display = "block";		
   document.querySelector("footer").style.display = "flex";	
@@ -116,7 +116,7 @@ function createImg(response){
       ProfilePicContainerEls[0].insertBefore(divCircleContainer, ProfilePicContainerEls.lastElementChild);
     }
   }
-  
+
   //add currentSlide event to circles by set attribute.
   const circleEls = document.querySelectorAll(".circle");
   for(i=0;i<circleEls.length;i++){
