@@ -32,7 +32,7 @@ def all_exception_handler(error):
     res={
 		"error": True,
 		"message": "error message: server error"  #+str(error)
-		}
+	}
     return Response(status=500, mimetype="application/json", response=json.dumps(res))
 
 @app.route("/api/attractions")
@@ -102,38 +102,38 @@ def attractions() ->tuple[dict[str:str], int]:
 				records=cursor.fetchall()
 				cursor.close()
 				 
-		for info in records:
+		for record in records:
 			if id_check==[]:  #first time
-				id_check.append(int(info[0]))
+				id_check.append(int(record[0]))
 				attraction={
-					"id": int(info[0]),
-					"name": info[1],
-					"category": info[2],
-					"description": info[3],
-					"address": info[4],
-					"transport": info[5],
-					"mrt": info[6],
-					"lat": float(info[7]),
-					"lng": float(info[8]),
-					"images": [info[9]]
+					"id": int(record[0]),
+					"name": record[1],
+					"category": record[2],
+					"description": record[3],
+					"address": record[4],
+					"transport": record[5],
+					"mrt": record[6],
+					"lat": float(record[7]),
+					"lng": float(record[8]),
+					"images": [record[9]]
 				}
-			elif int(info[0]) not in id_check:   #if id changed, append previous id's data
+			elif int(record[0]) not in id_check:   #if id changed, append previous id's data
 				output.append(attraction)
-				id_check.append(int(info[0]))
+				id_check.append(int(record[0]))
 				attraction={
-					"id": int(info[0]),
-					"name": info[1],
-					"category": info[2],
-					"description": info[3],
-					"address": info[4],
-					"transport": info[5],
-					"mrt": info[6],
-					"lat": float(info[7]),
-					"lng": float(info[8]),
-					"images": [info[9]]
+					"id": int(record[0]),
+					"name": record[1],
+					"category": record[2],
+					"description": record[3],
+					"address": record[4],
+					"transport": record[5],
+					"mrt": record[6],
+					"lat": float(record[7]),
+					"lng": float(record[8]),
+					"images": [record[9]]
 				}
 			else:    #if same id, just append img
-				attraction["images"].append(info[9])
+				attraction["images"].append(record[9])
 		output.append(attraction)  #for last data collection append
 		
 		if total_page==page:
