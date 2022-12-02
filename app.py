@@ -67,14 +67,14 @@ def attractions() ->tuple[dict[str:str], int]:
 				""")			
 			if connection.is_connected():
 				count_cursor=connection.cursor()
-				count_cursor.execute(mySql_query_count, (keyword,"%"+keyword+"%"))   
+				count_cursor.execute(mySql_query_count, (keyword,f"%{keyword}%"))   
 				count_records=count_cursor.fetchone()      
 				count=count_records[0]  #get total count
 				total_page=count//12
 				if count==0 or total_page<page: #prevent useless query
 					return {"nextPage":None,"data":[]}, 200							
 				cursor=connection.cursor()
-				cursor.execute(mySql_query, (keyword,"%"+keyword+"%",page*12 , display ))   
+				cursor.execute(mySql_query, (keyword,f"%{keyword}%",page*12 , display ))   
 				records=cursor.fetchall()   
 				cursor.close()   
 		
