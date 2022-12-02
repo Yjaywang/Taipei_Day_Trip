@@ -6,16 +6,19 @@
   try {
     const response = await fetch(url);
     const data = await response.json();
+    
     createImg(data.data);   //construct html elements
     showSlides(slideIdx);  //pic_slides
+
+    document.title = data.data.name;
+    document.querySelector("section").style.display = "flex";		
+    document.querySelector(".information_container").style.display = "block";		
+    document.querySelector("footer").style.display = "flex";	
+    document.querySelector(".main_separator").style.display = "block";	
+    
   } catch (error) {
     console.log(error);
   }
-
-  document.querySelector("section").style.display = "flex";		
-  document.querySelector(".information_container").style.display = "block";		
-  document.querySelector("footer").style.display = "flex";	
-  document.querySelector(".main_separator").style.display = "block";	     
 })();
 
 
