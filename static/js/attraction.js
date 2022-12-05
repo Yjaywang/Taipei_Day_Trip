@@ -142,5 +142,164 @@ function createImg(response){
 
 
 
+//close menu
+
+{
+  const triggerCloseEls=document.querySelectorAll(".trigger_close_menu");
+  triggerCloseEls.forEach(triggerCloseEl => {
+    triggerCloseEl.addEventListener("click", () => {
+      document.querySelector(".sign_menu_backgroung").style.display = "none";
+      document.querySelector(".signin_form").style.display = "none";
+      document.querySelector(".signup_form").style.display = "none";
+    });
+  });
+  
+}
+
+//show sign in menu
+{
+  const showSignInEls=document.querySelectorAll(".show_sign_in");
+  showSignInEls.forEach(showSignInEl =>{
+    showSignInEl.addEventListener("click", ()=> {
+      document.querySelector(".sign_menu_backgroung").style.display="block";
+      document.querySelector(".signin_form").style.display="block";
+      document.querySelector(".signup_form").style.display="none";
+    });    
+  });
+}
 
 
+//show sign up menu
+{
+  const showSignUpEls=document.querySelectorAll(".show_sign_up");
+  showSignUpEls.forEach(showSignUpEl =>{
+    showSignUpEl.addEventListener("click", ()=> {
+      document.querySelector(".sign_menu_backgroung").style.display="block";
+      document.querySelector(".signin_form").style.display="none";
+      document.querySelector(".signup_form").style.display="block";
+    });
+  });
+}
+
+
+
+
+//submit signin form
+async function sendSignIn(){
+  const email=document.querySelector("#sign_in_email").value;
+  const password=document.querySelector("#sign_in_password").value;
+  console.log(email);
+  console.log(password);
+  const body={
+    "email":email,
+    "password":password,
+  }
+  const header={
+    "Content-Type": "application/json"
+  }
+  let url = "/api/user/auth"
+  const response = await fetch(url, {
+    method: "PUT",
+    headers:header,
+    body:JSON.stringify(body),
+  });
+  const data = await response.json();
+  console.log(data.message);
+  if(data.ok){
+    location.reload();
+  } else {
+    const signInFormEl = document.querySelector(".signin_form");
+    const menuStatusEl=document.querySelector("#signin_menu_status");
+    menuStatusEl.classList.add("status_error");
+
+    if(data.message==="wrong password, try again!"){
+      menuStatusEl.textContent="密碼錯誤，請再試一次!";
+      signInFormEl.addEventListener("click", function() {
+        if(this){
+          menuStatusEl.classList.remove("status_error");
+        }
+      })
+    }
+    else if(data.message==="email not existed"){
+      menuStatusEl.textContent="無此email，請再重試!";
+      signInFormEl.addEventListener("click", function() {
+        if(this){
+          menuStatusEl.classList.remove("status_error");
+        }
+      })
+    }
+  }
+}
+
+
+//sign out
+async function signOut(){
+  const url="/api/user/auth"
+  const response = await fetch(url,{
+    method:"DELETE",
+  });
+  const data = await response.json();
+  console.log(data);
+  if(data.ok){
+    location.reload();
+  }
+}
+
+//check login status
+(async function checkSingIn(){
+  const url="/api/user/auth";
+  const response = await fetch(url);
+  const data = await response.json();
+  if(!data.error){
+    document.querySelector(".nav_signin").style.display="none";
+
+    const signOutEl = document.querySelector(".nav_signout");
+    signOutEl.style.display="block";
+    signOutEl.addEventListener("click", ()=> {
+      signOut();
+    })   
+  }
+})();
+
+
+//submit signup form
+async function sendSignUp(){
+  const name=document.querySelector("#sign_up_name").value;
+  const email=document.querySelector("#sign_up_email").value;
+  const password=document.querySelector("#sign_up_password").value;
+  const body={
+    "username":name,
+    "email":email,
+    "password":password,
+  }
+  
+  const header={
+    "Content-Type": "application/json"
+  }
+  let url = "/api/user"
+  const response = await fetch(url, {
+    method: "POST",
+    headers:header,
+    body:JSON.stringify(body),
+  });
+  const data = await response.json();
+  const menuStatusEl=document.querySelector("#signup_menu_status");
+  const signUpFormEl=document.querySelector(".signup_form");
+  if(data.ok){
+    menuStatusEl.classList.add("status_ok");
+    menuStatusEl.textContent="註冊成功!";
+    signUpFormEl.addEventListener("click", function() {
+      if(this){
+        menuStatusEl.classList.remove("status_ok");
+      }
+    })
+  } else {
+    menuStatusEl.classList.add("status_error");
+    menuStatusEl.textContent="註冊失敗!";
+    signUpFormEl.addEventListener("click", function() {
+      if(this){
+        menuStatusEl.classList.remove("status_error");
+      }
+    })
+  }
+}

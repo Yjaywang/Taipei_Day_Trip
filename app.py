@@ -1,17 +1,24 @@
 #!/usr/bin/env python3
 from flask import *
 import mysql.connector
-from utils import mysql_config
+from utils import jwt_key
+
 # from flask_cors import CORS
+import time
+import jwt 
+from controller.database import connection_pool
+import os
 
 app=Flask(__name__)
 app.config["JSON_AS_ASCII"]=False
 app.config["TEMPLATES_AUTO_RELOAD"]=True
 
-config=mysql_config.config()
-connection_pool=mysql.connector.pooling.MySQLConnectionPool(**config)
+# config=mysql_config.config()
+# connection_pool=mysql.connector.pooling.MySQLConnectionPool(**config)
 # cors=CORS(app, resources={r"/api/*": {"origins": "*"}})
 
+
+secret_key=jwt_key.secret_key
 
 # Pages
 @app.route("/")
@@ -31,9 +38,153 @@ def thankyou():
 def all_exception_handler(error):
     res={
         "error": True,
-        "message": "error message: server error",  #can+str(error)
+        "message": "error message: server error" +str(error)
     }
     return Response(status=500, mimetype="application/json", response=json.dumps(res))
+
+
+
+@app.route("/api/user", methods=["POST"])
+def signup():
+    
+    username=request.json["username"]
+    email=request.json["email"]
+    password=request.json["password"]
+    print(username)
+    try:        
+        mySql_query = (
+            """INSERT INTO member(username, email, password)
+            SELECT %s, %s, %s
+            WHERE NOT EXISTS(
+            SELECT * FROM member WHERE BINARY email=%s)"""
+            )#add BINARY make query to be case sensitive
+        connection = connection_pool.get_connection()
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+            cursor.execute(mySql_query, (username, email, password, email))
+            connection.commit()
+            if cursor.rowcount==1: # update success
+                return {"ok":True}, 200
+            else: 
+                return {
+                    "error": True,
+                    "message": "email existed",
+                }
+        
+    except mysql.connector.Error as e:
+        print("signup route Error Message:", e)
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            if connection.in_transaction: # check transaction over, if not, rollback and end it.
+                connection.rollback()  
+            connection.close()            
+            print("End MySQL connection")         
+
+
+@app.route("/api/user/auth", methods=["GET"])
+def query_member():
+    res={}
+    token=request.cookies.get("user")
+    res = jwt.decode(token, secret_key, algorithms='HS256')
+    email=res["email"]
+
+    
+    try:        
+        mySql_query=(
+            """SELECT id, username, email 
+            From member
+            WHERE email=%s"""
+            )
+        connection=connection_pool.get_connection()
+
+        if connection.is_connected():
+            cursor=connection.cursor()
+            cursor.execute(mySql_query, (email, ))       
+            record=cursor.fetchone()		
+
+            if record:
+                res["id"]=record[0]
+                res["username"]=record[1]
+                res["email"]=record[2]
+                print(res)
+                return{"data":res}, 200
+            
+    except mysql.connector.Error as e:
+        print("attractions Error Message:", e)
+        raise Exception()
+        
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            connection.close()            
+            print("End MySQL connection") 
+    
+
+@app.route("/api/user/auth", methods=["PUT"])
+def sign_in():
+    email=request.json["email"]
+    password=request.json["password"]
+    try:        
+        mySql_query = (
+            """
+            SELECT password
+            FROM member
+            WHERE BINARY email=%s
+            """
+            )#add BINARY make query to be case sensitive
+        connection = connection_pool.get_connection()
+
+        if connection.is_connected():
+            cursor = connection.cursor()
+            cursor.execute(mySql_query, (email, ))
+            record=cursor.fetchone()
+            if cursor.rowcount==1: # update success
+                
+                if record[0] != password:
+                    return {
+                        "error": True,
+                        "message": "wrong password, try again!",
+                    }, 400
+                
+                
+                now = time.time()
+                exp= 60*60
+
+                payload = {
+                    "email": email,
+                    "expire": now + exp,
+                }
+
+                token=jwt.encode(payload, secret_key, algorithm='HS256')
+                resp = make_response({"ok":True}, 200)
+                resp.set_cookie(key="user",value= token, expires=time.time()+7*60*60*24) #unit: second
+                return resp
+                # return resp
+            else: 
+                return {
+                    "error": True,
+                    "message": "email not existed",
+                }, 400
+        
+    except mysql.connector.Error as e:
+        print("signup route Error Message:", e)
+
+    finally:
+        if connection.is_connected():
+            cursor.close()
+            if connection.in_transaction: # check transaction over, if not, rollback and end it.
+                connection.rollback()  
+            connection.close()            
+            print("End MySQL connection")        
+
+@app.route("/api/user/auth", methods=["DELETE"])
+def sign_out():
+    resp = make_response({"ok":True}, 200)
+    resp.set_cookie(key="user",value= "", expires=0) #unit: second
+    return resp
 
 @app.route("/api/attractions")
 def attractions() ->tuple[dict[str:str], int]:

@@ -3,24 +3,23 @@ body{
     margin: 0px;
     position: relative;
 }
-.nav_desk{      
-    height: 54px;   
+nav{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.nav_container{    
+.nav_container{
     width: 1200px;
-    height: 34px; 
+    height: 54px;
     display: flex;
-    flex-flow: column wrap;
-    align-content: space-between;
+    justify-content: space-between;
+    align-items: center;
 }
 .nav_left{
-
     text-decoration:none;
 }
 .nav_left_content{
+    padding-left: 10px;
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -33,56 +32,50 @@ body{
     padding: 0px;
     width: 175px;
     height: 34px;
-}
-.nav_right_btn{
     display: flex;
-    justify-content: center;
-    padding: 0px;
-    width: 175px;
-    height: 34px;
-    cursor: pointer;
-}
-.btn_schedule{
-    padding: 10px;
-    gap: 10px;
-    width: 84px;
-    height: 34px;
-}
-.btn_signin{
-    padding: 10px;
-    gap: 10px;
-    width: 91px;
-    height: 34px;
-    /* Inside auto layout */
-}
-.btn_schedule_text{
-    width: 64px;
-    height: 14px;
-    /* Body - Med 16(13.3) */
-    font-family: 'Noto Sans TC';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px; 
-    line-height: 13px;    
-    /* identical to box height, or 83% */
-    /* Secondary Color/Gray 70 */
-    color: #666666;
-    /* Inside auto layout */
+    align-items: center;
+    justify-content: space-around;
 }
 
-.btn_signin_text{
-    width: 71px;
+
+    
+
+.nav_schedule{
     height: 14px;
-    /* Body - Med 16(13.3) */
+    padding: 10px;
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    line-height: 13px;
-    /* identical to box height, or 83% */
-    /* Secondary Color/Gray 70 */
+    line-height: 14px;
     color: #666666;
-    /* Inside auto layout */
+    cursor: pointer;
+    
+}
+.nav_signin{
+    height: 14px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    color: #666666;
+
+}
+
+.nav_signout{
+    height: 14px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    color: #666666;
+    display: none;
 }
 
 .slogan{
@@ -427,6 +420,172 @@ footer{
     /* white-space: nowrap; */
     color: #FFFFFF;
     text-align: center;
+}
+
+.sign_menu_backgroung{
+    background: #000000;
+    opacity: 0.25;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+.signin_form{
+    position: fixed;
+    /* height: 275px; */
+    width: 340px;
+    top: 80px;
+    left: 50%;
+    margin-left: -170px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    border-radius: 6px;
+    display: none;
+}
+
+.signup_form{
+    position: fixed;
+    /* height: 332px; */
+    width: 340px;
+    top: 80px;
+    left: 50%;
+    margin-left: -170px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    border-radius: 6px;
+    display: none;
+    
+}
+
+.upper_decorator{
+    height: 10px;    
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border-radius: 6px;
+}
+.upper_decorator_modification{
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    margin-top: -5px;
+    height: 5px;
+    margin-bottom: 15px;
+}
+
+.signin_container{
+    width: 310px;
+    /* height: 235px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signup_container{
+    width: 310px;
+    /* height: 292px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign_menu_title{
+    position: relative;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #666666;
+    text-align: center;
+    height: 27px;
+
+    margin: auto;
+    margin-bottom: 15px;
+}
+.close_icon{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.sign_input{
+    
+    width: 278px;
+    height: 17px;
+    padding: 15px;    
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    color: #757575;
+}
+
+.signin_btn{
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 47px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.signup_btn{
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 47px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.menu_status_info{
+    text-align: center;
+    display: none;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+}
+.status_ok{
+    display: block;
+    color: forestgreen;
+}
+
+.status_error{
+    display: block;
+    color: red;
+}
+
+
+.menu_other_info{
+    text-align: center;
+    display: block;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #666666;
+    cursor: pointer;
 }
 
 @media (max-width:1200px){

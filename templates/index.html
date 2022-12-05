@@ -10,24 +10,22 @@
 </head>
 <body>
 
-    <nav class="nav_desk">
+    <nav>
         <div class="nav_container">
             <a href ="/" class="nav_left">
                 <div class="nav_left_content">台北一日遊</div>
             </a>
+            
             <div class="nav_right">
-                <div class="nav_right_btn">
-                    <div class="btn_schedule">
-                        <div class="btn_schedule_text">預定行程</div>
-                    </div>                    
-                    <div class="btn_signin">
-                        <div class="btn_signin_text">登入/註冊</div>
-                    </div>                    
-                </div>
+                <div class="nav_schedule" onclick="schedule()">預定行程</div>
+                <div class="nav_signin show_sign_in">登入/註冊</div>
+                <div class="nav_signout">登出系統</div>
             </div>
         </div>
     </nav>
 
+
+    
     <div class="hero_desk">
         <img src="/static/images/welcome.png" alt="" class="welcome_img">        
     </div>
@@ -91,6 +89,41 @@
           
         </div>
     </div>
+
+    <div class="sign_menu_backgroung trigger_close_menu"></div>
+    <form action="/api/user/auth" class="signin_form" method="put">
+        <div class="upper_decorator"></div>
+        <div class="upper_decorator_modification"></div>
+        <div class="signin_container">            
+            <div class="sign_menu_title">登入會員帳號
+                <img src="/static/images/icon_close.png" alt="" class="close_icon trigger_close_menu">
+            </div>
+            <input id="sign_in_email" class="sign_input" type="text" placeholder="輸入電子信箱" name="email">
+            <input id="sign_in_password" class="sign_input" type="text" placeholder="輸入密碼" name="password">
+            <div class="signin_btn" onclick="sendSignIn()">登入帳戶</div>
+            <div class="menu_status_info" id="signin_menu_status"></div>  
+            <div class="menu_other_info show_sign_up">還沒有帳戶？點此註冊</div>
+        </div>
+    </form>
+
+    <form action="" class="signup_form" method="post">
+        <div class="upper_decorator"></div>
+        <div class="upper_decorator_modification"></div>
+        <div class="signup_container">            
+            <div class="sign_menu_title">註冊會員帳號
+                <img src="/static/images/icon_close.png" alt="" class="close_icon trigger_close_menu">
+            </div>
+            <input class="sign_input" id="sign_up_name" type="text" placeholder="輸入姓名" name="username">
+            <input class="sign_input" id="sign_up_email" type="text" placeholder="輸入電子信箱" name="email">
+            <input class="sign_input" id="sign_up_password" type="text" placeholder="輸入密碼" name="password">
+            <!-- <button class="signin_btn" type="submit">註冊新帳戶</button> -->
+            <div class="signin_btn" onclick="sendSignUp()">註冊新帳戶</div>
+            <div class="menu_status_info" id="signup_menu_status"></div>  
+            <!-- add status_ok, status_error -->
+            <div class="menu_other_info show_sign_in" >已經有帳戶了？點此登入</div>
+        </div>
+    </form>
+
     <footer>
         <div class="copyright_block">COPYRIGHT © 2022 台北一日遊
             <div class="copyright_text"></div>
