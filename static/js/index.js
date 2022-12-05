@@ -260,8 +260,7 @@ async function getQueryResult() {
 async function sendSignIn(){
   const email=document.querySelector("#sign_in_email").value;
   const password=document.querySelector("#sign_in_password").value;
-  console.log(email);
-  console.log(password);
+
   const body={
     "email":email,
     "password":password,
@@ -276,7 +275,7 @@ async function sendSignIn(){
     body:JSON.stringify(body),
   });
   const data = await response.json();
-  console.log(data.message);
+
   if(data.ok){
     location.reload();
   } else {
@@ -311,7 +310,7 @@ async function signOut(){
     method:"DELETE",
   });
   const data = await response.json();
-  console.log(data);
+  
   if(data.ok){
     location.reload();
   }

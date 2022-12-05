@@ -50,7 +50,7 @@ def signup():
     username=request.json["username"]
     email=request.json["email"]
     password=request.json["password"]
-    print(username)
+
     try:        
         mySql_query = (
             """INSERT INTO member(username, email, password)
@@ -86,7 +86,7 @@ def signup():
 
 @app.route("/api/user/auth", methods=["GET"])
 def query_member():
-    res={}
+    output={}
     token=request.cookies.get("user")
     res = jwt.decode(token, secret_key, algorithms='HS256')
     email=res["email"]
@@ -106,11 +106,10 @@ def query_member():
             record=cursor.fetchone()		
 
             if record:
-                res["id"]=record[0]
-                res["username"]=record[1]
-                res["email"]=record[2]
-                print(res)
-                return{"data":res}, 200
+                output["id"]=record[0]
+                output["username"]=record[1]
+                output["email"]=record[2]
+                return{"data":output}, 200
             
     except mysql.connector.Error as e:
         print("attractions Error Message:", e)
