@@ -295,7 +295,7 @@ async function sendSignUp(){
     })
   } else {
     menuStatusEl.classList.add("status_error");
-    menuStatusEl.textContent="註冊失敗!";
+    menuStatusEl.textContent="此email已被人使用!";
     signUpFormEl.addEventListener("click", function() {
       if(this){
         menuStatusEl.classList.remove("status_error");
