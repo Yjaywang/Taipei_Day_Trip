@@ -1,3 +1,6 @@
+# jwt key
+jwt_key.py
+
 # shell script and nohup
 nohup*
 *.sh
