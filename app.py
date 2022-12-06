@@ -50,6 +50,11 @@ def signup():
     username=request.json["username"]
     email=request.json["email"]
     password=request.json["password"]
+    if (not username or not email or not password):
+        return {
+            "error": True,
+            "message": "input empty values",
+        }, 400
 
     try:        
         mySql_query = (
@@ -70,7 +75,7 @@ def signup():
                 return {
                     "error": True,
                     "message": "email existed",
-                }
+                }, 400
         
     except mysql.connector.Error as e:
         print("signup route Error Message:", e)
@@ -126,6 +131,12 @@ def query_member():
 def sign_in():
     email=request.json["email"]
     password=request.json["password"]
+    if (not email or not password):
+        return {
+            "error": True,
+            "message": "input empty values",
+        }, 400
+
     try:        
         mySql_query = (
             """
@@ -150,7 +161,7 @@ def sign_in():
                 
                 
                 now = time.time()
-                exp= 60*60
+                exp= 60*60*24*7
 
                 payload = {
                     "email": email,

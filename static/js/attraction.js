@@ -188,6 +188,18 @@ function createImg(response){
 async function sendSignIn(){
   const email=document.querySelector("#sign_in_email").value;
   const password=document.querySelector("#sign_in_password").value;
+  const signInFormEl = document.querySelector(".signin_form");
+  const menuStatusEl=document.querySelector("#signin_menu_status");
+  if(!email || !password){
+    menuStatusEl.classList.add("status_error");
+    menuStatusEl.textContent="輸入欄位不可空白!";
+    signInFormEl.addEventListener("click", function() {
+      if(this){
+        menuStatusEl.classList.remove("status_error");
+      }
+    })
+  }
+
 
   const body={
     "email":email,
@@ -203,29 +215,24 @@ async function sendSignIn(){
     body:JSON.stringify(body),
   });
   const data = await response.json();
-  
+
   if(data.ok){
     location.reload();
   } else {
-    const signInFormEl = document.querySelector(".signin_form");
-    const menuStatusEl=document.querySelector("#signin_menu_status");
     menuStatusEl.classList.add("status_error");
-
+    signInFormEl.addEventListener("click", function() {
+      if(this){
+        menuStatusEl.classList.remove("status_error");
+      }
+    })
     if(data.message==="wrong password, try again!"){
       menuStatusEl.textContent="密碼錯誤，請再試一次!";
-      signInFormEl.addEventListener("click", function() {
-        if(this){
-          menuStatusEl.classList.remove("status_error");
-        }
-      })
     }
     else if(data.message==="email not existed"){
       menuStatusEl.textContent="無此email，請再重試!";
-      signInFormEl.addEventListener("click", function() {
-        if(this){
-          menuStatusEl.classList.remove("status_error");
-        }
-      })
+    }
+    else if(data.message==="input empty values"){
+      menuStatusEl.textContent="輸入欄位不可空白!";
     }
   }
 }
@@ -266,6 +273,18 @@ async function sendSignUp(){
   const name=document.querySelector("#sign_up_name").value;
   const email=document.querySelector("#sign_up_email").value;
   const password=document.querySelector("#sign_up_password").value;
+  const menuStatusEl=document.querySelector("#signup_menu_status");
+  const signUpFormEl=document.querySelector(".signup_form");
+  if(!name || !email || !password){
+    menuStatusEl.classList.add("status_error");
+    menuStatusEl.textContent="輸入欄位不可空白!";
+    signUpFormEl.addEventListener("click", function() {
+      if(this){
+        menuStatusEl.classList.remove("status_error");
+      }
+    })
+  } 
+
   const body={
     "username":name,
     "email":email,
@@ -282,8 +301,7 @@ async function sendSignUp(){
     body:JSON.stringify(body),
   });
   const data = await response.json();
-  const menuStatusEl=document.querySelector("#signup_menu_status");
-  const signUpFormEl=document.querySelector(".signup_form");
+
   if(data.ok){
     menuStatusEl.classList.add("status_ok");
     menuStatusEl.textContent="註冊成功!";
@@ -294,11 +312,16 @@ async function sendSignUp(){
     })
   } else {
     menuStatusEl.classList.add("status_error");
-    menuStatusEl.textContent="此email已被人使用!";
     signUpFormEl.addEventListener("click", function() {
       if(this){
         menuStatusEl.classList.remove("status_error");
       }
     })
+    if(data.message==="input empty values"){
+      menuStatusEl.textContent="輸入欄位不可空白!";
+    }
+    else if(data.message==="email existed"){
+      menuStatusEl.textContent="此email已被人使用!";
+    }
   }
 }
