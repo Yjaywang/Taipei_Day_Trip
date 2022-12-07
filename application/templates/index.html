@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/style.css') }}" />
+    <title>Taipei-day-trip</title>
+</head>
+<body>
+
+    <nav>
+        <div class="nav_container">
+            <a href ="/" class="nav_left">
+                <div class="nav_left_content">台北一日遊</div>
+            </a>
+            
+            <div class="nav_right">
+                <div class="nav_schedule" onclick="schedule()">預定行程</div>
+                <div class="nav_signin show_sign_in">登入/註冊</div>
+                <div class="nav_signout">登出系統</div>
+            </div>
+        </div>
+    </nav>
+
+
+    
+    <div class="hero_desk">
+        <img src="/static/images/welcome.png" alt="" class="welcome_img">        
+    </div>
+
+    <div class="slogan">
+        <div class="slogan_container">
+            <div class="slogan_box">
+                <div class="slogan_info_upper">輕鬆享受台北一日悠閒</div>
+                <div class="slogan_info_lower">探索每個角落，體驗城市的深度旅遊行程</div>
+            </div>
+            <div class="search_box">     
+                <div class="search_bar_desk_container">
+                    <div class="search_bar">
+                        <input type="text" class="search_bar_text" placeholder="輸入景點名稱查詢">
+                    </div>    
+                    <div class="search_btn">
+                        <img src="/static/images/icon_search.png" alt="" class="search_icon">
+                    </div>    
+                </div>    
+            <div class="search_category">
+                <!-- <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div>
+                <div class="cat_item">test1</div> -->
+
+            </div>      
+   
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="attractions">
+        <div class="attractions_container">
+            <!-- <img src="/static/images/no_results.png" alt="" class="no_result_img">      -->
+            <!-- <a href="" class="attraction_url">
+                <div class="attraction_group">
+                    <div class="attraction_img_box">
+                        <img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg" alt="" class="attraction_img" >
+                    </div>
+                    <div class="details_upper">                    
+                        <div class="info_upper" >test</div>                    
+                    </div>
+                    <div class="details_lower">
+                        <div class="info_lower">
+                            <div class="mrt" >mrt</div>
+                            <div class="cat" >cat</div>
+                        </div>
+                    </div>
+                </div>                 
+            </a>      -->
+        
+
+          
+        </div>
+    </div>
+
+    <div class="sign_menu_backgroung trigger_close_menu"></div>
+    <form action="/api/user/auth" class="signin_form" method="put">
+        <div class="upper_decorator"></div>
+        <div class="upper_decorator_modification"></div>
+        <div class="signin_container">            
+            <div class="sign_menu_title">登入會員帳號
+                <img src="/static/images/icon_close.png" alt="" class="close_icon trigger_close_menu">
+            </div>
+            <input id="sign_in_email" class="sign_input" type="text" placeholder="輸入電子信箱" name="email">
+            <input id="sign_in_password" class="sign_input" type="password" placeholder="輸入密碼" name="password">
+            <div class="signin_btn" onclick="sendSignIn()">登入帳戶</div>
+            <div class="menu_status_info" id="signin_menu_status"></div>  
+            <div class="menu_other_info show_sign_up">還沒有帳戶？點此註冊</div>
+        </div>
+    </form>
+
+    <form action="" class="signup_form" method="post">
+        <div class="upper_decorator"></div>
+        <div class="upper_decorator_modification"></div>
+        <div class="signup_container">            
+            <div class="sign_menu_title">註冊會員帳號
+                <img src="/static/images/icon_close.png" alt="" class="close_icon trigger_close_menu">
+            </div>
+            <input class="sign_input" id="sign_up_name" type="text" placeholder="輸入姓名" name="username">
+            <input class="sign_input" id="sign_up_email" type="text" placeholder="輸入電子信箱" name="email">
+            <input class="sign_input" id="sign_up_password" type="password" placeholder="輸入密碼" name="password">
+            <!-- <button class="signin_btn" type="submit">註冊新帳戶</button> -->
+            <div class="signin_btn" onclick="sendSignUp()">註冊新帳戶</div>
+            <div class="menu_status_info" id="signup_menu_status"></div>  
+            <!-- add status_ok, status_error -->
+            <div class="menu_other_info show_sign_in" >已經有帳戶了？點此登入</div>
+        </div>
+    </form>
+
+    <footer>
+        <div class="copyright_block">COPYRIGHT © 2022 台北一日遊
+            <div class="copyright_text"></div>
+        </div>
+    </footer>
+
+    <!-- <script src="index.js"></script> -->
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

@@ -2,11 +2,11 @@
 from flask import *
 import mysql.connector
 from utils import jwt_key
-
+from dotenv import dotenv_values
 # from flask_cors import CORS
 import time
 import jwt 
-from controller.database import connection_pool
+from application.model.database import connection_pool
 import os
 
 app=Flask(__name__)
@@ -18,7 +18,9 @@ app.config["TEMPLATES_AUTO_RELOAD"]=True
 # cors=CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 
-secret_key=jwt_key.secret_key
+secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
+
+
 
 # Pages
 @app.route("/")
