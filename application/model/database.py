@@ -181,7 +181,7 @@ class Database:
                     connection.rollback()  
                 connection.close()            
                 print("signin End MySQL connection")  
-                 
+
     def query_member(email):
         try:        
             mySql_query=(
