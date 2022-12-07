@@ -1,9 +1,3 @@
-#sys.path append
-import os
-import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-
-
 from flask import Blueprint
 from flask import request
 from application.model.database import Database
@@ -11,10 +5,9 @@ from application.view.api_response import Api_view
 import jwt
 import json
 from dotenv import dotenv_values
-from application import bcrypt
 
-pw_hash = bcrypt.generate_password_hash('hunter2').decode("utf-8")
-print(bcrypt.check_password_hash(pw_hash, 'hunter2')) # returns True
+
+
 
 
 
