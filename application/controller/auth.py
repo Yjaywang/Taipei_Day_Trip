@@ -45,9 +45,10 @@ def sign_in():
     if not password:
         return Api_view.response_query_signin(0, 0, email, password)
 
-    record=Database.query_signin(email)
+    record, row_count=Database.query_signin(email)
+    print(record)
 
-    return Api_view.response_query_signin(record, len(record), email, password)
+    return Api_view.response_query_signin(record, row_count, email, password)
     
          
 
