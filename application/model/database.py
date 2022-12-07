@@ -173,7 +173,7 @@ class Database:
                 cursor = connection.cursor()
                 cursor.execute(mySql_query, (email, ))
                 record=cursor.fetchone()
-                return record, cursor.rowcount
+                return record
                             
         except Exception as e:
             print("signin Error Message:", e)

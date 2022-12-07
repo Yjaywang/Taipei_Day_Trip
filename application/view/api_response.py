@@ -8,6 +8,7 @@ import jwt
 import json
 from flask import make_response
 from dotenv import dotenv_values
+from application import bcrypt
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 
@@ -93,8 +94,8 @@ class Api_view:
             output["username"]=record[1]
             output["email"]=record[2]
             return{"data":output}, 200
-    def response_user(username, email, password, record_count):
-        if (not username or not email or not password):
+    def response_user(username, email, pw_hash, record_count):
+        if (not username or not email or not pw_hash):
             return {
                 "error": True,
                 "message": "input empty values",
@@ -107,14 +108,15 @@ class Api_view:
                 "message": "email existed",
             }, 400
     def response_query_signin(record, record_count, email, password):
+        from application import bcrypt
+
         if (not email or not password):
             return {
                 "error": True,
                 "message": "input empty values",
             }, 400
-        if record_count==1: # update success    
-            
-            if record[0] != password:
+        if record_count==1: # update success   
+            if not bcrypt.check_password_hash(record[0], password):
                 return {
                     "error": True,
                     "message": "wrong password, try again!",
