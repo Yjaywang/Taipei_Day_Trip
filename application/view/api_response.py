@@ -3,14 +3,11 @@ import jwt
 import json
 from flask import make_response
 from dotenv import dotenv_values
-from application import bcrypt
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 
-
-
 class Api_view:
-    def response_attraction_byID(records):
+    def response_attraction_byID(records: list[tuple]):
         if records:
             images=[]
             for record in records:
@@ -29,13 +26,13 @@ class Api_view:
             }
             return {"data":attraction}, 200
         else:
-            return {"error": True,"message": "景點編號不正確"}, 400	 
-    def response_attractions(page, total_page, records):
+            return {"error": True,"message": "景點編號不正確"}, 400	
+
+    def response_attractions(page: int, total_page: int, records: list[tuple]):
             output=[] #use for return 
             id_check=[] #record id already fetched
             if records == "no data":     #prevent useless query
                 return {"nextPage":None,"data":[]}, 200	   
-
             
             for record in records:
                 if id_check==[]:  #first time
@@ -77,19 +74,20 @@ class Api_view:
                 nextPage=page+1
 
             return {"nextPage":nextPage,"data":output}, 200 
-    def response_category(records):
+    def response_category(records: list[tuple]):
         output=[]   
         for record in records:
             output.append(record[0])
         return {"data":output}, 200
-    def response_query_member(record):
+    def response_query_member(record : tuple):
         output={}
         if record:
             output["id"]=record[0]
             output["username"]=record[1]
             output["email"]=record[2]
             return{"data":output}, 200
-    def response_user(username, email, pw_hash, record_count):
+
+    def response_user_signup(username: str, email: str, pw_hash: str, record_count: int):
         if (not username or not email or not pw_hash):
             return {
                 "error": True,
@@ -102,9 +100,9 @@ class Api_view:
                 "error": True,
                 "message": "email existed",
             }, 400
-    def response_query_signin(record, record_count, email, password):
+    def response_query_signin(record: tuple, record_count: int, email: str, password: str):
         from application import bcrypt
-
+        print(type(password))
         if (not email or not password):
             return {
                 "error": True,
@@ -119,7 +117,6 @@ class Api_view:
             
             now = time.time()
             exp= 60*60*24*7
-
             payload = {
                 "email": email,
                 "expire": now + exp,
@@ -128,12 +125,12 @@ class Api_view:
             resp = make_response({"ok":True}, 200)
             resp.set_cookie(key="user",value= token, expires=time.time()+7*60*60*24) #unit: second
             return resp
-            # return resp
         else: 
             return {
                 "error": True,
                 "message": "email not existed",
             }, 400
+            
     def response_sign_out():
         resp = make_response({"ok":True}, 200)
         resp.set_cookie(key="user",value= "", expires=0) #unit: second

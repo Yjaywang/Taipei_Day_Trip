@@ -1,6 +1,5 @@
 from flask import Blueprint
 from flask import request
-from flask import render_template
 from application.model.database import Database
 from application.view.api_response import Api_view
 
@@ -15,7 +14,8 @@ attractions =Blueprint(
 
 @attractions.route("/api/attraction/<attractionId>", methods=["GET"])
 def query_attraction_api(attractionId: int) ->tuple[dict[str:str], int]:
-    """fetch attraction data by id from DB, return data with status code"""	
+    """fetch attraction data by id from DB, return data with status code"""
+    	
     records=Database.query_attraction_byID(attractionId)
     return Api_view.response_attraction_byID(records)
 

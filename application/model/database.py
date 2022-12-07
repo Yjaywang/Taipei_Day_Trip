@@ -4,29 +4,28 @@ import json
 config=json.loads({ **dotenv_values(".env")}["config"])
 connection_pool=mysql.connector.pooling.MySQLConnectionPool(**config)
 
-
 class Database:
     def query_attractions(page, keyword, display):
         try:       	
             connection=connection_pool.get_connection()
             
             if keyword:  #if have keyword
-                mySql_query_count=("""
-                    SELECT count(*)
+                mySql_query_count=(
+                    """SELECT count(*)
                     FROM attraction as a 
                     INNER JOIN category as c on c.id=a.CAT_id
-                    WHERE c.CAT=%s or a.name LIKE %s
-                    """)
-                mySql_query=("""
-                    SELECT s._id, s.name, s.CAT, s.description, s.address, s.direction, m.MRT, s.latitude, s.longitude, i.file
+                    WHERE c.CAT=%s or a.name LIKE %s"""
+                    )
+                mySql_query=(
+                    """SELECT s._id, s.name, s.CAT, s.description, s.address, s.direction, m.MRT, s.latitude, s.longitude, i.file
                     FROM (SELECT a._id, a.id, a.MRT_id, a.name, c.CAT, a.description, a.address, a.direction, a.latitude, a.longitude 
                         FROM attraction as a
                         INNER JOIN category as c on c.id=a.CAT_id
                         WHERE c.CAT= %s or a.name LIKE %s
                         LIMIT %s, %s) as s
                     INNER JOIN mrt as m on m.id=s.MRT_id
-                    INNER JOIN image as i on i.attr_id=s.id
-                    """)			
+                    INNER JOIN image as i on i.attr_id=s.id"""
+                    )			
                 if connection.is_connected():
                     count_cursor=connection.cursor()
                     count_cursor.execute(mySql_query_count, (keyword,f"%{keyword}%"))   
@@ -44,15 +43,15 @@ class Database:
             
             else:
                 mySql_query_count=("""SELECT count(*) FROM attraction""")
-                mySql_query=("""
-                    SELECT s._id, s.name, s.CAT, s.description, s.address, s.direction, m.MRT, s.latitude, s.longitude, i.file
+                mySql_query=(
+                    """SELECT s._id, s.name, s.CAT, s.description, s.address, s.direction, m.MRT, s.latitude, s.longitude, i.file
                     FROM (SELECT a._id, a.id, a.MRT_id, a.name, c.CAT, a.description, a.address, a.direction, a.latitude, a.longitude 
                         FROM attraction as a
                         INNER JOIN category as c on c.id=a.CAT_id
                         LIMIT %s, %s) as s
                     INNER JOIN mrt as m on m.id=s.MRT_id
-                    INNER JOIN image as i on i.attr_id=s.id
-                    """)			
+                    INNER JOIN image as i on i.attr_id=s.id"""
+                    )			
                 if connection.is_connected():
                     count_cursor=connection.cursor()
                     count_cursor.execute(mySql_query_count)   
@@ -80,14 +79,14 @@ class Database:
 
     def query_attraction_byID(attractionId: int):
         try:        
-            mySql_query=("""
-                SELECT a._id, a.name, c.CAT, a.description, a.address, a.direction, m.MRT, a.latitude, a.longitude, i.file
+            mySql_query=(
+                """SELECT a._id, a.name, c.CAT, a.description, a.address, a.direction, m.MRT, a.latitude, a.longitude, i.file
                 FROM attraction as a 
                 INNER JOIN mrt as m on m.id=a.MRT_id
                 INNER JOIN category as c on c.id=a.CAT_id
                 INNER JOIN image as i on i.attr_id=a.id
-                WHERE a._id=%s
-            """)
+                WHERE a._id=%s"""
+            )
             connection=connection_pool.get_connection()
 
             if connection.is_connected():
@@ -126,7 +125,8 @@ class Database:
                 cursor.close()
                 connection.close()            
                 print("category model End MySQL connection") 
-    def insert_signup(username, email, password):
+
+    def insert_signup(username: str, email: str, pw_hash: str):
         try:        
             mySql_query = (
                 """INSERT INTO member(username, email, password)
@@ -138,7 +138,7 @@ class Database:
 
             if connection.is_connected():
                 cursor = connection.cursor()
-                cursor.execute(mySql_query, (username, email, password, email))
+                cursor.execute(mySql_query, (username, email, pw_hash, email))
                 connection.commit()
                 return cursor.rowcount
             
@@ -153,14 +153,12 @@ class Database:
                     connection.rollback()  
                 connection.close()            
                 print("signup End MySQL connection")
-    def query_signin(email):
+
+    def query_signin(email: str):
         try:        
             mySql_query = (
-                """
-                SELECT password
-                FROM member
-                WHERE BINARY email=%s
-                """
+                """SELECT password
+                FROM member WHERE BINARY email=%s"""
                 )#add BINARY make query to be case sensitive
             connection = connection_pool.get_connection()
 
@@ -182,12 +180,11 @@ class Database:
                 connection.close()            
                 print("signin End MySQL connection")  
 
-    def query_member(email):
+    def query_member(email: str):
         try:        
             mySql_query=(
                 """SELECT id, username, email 
-                From member
-                WHERE email=%s"""
+                From member WHERE email=%s"""
                 )
             connection=connection_pool.get_connection()
 
