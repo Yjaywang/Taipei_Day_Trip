@@ -1,6 +1,8 @@
 #sys.path append
 import os
 import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import time
 import jwt
 import json
@@ -8,7 +10,7 @@ from flask import make_response
 from dotenv import dotenv_values
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 
 
 class Api_view:
