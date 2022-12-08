@@ -1,16 +1,20 @@
 from flask import Blueprint
 from flask import request
-from application.model.database import Database
-from application.view.api_response import Api_view
+from application.model.attraction_model import Database
+from application.view.attraction_resp import Api_view
 
 
 attractions =Blueprint(
-    "attractions",
+    "attraction",
     __name__,
     static_folder="static",
     template_folder="templates",
     )
 
+
+@attractions.route("/attraction/<id>")
+def attraction(id):
+    return Api_view.response_attraction_page()
 
 @attractions.route("/api/attraction/<attractionId>", methods=["GET"])
 def query_attraction_api(attractionId: int) ->tuple[dict[str:str], int]:
@@ -30,6 +34,12 @@ def query_attractions_api() ->tuple[dict[str:str], int]:
 
     total_page, records=Database.query_attractions(page, keyword, display)
     return Api_view.response_attractions(page, total_page, records)
+
+@attractions.route("/api/categories", methods=["GET"])
+def category_api() ->tuple[dict[str:str], int]:	
+    
+    records=Database.query_category()
+    return Api_view.response_category(records)
     
 
     

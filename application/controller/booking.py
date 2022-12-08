@@ -1,15 +1,28 @@
 from flask import Blueprint
-from flask import render_template
+from application.model.order_model import Database
+from application.view.booking_resp import Api_view
 
 
 
-booking_page =Blueprint(
-    "booking_page",
+
+bookings =Blueprint(
+    "bookings",
     __name__,
     static_folder="static",
     template_folder="templates",
     )
 
-@booking_page.route("/booking")
+@bookings.route("/booking")
 def booking():
-    return render_template("booking.html")
+    return Api_view.response_booking_page()
+
+
+@bookings.route("/api/booking", methods=["GET"])
+def get_booking():
+    pass
+@bookings.route("/api/booking", methods=["POST"])
+def create_booking():
+    pass
+@bookings.route("/api/booking", methods=["DELETE"])
+def delete_booking():
+    pass

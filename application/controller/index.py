@@ -1,5 +1,6 @@
 from flask import Blueprint
-from flask import render_template
+from application.view.index_resp import Api_view
+
 
 index_page = Blueprint(
     "index_page", 
@@ -10,7 +11,7 @@ index_page = Blueprint(
 
 @index_page.route("/")
 def index():
-    return render_template("index.html")
+    return Api_view.response_index_page()
 
 
 

@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import render_template
+from application.view.thankyou_resp import Api_view
 
 
 thankyou_page =Blueprint(
@@ -12,4 +12,4 @@ thankyou_page =Blueprint(
 
 @thankyou_page.route("/thankyou")
 def thankyou():
-    return render_template("thankyou.html")
+    return Api_view.response_thankyou_page()
