@@ -8,7 +8,7 @@ let model={
   init: async function() {
     //main page init
     this.loading=true;
-    this.attractionData={};
+    this.attractionData=null;
     const url="api/attractions?page=0";	
     try {
       const response = await fetch(url);
@@ -36,7 +36,7 @@ let model={
   },
   search: async function() {
     this.loading=true;
-    this.attractionData={};
+    this.attractionData=null;
     const attractionsContainerEl = document.querySelector(".attractions_container");
     let url ="api/attractions";
     if(!this.keyword) {
@@ -128,6 +128,34 @@ let model={
     const response = await fetch(url);
     const data = await response.json();
     this.authData=data;
+  }, 
+  scrollLoadMore: function(entries) {
+    entries.forEach(async function(entry) {
+      if(entry.isIntersecting) {
+        console.log(entry.isIntersecting);
+        //entry.isIntersecting=> true, see the element 
+        if (!model.nextPage || model.loading || model.currentPage===model.nextPage) {
+          return ;
+        }
+        
+        model.currentPage=model.nextPage;	 //if can fetch data, set current page as next page
+        let url ="api/attractions";
+        if(!model.keyword) {
+          url= url+`?page=${String(model.nextPage)}`;
+        } else {
+          url= url+`?page=${String(model.nextPage)}&keyword=${model.keyword}`;
+        }	   
+        try {
+          const response = await fetch(url);
+          const data =  await response.json();
+          model.nextPage=data.nextPage;
+          view.render(data.data);
+
+        } catch (error) {
+          console.log(error);
+        }
+      }    
+    })	
   }
 }
 
@@ -255,6 +283,9 @@ let view={
   },
   render: function(response) {
     model.loading=true;	
+    if (response===null){
+      return;
+    }
     response.forEach(function(data) {
       //variables
       const aAttractionUrl=document.createElement("a");
@@ -308,7 +339,7 @@ let view={
     }  
 
     model.loading=false;	
-    model.attractionData={};
+    model.attractionData=null;
   },
   signMenu: function() {
     //close menu
@@ -369,6 +400,9 @@ let controller={
   signOut: async function() {
     await model.signOut();
     view.signOut(model.authData);
+  },
+  scrollLoadMore: async function(entries) {
+    model.scrollLoadMore(entries);
   }
 }
 
@@ -382,34 +416,7 @@ controller.init();
     rootMargin: '10px',
     threshold: 0.5,
   };
-  const observer = new IntersectionObserver(scrollLoadMore, options);
+  const observer = new IntersectionObserver(controller.scrollLoadMore, options);
   const targetEl = document.querySelector(".copyright_text");
   observer.observe(targetEl);
-}
-
-//scroll load more 
-function scrollLoadMore(entries) {	
-  entries.forEach(async function(entry) {
-    if(entry.isIntersecting) {
-      //entry.isIntersecting=> true, see the element 
-      if (!model.nextPage || model.loading || model.currentPage===model.nextPage) {
-        return;
-      }
-      model.currentPage=model.nextPage;	 //if can fetch data, set current page as next page
-      let url ="api/attractions";
-      if(!model.keyword) {
-        url= url+`?page=${String(model.nextPage)}`;
-      } else {
-        url= url+`?page=${String(model.nextPage)}&keyword=${model.keyword}`;
-      }	   
-      try {
-        const response = await fetch(url);
-        const data =  await response.json();
-        model.nextPage=data.nextPage;
-        view.render(data.data);	
-      } catch (error) {
-        console.log(error);
-      }
-    }    
-  })	
 }
