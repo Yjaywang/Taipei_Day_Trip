@@ -195,6 +195,7 @@ let view={
     }
   },
   search: function(response) {
+    const attractionsContainerEl = document.querySelector(".attractions_container");
     if (response.length===0) {
       //create img tag in attractions_container
       const imgNoResultImg = document.createElement("img");
