@@ -120,7 +120,7 @@
             </div>
             <input id="sign_in_email" class="sign_input" type="text" placeholder="輸入電子信箱" name="email">
             <input id="sign_in_password" class="sign_input" type="password" placeholder="輸入密碼" name="password">
-            <div class="signin_btn" onclick="sendSignIn()">登入帳戶</div>
+            <div class="signin_btn" onclick="controller.sendSignIn()">登入帳戶</div>
             <div class="menu_status_info" id="signin_menu_status"></div>  
             <div class="menu_other_info show_sign_up">還沒有帳戶？點此註冊</div>
         </div>
@@ -137,7 +137,7 @@
             <input class="sign_input" id="sign_up_email" type="text" placeholder="輸入電子信箱" name="email">
             <input class="sign_input" id="sign_up_password" type="password" placeholder="輸入密碼" name="password">
             <!-- <button class="signin_btn" type="submit">註冊新帳戶</button> -->
-            <div class="signin_btn" onclick="sendSignUp()">註冊新帳戶</div>
+            <div class="signin_btn" onclick="controller.sendSignUp()">註冊新帳戶</div>
             <div class="menu_status_info" id="signup_menu_status"></div>  
             <!-- add status_ok, status_error -->
             <div class="menu_other_info show_sign_in" >已經有帳戶了？點此登入</div>
@@ -150,6 +150,6 @@
         </div>
     </footer>
     <!-- <script src="attraction.js"></script> -->
-    <script src="{{ url_for('static', filename='js/attraction.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/attraction_test.js') }}"></script>
 </body>
 </html>
