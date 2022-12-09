@@ -3,6 +3,7 @@ import jwt
 import json
 from flask import make_response
 from dotenv import dotenv_values
+from application import bcrypt
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 
@@ -30,8 +31,6 @@ class Api_view:
                 "message": "email existed",
             }, 400
     def response_query_signin(record: tuple, record_count: int, email: str, password: str):
-        from application import bcrypt
-        print(type(password))
         if (not email or not password):
             return {
                 "error": True,

@@ -193,48 +193,44 @@ async function sendSignIn(){
   if(!email || !password){
     menuStatusEl.classList.add("status_error");
     menuStatusEl.textContent="輸入欄位不可空白!";
-    signInFormEl.addEventListener("click", function() {
-      if(this){
-        menuStatusEl.classList.remove("status_error");
-      }
-    })
-  }
-
-
-  const body={
-    "email":email,
-    "password":password,
-  }
-  const header={
-    "Content-Type": "application/json"
-  }
-  let url = "/api/user/auth"
-  const response = await fetch(url, {
-    method: "PUT",
-    headers:header,
-    body:JSON.stringify(body),
-  });
-  const data = await response.json();
-
-  if(data.ok){
-    location.reload();
+    signInFormEl.addEventListener("mousedown", function() {
+      menuStatusEl.classList.remove("status_error");
+    })  
   } else {
-    menuStatusEl.classList.add("status_error");
-    signInFormEl.addEventListener("click", function() {
-      if(this){
+    const body={
+      "email":email,
+      "password":password,
+    }
+    const header={
+      "Content-Type": "application/json"
+    }
+    let url = "/api/user/auth"
+    const response = await fetch(url, {
+      method: "PUT",
+      headers:header,
+      body:JSON.stringify(body),
+    });
+    const data = await response.json();
+  
+    if(data.ok){
+      location.reload();
+    } else {
+      menuStatusEl.classList.add("status_error");
+      signInFormEl.addEventListener("mousedown", function() {
         menuStatusEl.classList.remove("status_error");
+      })
+      if(data.message==="wrong password, try again!"){
+        menuStatusEl.textContent="密碼錯誤，請再試一次!";
       }
-    })
-    if(data.message==="wrong password, try again!"){
-      menuStatusEl.textContent="密碼錯誤，請再試一次!";
-    }
-    else if(data.message==="email not existed"){
-      menuStatusEl.textContent="無此email，請再重試!";
-    }
-    else if(data.message==="input empty values"){
-      menuStatusEl.textContent="輸入欄位不可空白!";
+      else if(data.message==="email not existed"){
+        menuStatusEl.textContent="無此email，請再重試!";
+      }
+      else if(data.message==="input empty values"){
+        menuStatusEl.textContent="輸入欄位不可空白!";
+      }
     }
   }
+  
 }
 
 
@@ -275,53 +271,52 @@ async function sendSignUp(){
   const password=document.querySelector("#sign_up_password").value;
   const menuStatusEl=document.querySelector("#signup_menu_status");
   const signUpFormEl=document.querySelector(".signup_form");
+
   if(!name || !email || !password){
     menuStatusEl.classList.add("status_error");
     menuStatusEl.textContent="輸入欄位不可空白!";
-    signUpFormEl.addEventListener("click", function() {
-      if(this){
+    signUpFormEl.addEventListener("mouseup", function() {
         menuStatusEl.classList.remove("status_error");
-      }
-    })
-  } 
-
-  const body={
-    "username":name,
-    "email":email,
-    "password":password,
-  }
-  
-  const header={
-    "Content-Type": "application/json"
-  }
-  let url = "/api/user"
-  const response = await fetch(url, {
-    method: "POST",
-    headers:header,
-    body:JSON.stringify(body),
-  });
-  const data = await response.json();
-
-  if(data.ok){
-    menuStatusEl.classList.add("status_ok");
-    menuStatusEl.textContent="註冊成功!";
-    signUpFormEl.addEventListener("click", function() {
-      if(this){
-        menuStatusEl.classList.remove("status_ok");
-      }
     })
   } else {
-    menuStatusEl.classList.add("status_error");
-    signUpFormEl.addEventListener("click", function() {
-      if(this){
-        menuStatusEl.classList.remove("status_error");
+    const body={
+      "username":name,
+      "email":email,
+      "password":password,
+    }
+    
+    const header={
+      "Content-Type": "application/json"
+    }
+    let url = "/api/user"
+    const response = await fetch(url, {
+      method: "POST",
+      headers:header,
+      body:JSON.stringify(body),
+    });
+    const data = await response.json();
+  
+    if(data.ok){
+      menuStatusEl.classList.add("status_ok");
+      menuStatusEl.textContent="註冊成功!";
+      signUpFormEl.addEventListener("mouseup", function() {
+        if(this){
+          menuStatusEl.classList.remove("status_ok");
+        }
+      })
+    } else {
+      menuStatusEl.classList.add("status_error");
+      signUpFormEl.addEventListener("mouseup", function() {
+        if(this){
+          menuStatusEl.classList.remove("status_error");
+        }
+      })
+      if(data.message==="email existed"){
+        menuStatusEl.textContent="此email已被人使用!";
       }
-    })
-    if(data.message==="input empty values"){
-      menuStatusEl.textContent="輸入欄位不可空白!";
+      else if(data.message==="input empty values"){
+        menuStatusEl.textContent="輸入欄位不可空白!";
+      }
     }
-    else if(data.message==="email existed"){
-      menuStatusEl.textContent="此email已被人使用!";
-    }
-  }
+  } 
 }
