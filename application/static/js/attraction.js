@@ -129,6 +129,7 @@ function createImg(response){
 {
   const spanMoney=document.querySelector(".book_form_price_number")
   const formTime = document.bookingForm.time;
+  console.log(formTime);
   for (let i = 0; i < formTime.length; i++) {
     //only listen to "change to checked" dom
     formTime[i].addEventListener('change', function() {
@@ -252,6 +253,7 @@ async function signOut(){
   const url="/api/user/auth";
   const response = await fetch(url);
   const data = await response.json();
+  //auth success action
   if(!data.error){
     document.querySelector(".nav_signin").style.display="none";
 

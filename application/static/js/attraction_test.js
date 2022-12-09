@@ -268,6 +268,14 @@ let view={
       });  
     }   
 
+    // loading done, display the pic and other component
+    document.title = model.attractionData.name;
+    document.querySelector("section").style.display = "flex";		
+    document.querySelector(".information_container").style.display = "block";		
+    document.querySelector("footer").style.display = "flex";	
+    document.querySelector(".main_separator").style.display = "block";
+  }, 
+  signMenu: function() {
     //close menu
     const triggerCloseEls=document.querySelectorAll(".trigger_close_menu");
     triggerCloseEls.forEach(triggerCloseEl => {
@@ -305,12 +313,8 @@ let controller={
   init: async function() {
     await model.init();
     view.render(model.attractionData);
+    view.signMenu();
     view.showSlides(model.slideIdx);
-    document.title = model.attractionData.name;
-    document.querySelector("section").style.display = "flex";		
-    document.querySelector(".information_container").style.display = "block";		
-    document.querySelector("footer").style.display = "flex";	
-    document.querySelector(".main_separator").style.display = "block";
     await model.checkSingIn();
     view.checkSingIn(model.authData);
   }, 
