@@ -4,10 +4,12 @@ from flask import Flask
 from flask import Response
 import json
 from flask_bcrypt import Bcrypt
+import mysql.connector
+from dotenv import dotenv_values
 
-
+config=json.loads({ **dotenv_values(".env")}["config"])
+connection_pool=mysql.connector.pooling.MySQLConnectionPool(**config)
 __all__ = [os.path.basename(f)[:-3] for f in glob.glob(os.path.dirname(__file__) + "/*.py")]
-
 bcrypt=Bcrypt()
 
 

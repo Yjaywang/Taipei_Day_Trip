@@ -1,8 +1,5 @@
-import mysql.connector
-from dotenv import dotenv_values
-import json
-config=json.loads({ **dotenv_values(".env")}["config"])
-connection_pool=mysql.connector.pooling.MySQLConnectionPool(**config)
+from application import connection_pool
+
 
 class Database:
     def query_attractions(page, keyword, display):
@@ -75,7 +72,8 @@ class Database:
             if connection.is_connected():
                 count_cursor.close()			
                 connection.close()            
-                print("attractions End MySQL connection")   
+                print("attractions End MySQL connection")  
+            
 
     def query_attraction_byID(attractionId: int):
         try:        

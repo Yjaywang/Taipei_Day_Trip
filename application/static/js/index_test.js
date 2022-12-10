@@ -401,7 +401,7 @@ let controller={
     await model.signOut();
     view.signOut(model.authData);
   },
-  scrollLoadMore: async function(entries) {
+  scrollLoadMore: function(entries) {
     model.scrollLoadMore(entries);
   }
 }
