@@ -1,6 +1,5 @@
 from application import connection_pool
 
-
 class Database:   
     def insert_signup(username: str, email: str, pw_hash: str):
         try:        
@@ -31,6 +30,7 @@ class Database:
                 print("signup End MySQL connection")
 
     def query_signin(email: str):
+        print(connection_pool)
         try:        
             mySql_query = (
                 """SELECT password

@@ -3,6 +3,7 @@ from application import connection_pool
 
 class Database:
     def query_attractions(page, keyword, display):
+        print(connection_pool)
         try:       	
             connection=connection_pool.get_connection()
             
