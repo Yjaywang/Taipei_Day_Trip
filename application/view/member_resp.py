@@ -11,7 +11,9 @@ class Api_view:
     
     def response_query_member(record : tuple):
         output={}
-        if record:
+        if record==-1:
+            return {"data":None}, 200
+        else:
             output["id"]=record[0]
             output["username"]=record[1]
             output["email"]=record[2]
@@ -37,7 +39,7 @@ class Api_view:
                 "message": "input empty values",
             }, 400
         if record_count==1: # update success   
-            if not bcrypt.check_password_hash(record[0], password):
+            if not bcrypt.check_password_hash(record[1], password):
                 return {
                     "error": True,
                     "message": "wrong password, try again!",
@@ -46,7 +48,7 @@ class Api_view:
             now = time.time()
             exp= 60*60*24*7
             payload = {
-                "email": email,
+                "id": record[0],
                 "expire": now + exp,
             }
             token=jwt.encode(payload, secret_key, algorithm='HS256')            
@@ -58,7 +60,19 @@ class Api_view:
                 "error": True,
                 "message": "email not existed",
             }, 400
-            
+    def response_input_valid(valid):
+        if valid["message"]=="error email format":
+            return {
+                "error": True,
+                "message": "error email format",
+            }, 400
+        elif valid["message"]=="error password format":
+            return {
+                "error": True,
+                "message": "error password format",
+            }, 400
+
+
     def response_sign_out():
         resp = make_response({"ok":True}, 200)
         resp.set_cookie(key="user",value= "", expires=0) #unit: second

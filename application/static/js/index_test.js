@@ -162,7 +162,7 @@ let model={
 let view={
   checkSingIn: function(data) {
     //auth success action
-    if(!data.error){
+    if(!data){
       document.querySelector(".nav_signin").style.display="none";
   
       const signOutEl = document.querySelector(".nav_signout");

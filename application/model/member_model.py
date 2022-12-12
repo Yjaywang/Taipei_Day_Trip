@@ -33,7 +33,7 @@ class Database:
         print(connection_pool)
         try:        
             mySql_query = (
-                """SELECT password
+                """SELECT id, password
                 FROM member WHERE BINARY email=%s"""
                 )#add BINARY make query to be case sensitive
             connection = connection_pool.get_connection()
@@ -56,17 +56,17 @@ class Database:
                 connection.close()            
                 print("signin End MySQL connection")  
 
-    def query_member(email: str):
+    def query_member(id: int):
         try:        
             mySql_query=(
                 """SELECT id, username, email 
-                From member WHERE email=%s"""
+                From member WHERE id=%s"""
                 )
             connection=connection_pool.get_connection()
 
             if connection.is_connected():
                 cursor=connection.cursor()
-                cursor.execute(mySql_query, (email, ))       
+                cursor.execute(mySql_query, (id, ))       
                 record=cursor.fetchone()		                
                 return record
                
