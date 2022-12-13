@@ -7,7 +7,7 @@ class Database:
         try:        
             mySql_query = (
                 """
-                SELECT b.attraction_id, a.name, a.address, i.file, b.date, p.time, p.price 
+                SELECT b.attraction_id, ANY_VALUE(a.name), ANY_VALUE(a.address), ANY_VALUE(i.file), b.date, p.time, ANY_VALUE(p.price)
                 FROM(
                 SELECT attraction_id, date, time_id FROM booking 
                 WHERE user_id=%s) AS b
