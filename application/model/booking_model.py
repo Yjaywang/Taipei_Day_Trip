@@ -14,7 +14,7 @@ class Database:
                 INNER JOIN image AS i ON b.attraction_id=i.attr_id
                 INNER JOIN attraction AS a ON b.attraction_id=a._id
                 INNER JOIN price AS p ON b.time_id=p.id
-                GROUP BY i.attr_id, b.date, p.time
+                GROUP BY b.attraction_id, b.date, p.time
                 ORDER BY b.date
                 """
                 )
