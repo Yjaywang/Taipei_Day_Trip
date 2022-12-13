@@ -12,7 +12,8 @@ class Database:
                     ANY_VALUE(a.name), 
                     ANY_VALUE(a.address), 
                     ANY_VALUE(i.file), 
-                    b.date, p.time, 
+                    b.date, 
+                    p.time, 
                     ANY_VALUE(p.price)
                 FROM(
                     SELECT 
