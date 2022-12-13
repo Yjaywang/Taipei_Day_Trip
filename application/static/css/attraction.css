@@ -317,6 +317,7 @@ input[type="radio"]{
     font-style: normal;
     font-weight: 400;
     font-size: 19px;
+    line-height: 36px;
     color: #FFFFFF;
 
     padding: 0px;
@@ -325,6 +326,16 @@ input[type="radio"]{
     border-image: none;
     cursor: pointer;
     margin-top: 25px;
+}
+
+.status_memo{
+    margin-top: 15px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;    
+    color: #666666;
+    display: none;
 }
 .main_separator{
     display: none;
@@ -594,7 +605,7 @@ footer{
     }
 }
 
-@media (max-width:920px){
+@media (max-width:1050px){
     .nav_separator{
         margin: 0px;
     }

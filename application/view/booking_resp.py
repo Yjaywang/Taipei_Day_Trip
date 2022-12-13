@@ -1,4 +1,5 @@
 from flask import render_template
+import datetime
 
 class Api_view:
 
@@ -23,7 +24,7 @@ class Api_view:
                 }
                 temp_data={
                     "attraction":attraction,
-                    "date":record[4],
+                    "date":str(record[4]),
                     "time":record[5],
                     "price":record[6],
                 }

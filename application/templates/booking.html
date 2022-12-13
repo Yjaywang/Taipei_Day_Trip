@@ -13,36 +13,40 @@
     <div class="booking_container">
         <div class="booking_headline">
             <span>您好，</span>
-            <span id="user">Yakko</span>
+            <span id="user"></span>
             <span>，待預訂的行程如下：</span>
         </div>
         <div class="booking_info_container">
-            <img src="/static/images/welcome.png" alt="" class="bookinh_img">
-            <div class="booking_item_container">
-                <a href="" class="booking_attraction_link">
-                    <div class="booking_attraction_title">
-                        <span>台北一日遊：</span>
-                        <span id="attraction">平安鐘</span>
+            <!-- <div class="booking_info_sub_container">
+                <img src="/static/images/welcome.png" alt="" class="booking_img">
+                <div class="booking_item_container">
+                    <a href="" class="booking_attraction_link">
+                        <div class="booking_attraction_title">
+                            <span >台北一日遊：</span>
+                            <span class="attraction">平安鐘</span>
+                        </div>
+                    </a>
+    
+                    <div class="booking_date">日期：
+                        <span class="booking_date_content">2021-04-23</span>
                     </div>
-                </a>
+                    <div class="booking_time">時間：
+                        <span class="booking_time_content">早上 9 點到下午 4 點</span>
+                    </div>
+                    <div class="booking_fee">費用：
+                        <span >新台幣</span>
+                        <span class="booking_fee_content"> 2000 </span>
+                        <span>元</span>
+                    </div>
+                    <div class="booking_address">地點：
+                        <span class="booking_address_content">臺北市 大安區忠孝東路4段</span>
+                    </div>
+                    <img src="/static/images/icon_delete.png" alt="" class="delete_icon">
+                </div>
+            </div>     -->
 
-                <div class="booking_date">日期：
-                    <span id="booking_date_content">2021-04-23</span>
-                </div>
-                <div class="booking_time">時間：
-                    <span id="booking_time_content">早上 9 點到下午 4 點</span>
-                </div>
-                <div class="booking_fee">費用：
-                    <span >新台幣</span>
-                    <span id="booking_fee_content"> 2000 </span>
-                    <span>元</span>
-                </div>
-                <div class="booking_address">地點：
-                    <span id="booking_address_content">臺北市 大安區忠孝東路4段</span>
-                </div>
-                <img src="/static/images/icon_delete.png" alt="" class="delete_icon">
-            </div>
-        </div>        
+        </div>
+            
         <div class="booking_separator"></div>
 
         <div class="user_info_container">
@@ -66,7 +70,7 @@
                 <input type="password" name="card_number" placeholder="**** **** **** ****">
             </div>
             <div class="card_exp">過期時間：
-                <input type="month" name="card_expiration">
+                <input type="text" name="card_expiration" placeholder="MM / YY">
             </div>
             <div class="card_valid_pw">驗證密碼：
                 <input type="text" name="card_validation" placeholder="CVV">
@@ -77,18 +81,20 @@
         <div class="summary_container">
             <div class="total_money">
                 <span>總價：新台幣 </span>
-                <span>2000</span>
-                <span> 元</span>
+                <span id="money">2000</span>
+                <span>元</span>
             </div>
             <div class="booking_btn">確認訂購並付款</div>
         </div>
+        <img src="/static/images/no_schedule.png" alt="" class="no_schedule_img">
     </div>
+    
 
     {% endblock %}
 
     {% block script%}
     <!-- <script src="attraction.js"></script> -->
-    <script src="{{ url_for('static', filename='js/attraction_test.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
     {% endblock %}
 </body>
 </html>

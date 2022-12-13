@@ -15,7 +15,7 @@ class Api_view:
             return {"data":None}, 200
         else:
             output["id"]=record[0]
-            output["username"]=record[1]
+            output["name"]=record[1]
             output["email"]=record[2]
             return{"data":output}, 200
 

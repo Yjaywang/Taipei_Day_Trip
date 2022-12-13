@@ -53,12 +53,12 @@
                 <div class="booking_form_desc">以此景點為中心的一日行程，帶您探索城市角落故事</div>
                 <div class="booking_date_container">
                     <label class="booking_date_label" for="booking_date_input">選擇日期：</label>
-                    <input type="date" id="booking_date_input">
+                    <input type="date" id="booking_date_input" name="date">
                 </div>
                 <div class="booking_time_container">
                     <span class="booking_time_label">選擇時間：</span>                    
 
-                    <input type="radio" id="booking_time_input_up" name="time" value="2000" checked>
+                    <input type="radio" id="booking_time_input_up" name="time" value="2000" >
                     <label for="booking_time_input_up" class="booking_time_input_up_text">上半天</label>
                     
                     <input type="radio" id="booking_time_input_down" name="time" value="2500" >
@@ -67,12 +67,12 @@
                 <div class="booking_form_price_container">
                     <div class="book_form_price_title">導覽費用：</div>
                     <div class="book_form_price_content">新台幣  
-                        <span class="book_form_price_number">2000</span>
+                        <span class="book_form_price_number"></span>
                         <span> 元</span>
                     </div>
                 </div>
-
-                <input class="booking_btn" type="submit" value="開始預約行程">                    
+                <div class="booking_btn">開始預約行程</div>
+                <div class="status_memo">test</div> 
             </form>        
         </div>               
     </section>
@@ -89,7 +89,7 @@
     {% endblock %}
     {% block script%}
     <!-- <script src="attraction.js"></script> -->
-    <script src="{{ url_for('static', filename='js/attraction_test.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/attraction.js') }}"></script>
     {% endblock %}
 </body>
 </html>

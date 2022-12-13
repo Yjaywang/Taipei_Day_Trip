@@ -92,6 +92,12 @@ nav{
     padding-right: 10px;
 }
 
+.no_schedule_img{
+    /* display: block; */
+    display: none;
+    margin: auto;
+    width: 50%;
+}
 .booking_headline{
     max-width: 1000px;
     font-family: 'Noto Sans TC';
@@ -109,6 +115,10 @@ nav{
 }
 
 .booking_info_container{
+    
+}
+
+.booking_info_sub_container{
     display: flex;
     max-width: 980px;    
     justify-content: space-between;
@@ -118,7 +128,7 @@ nav{
 }
 
 
-.bookinh_img{
+.booking_img{
     width: 250px;
     height: 200px;
     object-fit: cover;
@@ -159,7 +169,9 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-#booking_date_content{
+
+
+.booking_date_content{
     font-weight: 500;
 }
 
@@ -172,7 +184,7 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-#booking_time_content{
+.booking_time_content{
     font-weight: 500;
 }
 
@@ -185,7 +197,7 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-#booking_fee_content{
+.booking_fee>span{
     font-weight: 500;
 }
 
@@ -199,7 +211,7 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-#booking_address_content{
+.booking_address_content{
     font-weight: 500;
 }
 
@@ -368,16 +380,15 @@ nav{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
-    
+    font-size: 16px;
     line-height: 16px;
     text-align: right;
     color: #666666;
-    font-size: 0px;
     margin-bottom: 25px;
 }
 
 .total_money > span{
-    font-size: 16px;
+    
 }
 
 .booking_btn{
@@ -595,14 +606,15 @@ footer{
 }
 
 @media (max-width:600px){
-    .booking_info_container{
+    .booking_info_sub_container{
         flex-wrap: wrap;
         margin-bottom: 30px;
     }
-    .bookinh_img{
+    .booking_img{
         margin-bottom: 40px;
         height: 200px;
         width: 100%;
+        margin-right: 0px;
     }
     .delete_icon{
         bottom: 0px;
