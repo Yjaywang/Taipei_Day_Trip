@@ -8,20 +8,55 @@ class Database:
             
             if keyword:  #if have keyword
                 mySql_query_count=(
-                    """SELECT count(*)
-                    FROM attraction as a 
-                    INNER JOIN category as c on c.id=a.CAT_id
-                    WHERE c.CAT=%s or a.name LIKE %s"""
+                    """
+                    SELECT 
+                        count(*)
+                    FROM 
+                        attraction as a 
+                    INNER JOIN 
+                        category as c on c.id=a.CAT_id
+                    WHERE 
+                        c.CAT=%s or 
+                        a.name LIKE %s
+                    """
                     )
                 mySql_query=(
-                    """SELECT s._id, s.name, s.CAT, s.description, s.address, s.direction, m.MRT, s.latitude, s.longitude, i.file
-                    FROM (SELECT a._id, a.id, a.MRT_id, a.name, c.CAT, a.description, a.address, a.direction, a.latitude, a.longitude 
+                    """
+                    SELECT 
+                        s._id, 
+                        s.name, 
+                        s.CAT, 
+                        s.description, 
+                        s.address, 
+                        s.direction, 
+                        m.MRT, 
+                        s.latitude, 
+                        s.longitude, 
+                        i.file
+                    FROM 
+                        (SELECT 
+                            a._id, 
+                            a.id, 
+                            a.MRT_id, 
+                            a.name, 
+                            c.CAT, 
+                            a.description, 
+                            a.address, 
+                            a.direction, 
+                            a.latitude, 
+                            a.longitude 
                         FROM attraction as a
-                        INNER JOIN category as c on c.id=a.CAT_id
-                        WHERE c.CAT= %s or a.name LIKE %s
+                        INNER JOIN 
+                            category as c on c.id=a.CAT_id
+                        WHERE 
+                            c.CAT= %s or
+                            a.name LIKE %s
                         LIMIT %s, %s) as s
-                    INNER JOIN mrt as m on m.id=s.MRT_id
-                    INNER JOIN image as i on i.attr_id=s.id"""
+                    INNER JOIN 
+                        mrt as m on m.id=s.MRT_id
+                    INNER JOIN 
+                        image as i on i.attr_id=s.id
+                    """
                     )			
                 if connection.is_connected():
                     count_cursor=connection.cursor()
@@ -41,13 +76,39 @@ class Database:
             else:
                 mySql_query_count=("""SELECT count(*) FROM attraction""")
                 mySql_query=(
-                    """SELECT s._id, s.name, s.CAT, s.description, s.address, s.direction, m.MRT, s.latitude, s.longitude, i.file
-                    FROM (SELECT a._id, a.id, a.MRT_id, a.name, c.CAT, a.description, a.address, a.direction, a.latitude, a.longitude 
-                        FROM attraction as a
-                        INNER JOIN category as c on c.id=a.CAT_id
+                    """SELECT 
+                        s._id, 
+                        s.name, 
+                        s.CAT, 
+                        s.description, 
+                        s.address, 
+                        s.direction, 
+                        m.MRT, 
+                        s.latitude, 
+                        s.longitude, 
+                        i.file
+                    FROM 
+                        (SELECT 
+                            a._id, 
+                            a.id, 
+                            a.MRT_id, 
+                            a.name, 
+                            c.CAT, 
+                            a.description, 
+                            a.address, 
+                            a.direction, 
+                            a.latitude, 
+                            a.longitude 
+                        FROM 
+                            attraction as a
+                        INNER JOIN 
+                            category as c on c.id=a.CAT_id
                         LIMIT %s, %s) as s
-                    INNER JOIN mrt as m on m.id=s.MRT_id
-                    INNER JOIN image as i on i.attr_id=s.id"""
+                    INNER JOIN 
+                        mrt as m on m.id=s.MRT_id
+                    INNER JOIN 
+                        image as i on i.attr_id=s.id
+                    """
                     )			
                 if connection.is_connected():
                     count_cursor=connection.cursor()
@@ -78,12 +139,29 @@ class Database:
     def query_attraction_byID(attractionId: int):
         try:        
             mySql_query=(
-                """SELECT a._id, a.name, c.CAT, a.description, a.address, a.direction, m.MRT, a.latitude, a.longitude, i.file
-                FROM attraction as a 
-                INNER JOIN mrt as m on m.id=a.MRT_id
-                INNER JOIN category as c on c.id=a.CAT_id
-                INNER JOIN image as i on i.attr_id=a.id
-                WHERE a._id=%s"""
+                """
+                SELECT 
+                    a._id,
+                    a.name, 
+                    c.CAT, 
+                    a.description, 
+                    a.address, 
+                    a.direction, 
+                    m.MRT, 
+                    a.latitude, 
+                    a.longitude, 
+                    i.file
+                FROM 
+                    attraction as a 
+                INNER JOIN 
+                    mrt as m on m.id=a.MRT_id
+                INNER JOIN 
+                    category as c on c.id=a.CAT_id
+                INNER JOIN 
+                    image as i on i.attr_id=a.id
+                WHERE 
+                    a._id=%s
+                """
             )
             connection=connection_pool.get_connection()
 

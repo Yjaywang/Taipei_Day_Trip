@@ -7,13 +7,26 @@ class Database:
         try:        
             mySql_query = (
                 """
-                SELECT b.attraction_id, ANY_VALUE(a.name), ANY_VALUE(a.address), ANY_VALUE(i.file), b.date, p.time, ANY_VALUE(p.price)
+                SELECT 
+                    b.attraction_id, 
+                    ANY_VALUE(a.name), 
+                    ANY_VALUE(a.address), 
+                    ANY_VALUE(i.file), 
+                    b.date, p.time, 
+                    ANY_VALUE(p.price)
                 FROM(
-                SELECT attraction_id, date, time_id FROM booking 
-                WHERE user_id=%s) AS b
-                INNER JOIN image AS i ON b.attraction_id=i.attr_id
-                INNER JOIN attraction AS a ON b.attraction_id=a._id
-                INNER JOIN price AS p ON b.time_id=p.id
+                    SELECT 
+                        attraction_id, 
+                        date, 
+                        time_id 
+                    FROM booking 
+                    WHERE user_id=%s) AS b
+                INNER JOIN 
+                    image AS i ON b.attraction_id=i.attr_id
+                INNER JOIN 
+                    attraction AS a ON b.attraction_id=a._id
+                INNER JOIN 
+                    price AS p ON b.time_id=p.id
                 GROUP BY b.attraction_id, b.date, p.time
                 ORDER BY b.date
                 """
@@ -48,10 +61,22 @@ class Database:
         try:        
             mySql_query = (
                 """
-                INSERT INTO booking(user_id, attraction_id, date, time_id)
+                INSERT INTO 
+                    booking(
+                        user_id, 
+                        attraction_id, 
+                        date, time_id
+                )
                 SELECT %s, %s, %s, %s
                 WHERE NOT EXISTS(
-                SELECT * FROM booking WHERE user_id=%s and attraction_id=%s and date=%s and time_id=%s)
+                    SELECT * 
+                    FROM 
+                        booking 
+                    WHERE 
+                        user_id=%s and 
+                        attraction_id=%s and 
+                        date=%s and time_id=%s
+                )
                 """
                 )
             connection = connection_pool.get_connection()
@@ -86,8 +111,13 @@ class Database:
         try:        
             mySql_query = (
                 """
-                DELETE FROM booking
-                WHERE user_id=%s AND attraction_id=%s AND date=%s AND time_id=%s
+                DELETE FROM 
+                    booking
+                WHERE 
+                    user_id=%s AND 
+                    attraction_id=%s AND 
+                    date=%s AND 
+                    time_id=%s
                 """
                 )
             connection = connection_pool.get_connection()

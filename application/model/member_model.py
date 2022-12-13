@@ -4,11 +4,22 @@ class Database:
     def insert_signup(username: str, email: str, pw_hash: str):
         try:        
             mySql_query = (
-                """INSERT INTO member(username, email, password)
+                """
+                INSERT INTO 
+                    member(
+                            username, 
+                            email, 
+                            password)
                 SELECT %s, %s, %s
                 WHERE NOT EXISTS(
-                SELECT * FROM member WHERE BINARY email=%s)"""
-                )#add BINARY make query to be case sensitive
+                    SELECT * 
+                    FROM 
+                        member 
+                    WHERE 
+                        BINARY email=%s
+                )
+                """
+            )#add BINARY make query to be case sensitive
             connection = connection_pool.get_connection()
 
             if connection.is_connected():
@@ -33,9 +44,16 @@ class Database:
         print(connection_pool)
         try:        
             mySql_query = (
-                """SELECT id, password
-                FROM member WHERE BINARY email=%s"""
-                )#add BINARY make query to be case sensitive
+                """
+                SELECT 
+                    id, 
+                    password
+                FROM 
+                    member 
+                WHERE 
+                    BINARY email=%s
+                """
+            )#add BINARY make query to be case sensitive
             connection = connection_pool.get_connection()
 
             if connection.is_connected():
@@ -59,9 +77,17 @@ class Database:
     def query_member(id: int):
         try:        
             mySql_query=(
-                """SELECT id, username, email 
-                From member WHERE id=%s"""
-                )
+                """
+                SELECT 
+                    id, 
+                    username, 
+                    email 
+                From 
+                    member 
+                WHERE 
+                    id=%s
+                """
+            )
             connection=connection_pool.get_connection()
 
             if connection.is_connected():
