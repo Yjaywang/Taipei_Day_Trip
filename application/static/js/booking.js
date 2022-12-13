@@ -355,6 +355,7 @@ function totalMoney() {
 }
 
 async function deleteBooking() {
+  let bookingCount=this.parentElement.parentElement.parentElement.querySelectorAll(".delete_icon").length;
   let container=this.parentElement.parentElement;
   const attractionID=this.parentElement.querySelector(".booking_attraction_link").href.split("/").slice(-1)[0];
   const date=this.parentElement.querySelector(".booking_date").childNodes[1].textContent;
@@ -383,7 +384,10 @@ async function deleteBooking() {
     });
     const data = await response.json();
     container.remove();
-       
+    bookingCount=bookingCount-1;
+    if (bookingCount===0){
+      location.reload();
+    }
     
   } catch (error) {
     console.log(error);
