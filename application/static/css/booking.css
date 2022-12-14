@@ -1,0 +1,625 @@
+body{
+    position: relative;
+    margin: 0px;
+}
+nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav_container{
+    width: 1200px;
+    height: 54px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.nav_left{
+    text-decoration:none;
+}
+.nav_left_content{
+    padding-left: 10px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 34px;
+    color: #448899;
+    cursor: pointer;
+}
+.nav_right{
+    padding: 0px;
+    width: 175px;
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+    
+
+.nav_schedule{
+    height: 14px;
+    padding: 10px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    color: #666666;
+    cursor: pointer;
+    
+}
+.nav_signin{
+    height: 14px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    color: #666666;
+
+}
+
+.nav_signout{
+    height: 14px;
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    color: #666666;
+    display: none;
+}
+
+.nav_separator{
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 40px;
+}
+
+
+.booking_container{
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.no_schedule_img{
+    /* display: block; */
+    display: none;
+    margin: auto;
+    width: 50%;
+}
+.booking_headline{
+    max-width: 1000px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    color: #666666;
+    margin: auto;
+    margin-bottom: 30px;      
+    font-size: 0px;
+}
+
+.booking_headline >span{
+    font-size: 19px;
+}
+
+.booking_info_container{
+    
+}
+
+.booking_info_sub_container{
+    display: flex;
+    max-width: 980px;    
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+
+.booking_img{
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 30px;
+}
+
+.booking_item_container{
+    max-width: 700px;    
+    position: relative;
+    flex: auto;
+}
+
+.booking_attraction_link{
+    text-decoration: none;
+}
+
+.booking_attraction_title {
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    line-height: 16px;
+    color: #448899;
+    font-size:0px;
+    margin-bottom: 20px;
+}
+
+.booking_attraction_title > span{
+    font-size:16px;
+}
+
+.booking_date{
+    
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+
+.booking_date_content{
+    font-weight: 500;
+}
+
+.booking_time{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.booking_time_content{
+    font-weight: 500;
+}
+
+.booking_fee{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.booking_fee>span{
+    font-weight: 500;
+}
+
+
+.booking_address{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.booking_address_content{
+    font-weight: 500;
+}
+
+.delete_icon{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.booking_separator{
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 40px;
+}
+
+.user_info_container{
+    max-width: 980px;
+    margin: auto;
+}
+
+.booking_title{
+    max-width: 1000px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 19px;
+    color: #666666;
+    margin: auto;
+    margin-bottom: 20px;   
+}
+
+.user_name{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user_name >input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.user_email{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user_email > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.user_phone{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user_phone > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.remind_memo{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 45px;
+}
+
+.card_container{
+    max-width: 980px;
+    margin: auto;
+}
+
+.card_num{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card_num > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.card_exp{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card_exp > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.card_valid_pw{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.card_valid_pw > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.summary_container{
+    max-width: 980px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.total_money{
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: right;
+    color: #666666;
+    margin-bottom: 25px;
+}
+
+.total_money > span{
+    
+}
+
+.booking_btn{
+    background: #448899;
+    border-radius: 5px;
+    width: 173px;
+    height: 36px;
+
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+
+
+
+footer{
+    display: flex;
+    width: 100%;
+    height: 104px;
+    background: #757575;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    bottom: 0px;
+}
+.copyright_block{
+    
+    height: 14px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;    
+    /* white-space: nowrap; */
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.sign_menu_backgroung{
+    background: #000000;
+    opacity: 0.25;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+
+.signin_form{
+    position: fixed;
+    /* height: 275px; */
+    width: 340px;
+    top: 80px;
+    left: 50%;
+    margin-left: -170px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    border-radius: 6px;
+    display: none;
+}
+
+.signup_form{
+    position: fixed;
+    /* height: 332px; */
+    width: 340px;
+    top: 80px;
+    left: 50%;
+    margin-left: -170px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    border-radius: 6px;
+    display: none;
+    
+}
+
+.upper_decorator{
+    height: 10px;    
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    border-radius: 6px;
+}
+.upper_decorator_modification{
+    background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
+    margin-top: -5px;
+    height: 5px;
+    margin-bottom: 15px;
+}
+
+.signin_container{
+    width: 310px;
+    /* height: 235px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.signup_container{
+    width: 310px;
+    /* height: 292px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sign_menu_title{
+    position: relative;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 24px;
+    color: #666666;
+    text-align: center;
+    height: 27px;
+
+    margin: auto;
+    margin-bottom: 15px;
+}
+.close_icon{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.sign_input{
+    
+    width: 278px;
+    height: 17px;
+    padding: 15px;    
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 13px;
+    color: #757575;
+}
+
+.signin_btn{
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 47px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.signup_btn{
+    width: 310px;
+    height: 47px;
+    background: #448899;
+    border-radius: 5px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 47px;
+    color: #FFFFFF;
+    text-align: center;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.menu_status_info{
+    text-align: center;
+    display: none;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+}
+.status_ok{
+    display: block;
+    color: forestgreen;
+}
+
+.status_error{
+    display: block;
+    color: red;
+}
+
+
+.menu_other_info{
+    text-align: center;
+    display: block;
+    margin-bottom: 15px;
+    font-family: 'Noto Sans TC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    color: #666666;
+    cursor: pointer;
+}
+
+
+@media (max-width:1200px){
+
+}
+
+@media (max-width:600px){
+    .booking_info_sub_container{
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .booking_img{
+        margin-bottom: 40px;
+        height: 200px;
+        width: 100%;
+        margin-right: 0px;
+    }
+    .delete_icon{
+        bottom: 0px;
+        top: auto;
+    }
+
+
+}

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block css %}  
+    <!-- <link rel="stylesheet" type="text/css" href="attraction.css"> -->
+    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/attraction.css') }}" />
+    {% endblock %}
+</head>
+<body>
+    {% block content%}    
+    <div class="nav_separator"></div>
+    <section>
+        <!-- picture part -->
+        <div class="profile_pic_container">
+            <!-- <div class="slide_container">
+                <div class="slides fade">
+                    <img src="welcome.png" alt="" class="profile_pic">
+                </div>
+                
+                <div class="slides fade">
+                    <img src="welcome.png" alt="" class="profile_pic">
+                </div>
+    
+                <div class="slides fade">
+                    <img src="welcome.png" alt="" class="profile_pic">
+                </div>
+            </div> -->            
+
+            <!-- <div class="slide_btn_container" >
+                <img src="btn_leftArrow.png" alt="" class="prev" onclick="plusSlide(-1)">
+                <img src="btn_rightArrow.png" alt="" class="next" onclick="plusSlide(1)">
+            </div>    -->
+          
+            <!-- <div class="circle_container">
+                <span class="circle" onclick="currentSlide(1)"></span>
+                <span class="circle" onclick="currentSlide(2)"></span>
+                <span class="circle" onclick="currentSlide(3)"></span>
+            </div>
+             -->
+        </div>
+        
+        <!-- profile part -->      
+        <div class="profile_container">
+            <div class="name"></div>
+            <div class="position">
+                <span class="cat"></span>
+                <span> at </span>
+                <span class="mrt"></span>
+            </div>
+            <form action="" class="booking_form" name="bookingForm">
+                <div class="booking_form_header">訂購導覽行程</div>
+                <div class="booking_form_desc">以此景點為中心的一日行程，帶您探索城市角落故事</div>
+                <div class="booking_date_container">
+                    <label class="booking_date_label" for="booking_date_input">選擇日期：</label>
+                    <input type="date" id="booking_date_input" name="date">
+                </div>
+                <div class="booking_time_container">
+                    <span class="booking_time_label">選擇時間：</span>                    
+
+                    <input type="radio" id="booking_time_input_up" name="time" value="2000" >
+                    <label for="booking_time_input_up" class="booking_time_input_up_text">上半天</label>
+                    
+                    <input type="radio" id="booking_time_input_down" name="time" value="2500" >
+                    <label for="booking_time_input_down" class="booking_time_input_down_text">下半天</label>
+                </div>                               
+                <div class="booking_form_price_container">
+                    <div class="book_form_price_title">導覽費用：</div>
+                    <div class="book_form_price_content">新台幣  
+                        <span class="book_form_price_number"></span>
+                        <span> 元</span>
+                    </div>
+                </div>
+                <div class="booking_btn">開始預約行程</div>
+                <div class="status_memo">test</div> 
+            </form>        
+        </div>               
+    </section>
+    
+    <div class="main_separator"></div>
+
+    <div class="information_container">
+        <div class="description_content"></div>
+        <div class="information_title">景點地址：</div>
+        <div class="address_content"></div>
+        <div class="information_title">交通方式：</div>
+        <div class="transport_content"></div>
+    </div>
+    {% endblock %}
+    {% block script%}
+    <!-- <script src="attraction.js"></script> -->
+    <script src="{{ url_for('static', filename='js/attraction.js') }}"></script>
+    {% endblock %}
+</body>
+</html>
