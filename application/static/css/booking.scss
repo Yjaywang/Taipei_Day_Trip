@@ -1,0 +1,305 @@
+@import "base";
+.nav-separator{
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 40px;
+}
+
+.booking-container{
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.no-schedule-img{
+    display: none;
+    margin: auto;
+    width: 50%;
+}
+.booking-headline{
+    max-width: 1000px;
+    font-weight: 700;
+    line-height: 19px;
+    color: #666666;
+    margin: auto;
+    margin-bottom: 30px;      
+    font-size: 0px;
+}
+
+.booking-headline >span{
+    font-size: 19px;
+}
+
+.booking-info-sub-container{
+    display: flex;
+    max-width: 980px;    
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+.booking-img{
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 30px;
+}
+
+.booking-item-container{
+    max-width: 700px;    
+    position: relative;
+    flex: auto;
+}
+
+.booking-attraction-link{
+    text-decoration: none;
+}
+
+.booking-attraction-title {   
+    font-weight: 700;
+    line-height: 16px;
+    color: #448899;
+    font-size:0px;
+    margin-bottom: 20px;
+}
+
+.booking-attraction-title > span{
+    font-size:16px;
+}
+
+.booking-date{   
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+
+.booking-date-content{
+    font-weight: 500;
+}
+
+.booking-time{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.booking-time-content{
+    font-weight: 500;
+}
+
+.booking-fee{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.booking-fee>span{
+    font-weight: 500;
+}
+
+.booking-address{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.booking-address-content{
+    font-weight: 500;
+}
+
+.delete-icon{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.booking-separator{
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 40px;
+}
+
+.user-info-container{
+    max-width: 980px;
+    margin: auto;
+}
+
+.booking-title{
+    max-width: 1000px;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 19px;
+    color: #666666;
+    margin: auto;
+    margin-bottom: 20px;   
+}
+
+.user-name{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user-name >input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.user-email{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user-email > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.user-phone{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user-phone > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.remind-memo{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 45px;
+}
+
+.card-container{
+    max-width: 980px;
+    margin: auto;
+}
+
+.card-num{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card-num > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.card-exp{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card-exp > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.card-valid-pw{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+
+.card-valid-pw > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.summary-container{
+    max-width: 980px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.total-money{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: right;
+    color: #666666;
+    margin-bottom: 25px;
+}
+
+
+.booking-btn{
+    background: #448899;
+    border-radius: 5px;
+    width: 173px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    right: 0px;
+    cursor: pointer;
+}
+
+
+@media (max-width:600px){
+    .booking-info-sub-container{
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .booking-img{
+        margin-bottom: 40px;
+        height: 200px;
+        width: 100%;
+        margin-right: 0px;
+    }
+    .delete-icon{
+        bottom: 0px;
+        top: auto;
+    }
+}
