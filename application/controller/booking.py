@@ -18,10 +18,13 @@ bookings =Blueprint(
 
 @bookings.route("/booking")
 def booking():
+    """render booking page"""
     return Api_view.response_booking_page()
 
 @bookings.route("/api/booking", methods=["GET"])
-def get_booking():
+def get_booking() ->tuple[dict[str:str], int]:
+    """query booking record by user_id from DB, return data with status code"""
+
     token=request.cookies.get("user")
     if(not token):
         return Api_view.response_query_booking(-1, 1)
@@ -36,7 +39,9 @@ def get_booking():
             return Api_view.response_query_booking(records, row_count)
 
 @bookings.route("/api/booking", methods=["POST"])
-def insert_booking():
+def insert_booking() ->tuple[dict[str:bool], int]:
+    """insert booking info into DB"""
+
     token=request.cookies.get("user")
     if(not token):
         return Api_view.response_insert_booking(-1)
@@ -55,7 +60,9 @@ def insert_booking():
             return Api_view.response_insert_booking(row_count)
 
 @bookings.route("/api/booking", methods=["DELETE"])
-def delete_booking():
+def delete_booking() ->tuple[dict[str:bool], int]: 
+    """delete specify booking info from DB by user_id, attraction_id, date, time"""
+
     token=request.cookies.get("user")
 
     if(not token):
