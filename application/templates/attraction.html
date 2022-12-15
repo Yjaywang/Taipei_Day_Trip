@@ -3,7 +3,6 @@
 <html lang="en">
 <head>
     {% block css %}  
-    <!-- <link rel="stylesheet" type="text/css" href="attraction.css"> -->
     <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/attraction.css') }}" /> 
     {% endblock %}
 </head>
@@ -88,7 +87,6 @@
     </div>
     {% endblock %}
     {% block script%}
-    <!-- <script src="attraction.js"></script> -->
     <script src="{{ url_for('static', filename='js/attraction.js') }}"></script>  
     {% endblock %}
 </body>

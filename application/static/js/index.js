@@ -59,7 +59,7 @@ let model={
     const email=document.querySelector("#sign-in-email").value;
     const password=document.querySelector("#sign-in-password").value;
     this.memberData={};
-
+    
     if(!email || !password){
       this.memberData={
         "error": true,
@@ -208,7 +208,6 @@ let view={
   sendSignIn: function(data) {
     const signInFormEl = document.querySelector(".signin-form");
     const menuStatusEl=document.querySelector("#signin-menu-status");
-
     if(data.ok){
       location.reload();
     } else {

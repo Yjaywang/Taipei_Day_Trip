@@ -40,16 +40,9 @@ def sign_in() ->tuple[dict[str:bool], int]:
     
     email=request.json["email"]
     password=request.json["password"]
-    #valid part
-    valid_email=validate_input.validate_email(email)
-    valid_pw=validate_input.validate_password(password)
 
     if not password:
         return Api_view.response_query_signin(0, 0, email, password)
-    elif not valid_email["valid"]:
-        return Api_view.response_input_valid(valid_email)
-    elif not valid_pw["valid"]:
-        return Api_view.response_input_valid(valid_pw)
 
     record, row_count=Database.query_signin(email)
     print(record)
