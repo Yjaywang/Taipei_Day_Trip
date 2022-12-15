@@ -4,41 +4,41 @@
 <head>
     {% block css %}    
     <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
-    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/style.css') }}" />
+    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/style.css') }}" /> 
     {% endblock %}
 </head>
 <body>
 
     {% block content%}    
-    <div class="hero_desk">
-        <img src="/static/images/welcome.png" alt="" class="welcome_img">        
+    <div class="hero-desk">
+        <img src="/static/images/welcome.png" alt="" class="welcome-img">        
     </div>
 
     <div class="slogan">
-        <div class="slogan_container">
-            <div class="slogan_box">
-                <div class="slogan_info_upper">輕鬆享受台北一日悠閒</div>
-                <div class="slogan_info_lower">探索每個角落，體驗城市的深度旅遊行程</div>
+        <div class="slogan-container">
+            <div class="slogan-box">
+                <div class="slogan-info-upper">輕鬆享受台北一日悠閒</div>
+                <div class="slogan-info-lower">探索每個角落，體驗城市的深度旅遊行程</div>
             </div>
-            <div class="search_box">     
-                <div class="search_bar_desk_container">
-                    <div class="search_bar">
-                        <input type="text" class="search_bar_text" placeholder="輸入景點名稱查詢">
+            <div class="search-box">     
+                <div class="search-bar-desk-container">
+                    <div class="search-bar">
+                        <input type="text" class="search-bar-text" placeholder="輸入景點名稱查詢">
                     </div>    
-                    <div class="search_btn">
-                        <img src="/static/images/icon_search.png" alt="" class="search_icon">
+                    <div class="search-btn">
+                        <img src="/static/images/icon_search.png" alt="" class="search-icon"> 
                     </div>    
                 </div>    
-            <div class="search_category">
-                <!-- <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div>
-                <div class="cat_item">test1</div> -->
+            <div class="search-category">
+                <!-- <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div>
+                <div class="cat-item">test1</div> -->
 
             </div>      
    
@@ -46,37 +46,32 @@
         </div>
     </div>
 
-
-
-
     <div class="attractions">
-        <div class="attractions_container">
-            <!-- <img src="/static/images/no_results.png" alt="" class="no_result_img">      -->
-            <!-- <a href="" class="attraction_url">
-                <div class="attraction_group">
-                    <div class="attraction_img_box">
-                        <img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg" alt="" class="attraction_img" >
+        <div class="attractions-container">
+            <!-- <img src="/static/images/no-results.png" alt="" class="no-result-img">      -->
+            <!-- <a href="" class="attraction-url">
+                <div class="attraction-group">
+                    <div class="attraction-img-box">
+                        <img src="https://www.travel.taipei/d_upload_ttn/sceneadmin/pic/11000848.jpg" alt="" class="attraction-img" >  ***
                     </div>
-                    <div class="details_upper">                    
-                        <div class="info_upper" >test</div>                    
+                    <div class="details-upper">                    
+                        <div class="info-upper" >test</div>                    
                     </div>
-                    <div class="details_lower">
-                        <div class="info_lower">
+                    <div class="details-lower">
+                        <div class="info-lower">
                             <div class="mrt" >mrt</div>
                             <div class="cat" >cat</div>
                         </div>
                     </div>
                 </div>                 
-            </a>      -->
-        
+            </a>      -->      
 
-          
         </div>
     </div>
     {% endblock %}
     {% block script%}
     <!-- <script src="index.js"></script> -->
-    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script> 
     {% endblock %}
 </body>
 </html>

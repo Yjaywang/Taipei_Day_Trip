@@ -5,8 +5,8 @@ let model={
   memberData: null,
   authData: null,
   sendSignIn: async function() {
-    const email=document.querySelector("#sign_in_email").value;
-    const password=document.querySelector("#sign_in_password").value;
+    const email=document.querySelector("#sign-in-email").value;
+    const password=document.querySelector("#sign-in-password").value;
     this.memberData={};
 
     if(!email || !password){
@@ -33,9 +33,9 @@ let model={
     }
   },
   sendSignUp: async function() {
-    const name=document.querySelector("#sign_up_name").value;
-    const email=document.querySelector("#sign_up_email").value;
-    const password=document.querySelector("#sign_up_password").value;
+    const name=document.querySelector("#sign-up-name").value;
+    const email=document.querySelector("#sign-up-email").value;
+    const password=document.querySelector("#sign-up-password").value;
 
     if(!name || !email || !password){
       this.memberData={
@@ -85,9 +85,9 @@ let view={
   checkSingIn: function(data) {
     //auth success action
     if(data.data){
-      document.querySelector(".nav_signin").style.display="none";
+      document.querySelector(".nav-signin").style.display="none";
   
-      const signOutEl = document.querySelector(".nav_signout");
+      const signOutEl = document.querySelector(".nav-signout");
       signOutEl.style.display="block";
       signOutEl.addEventListener("click", ()=> {
         controller.signOut();
@@ -103,19 +103,19 @@ let view={
     }
   },
   sendSignUp: function(data) {
-    const menuStatusEl=document.querySelector("#signup_menu_status");
-    const signUpFormEl=document.querySelector(".signup_form");
+    const menuStatusEl=document.querySelector("#signup-menu-status");
+    const signUpFormEl=document.querySelector(".signup-form");
 
     if(data.ok){
-      menuStatusEl.classList.add("status_ok");
+      menuStatusEl.classList.add("status-ok");
       menuStatusEl.textContent="註冊成功!";
       signUpFormEl.addEventListener("mouseup", function() {
-        menuStatusEl.classList.remove("status_ok");
+        menuStatusEl.classList.remove("status-ok");
       })
     } else {
-      menuStatusEl.classList.add("status_error");
+      menuStatusEl.classList.add("status-error");
       signUpFormEl.addEventListener("mouseup", function() {
-        menuStatusEl.classList.remove("status_error");
+        menuStatusEl.classList.remove("status-error");
       })
       if(data.message==="email existed"){
         menuStatusEl.textContent="此email已被人使用!";
@@ -132,15 +132,15 @@ let view={
     }
   },
   sendSignIn: function(data) {
-    const signInFormEl = document.querySelector(".signin_form");
-    const menuStatusEl=document.querySelector("#signin_menu_status");
+    const signInFormEl = document.querySelector(".signin-form");
+    const menuStatusEl=document.querySelector("#signin-menu-status");
 
     if(data.ok){
       location.reload();
     } else {
-      menuStatusEl.classList.add("status_error");
+      menuStatusEl.classList.add("status-error");
       signInFormEl.addEventListener("mousedown", function() {
-        menuStatusEl.classList.remove("status_error");
+        menuStatusEl.classList.remove("status-error");
       })
       if(data.message==="wrong password, try again!"){
         menuStatusEl.textContent="密碼錯誤，請再試一次!";
@@ -155,32 +155,32 @@ let view={
   },
   signMenu: function() {
     //close menu
-    const triggerCloseEls=document.querySelectorAll(".trigger_close_menu");
+    const triggerCloseEls=document.querySelectorAll(".trigger-close-menu");
     triggerCloseEls.forEach(triggerCloseEl => {
       triggerCloseEl.addEventListener("click", () => {
-        document.querySelector(".sign_menu_backgroung").style.display = "none";
-        document.querySelector(".signin_form").style.display = "none";
-        document.querySelector(".signup_form").style.display = "none";
+        document.querySelector(".sign-menu-backgroung").style.display = "none";
+        document.querySelector(".signin-form").style.display = "none";
+        document.querySelector(".signup-form").style.display = "none";
       });
     });
 
 
     //show sign in menu
-    const showSignInEls=document.querySelectorAll(".show_sign_in");
+    const showSignInEls=document.querySelectorAll(".show-sign-in");
     showSignInEls.forEach(showSignInEl =>{
       showSignInEl.addEventListener("click", ()=> {
-        document.querySelector(".sign_menu_backgroung").style.display="block";
-        document.querySelector(".signin_form").style.display="block";
-        document.querySelector(".signup_form").style.display="none";
+        document.querySelector(".sign-menu-backgroung").style.display="block";
+        document.querySelector(".signin-form").style.display="block";
+        document.querySelector(".signup-form").style.display="none";
       });    
     });
     //show sign up menu
-    const showSignUpEls=document.querySelectorAll(".show_sign_up");
+    const showSignUpEls=document.querySelectorAll(".show-sign-up");
     showSignUpEls.forEach(showSignUpEl =>{
       showSignUpEl.addEventListener("click", ()=> {
-        document.querySelector(".sign_menu_backgroung").style.display="block";
-        document.querySelector(".signin_form").style.display="none";
-        document.querySelector(".signup_form").style.display="block";
+        document.querySelector(".sign-menu-backgroung").style.display="block";
+        document.querySelector(".signin-form").style.display="none";
+        document.querySelector(".signup-form").style.display="block";
       });
     });
   }
@@ -224,14 +224,14 @@ controller.init();
       document.querySelector("footer").style.display = "flex";	  
     }
     else{
-      const bookingSeparatorEls = document.querySelectorAll(".booking_separator");
+      const bookingSeparatorEls = document.querySelectorAll(".booking-separator");
       bookingSeparatorEls.forEach(bookingSeparatorEl => {
         bookingSeparatorEl.remove();
       });
-      document.querySelector(".user_info_container").remove();
-      document.querySelector(".card_container").remove();
-      document.querySelector(".summary_container").remove();
-      document.querySelector(".no_schedule_img").style.display = "block";
+      document.querySelector(".user-info-container").remove();
+      document.querySelector(".card-container").remove();
+      document.querySelector(".summary-container").remove();
+      document.querySelector(".no-schedule-img").style.display = "block";
     }
 
   } catch (error) {
@@ -242,7 +242,7 @@ controller.init();
 
 function createBooking(response){
   response.forEach(data => {
-    const bookingInfoContainerEls=document.querySelectorAll(".booking_info_container");
+    const bookingInfoContainerEls=document.querySelectorAll(".booking-info-container");
     const divBookingInfoSubContainer=document.createElement("div");
     const imgBooking=document.createElement("img");
     const divBookingItemContainer=document.createElement("div");
@@ -262,21 +262,21 @@ function createBooking(response){
     const spanAddressContent=document.createElement("span");
     const imgDeleteIcon=document.createElement("img");
 
-    divBookingInfoSubContainer.className="booking_info_sub_container";
-    imgBooking.className="booking_img";
-    divBookingItemContainer.className="booking_item_container";
-    aBookingAttractionLink.className="booking_attraction_link";
-    divBookingAttractionTitle.className="booking_attraction_title";
+    divBookingInfoSubContainer.className="booking-info-sub-container";
+    imgBooking.className="booking-img";
+    divBookingItemContainer.className="booking-item-container";
+    aBookingAttractionLink.className="booking-attraction-link";
+    divBookingAttractionTitle.className="booking-attraction-title";
     spanAttraction.className="attraction";
-    divBookingDate.className="booking_date";
-    spanDateContent.className="booking_date_content";
-    divBookingTime.className="booking_time";
-    spanTimeContent.className="booking_time_content";
-    divBookingFee.className="booking_fee";
-    spanFeeContent.className="booking_fee_content";
-    divBookingAddress.className="booking_address";
-    spanAddressContent.className="booking_address_content";
-    imgDeleteIcon.className="delete_icon";
+    divBookingDate.className="booking-date";
+    spanDateContent.className="booking-date-content";
+    divBookingTime.className="booking-time";
+    spanTimeContent.className="booking-time-content";
+    divBookingFee.className="booking-fee";
+    spanFeeContent.className="booking-fee-content";
+    divBookingAddress.className="booking-address";
+    spanAddressContent.className="booking-address-content";
+    imgDeleteIcon.className="delete-icon";
 
     spanAttractionPrefix.textContent="台北一日遊：";
     divBookingDate.textContent="日期：";
@@ -285,7 +285,7 @@ function createBooking(response){
     spanFeeContentPrefix.textContent="新台幣 ";
     spanFeeContentPostfix.textContent=" 元";
     divBookingAddress.textContent="地點："
-    imgDeleteIcon.src="/static/images/icon_delete.png";
+    imgDeleteIcon.src="/static/images/icon_delete.png"; 
     imgBooking.src=data.attraction.image;
 
     spanAttraction.textContent=data.attraction.name;
@@ -344,7 +344,7 @@ function createBooking(response){
 
 
 function totalMoney() {
-  const bookingFeeContentEls =document.querySelectorAll(".booking_fee_content");
+  const bookingFeeContentEls =document.querySelectorAll(".booking-fee-content");
   const money=document.querySelector("#money");
   let temp=0;
 
@@ -355,11 +355,11 @@ function totalMoney() {
 }
 
 async function deleteBooking() {
-  let bookingCount=this.parentElement.parentElement.parentElement.querySelectorAll(".delete_icon").length;
+  let bookingCount=this.parentElement.parentElement.parentElement.querySelectorAll(".delete-icon").length;
   let container=this.parentElement.parentElement;
-  const attractionID=this.parentElement.querySelector(".booking_attraction_link").href.split("/").slice(-1)[0];
-  const date=this.parentElement.querySelector(".booking_date").childNodes[1].textContent;
-  const tempTime=this.parentElement.querySelector(".booking_time").childNodes[1].textContent;
+  const attractionID=this.parentElement.querySelector(".booking-attraction-link").href.split("/").slice(-1)[0];
+  const date=this.parentElement.querySelector(".booking-date").childNodes[1].textContent;
+  const tempTime=this.parentElement.querySelector(".booking-time").childNodes[1].textContent;
   let time="";
   if (tempTime==="早上 9 點到下午 4 點"){
     time="morning";
@@ -396,7 +396,7 @@ async function deleteBooking() {
 
 
 //booking page
-const navSchedule = document.querySelector(".nav_schedule");
+const navSchedule = document.querySelector(".nav-schedule");
 navSchedule.addEventListener("click", bookingPage);
 async function bookingPage() {
   const checkUrl="/api/user/auth";
@@ -419,7 +419,7 @@ async function bookingPage() {
 }
 
 async function login() {
-  document.querySelector(".sign_menu_backgroung").style.display="block";
-  document.querySelector(".signin_form").style.display="block";
-  document.querySelector(".signup_form").style.display="none";
+  document.querySelector(".sign-menu-backgroung").style.display="block";
+  document.querySelector(".signin-form").style.display="block";
+  document.querySelector(".signup-form").style.display="none";
 }

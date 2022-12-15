@@ -7,17 +7,17 @@ nav{
     justify-content: center;
     align-items: center;
 }
-.nav-container{
+.nav_container{
     width: 1200px;
     height: 54px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.nav-left{
+.nav_left{
     text-decoration:none;
 }
-.nav-left-content{
+.nav_left_content{
     padding-left: 10px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -27,7 +27,7 @@ nav{
     color: #448899;
     cursor: pointer;
 }
-.nav-right{
+.nav_right{
     padding: 0px;
     width: 175px;
     height: 34px;
@@ -39,7 +39,7 @@ nav{
 
     
 
-.nav-schedule{
+.nav_schedule{
     height: 14px;
     padding: 10px;
     font-family: 'Noto Sans TC';
@@ -51,7 +51,7 @@ nav{
     cursor: pointer;
     
 }
-.nav-signin{
+.nav_signin{
     height: 14px;
     padding: 10px;
     cursor: pointer;
@@ -64,7 +64,7 @@ nav{
 
 }
 
-.nav-signout{
+.nav_signout{
     height: 14px;
     padding: 10px;
     cursor: pointer;
@@ -77,7 +77,7 @@ nav{
     display: none;
 }
 
-.nav-separator{
+.nav_separator{
     height: 0px;
     border: 1px solid #E8E8E8;
     margin-bottom: 40px;
@@ -92,7 +92,7 @@ section{
     
     
 }
-.profile-pic-container{
+.profile_pic_container{
     height: 406px;
     width: 540px;
     margin-left: 15px;
@@ -101,14 +101,14 @@ section{
     margin-top: 3px;
     position: relative;
 }
-.profile-pic{
+.profile_pic{
     height: 406px;
     width: 540px;
     object-fit: cover;
     border-radius: 5px;
 }
 
-.slide-btn-container{
+.slide_btn_container{
     top: -55%;
     width: 96%;
     margin: auto;
@@ -132,7 +132,7 @@ section{
     opacity: 0.6;    
 }
 
-.circle-container{
+.circle_container{
     width: 100%;
     margin-top: -60px;
     display: flex;
@@ -166,7 +166,7 @@ section{
 }
 
 
-.profile-container{
+.profile_container{
     flex: auto;
     margin-left: 15px;
     margin-right: 15px;
@@ -192,7 +192,7 @@ section{
     color: #666666;    
     margin-bottom: 20px;
 }
-.booking-form{
+.booking_form{
     min-height: 303px;
     background: #E8E8E8;
     border-radius: 5px;
@@ -202,7 +202,7 @@ section{
 
 }
 
-.booking-form-header{
+.booking_form_header{
     height: 22px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -212,7 +212,7 @@ section{
     color: #666666;
     margin-bottom: 15px;
 }
-.booking-form-desc{
+.booking_form_desc{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;
@@ -221,10 +221,10 @@ section{
     color: #666666;
     margin-bottom: 15px;
 }
-.booking-date-container{
+.booking_date_container{
     margin-bottom: 15px;
 }
-.booking-date-label{
+.booking_date_label{
     width: 81px;
     height: 17px;
     font-family: 'Noto Sans TC';
@@ -247,8 +247,10 @@ input[type="date"] {
     padding: 0 10px;
 }
 
-
-.booking-time-label{
+.booking_time_container{
+    
+}
+.booking_time_label{
     width: 81px;
     height: 22px;
     font-family: 'Noto Sans TC';
@@ -259,7 +261,7 @@ input[type="date"] {
     color: #666666;
     
 }
-.booking-time-input-up-text, .booking-time-input-down-text{
+.booking_time_input_up_text, .booking_time_input_down_text{
     width: 48px;
     height: 14px;
     font-family: 'Noto Sans TC';
@@ -279,14 +281,14 @@ input[type="radio"]{
     border: none;
     
 }
-.booking-form-price-container{
+.booking_form_price_container{
     margin-top: 15px;
     height: 22px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
-.book-form-price-title{
+.book_form_price_title{
        
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -295,7 +297,7 @@ input[type="radio"]{
     color: #666666;
 }
 
-.book-form-price-content{
+.book_form_price_content{
     
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -304,7 +306,7 @@ input[type="radio"]{
     color: #666666;
 }
 
-.booking-btn{
+.booking_btn{
     width: 154px;
     height: 36px;
     background: #448899;
@@ -326,7 +328,7 @@ input[type="radio"]{
     margin-top: 25px;
 }
 
-.status-memo{
+.status_memo{
     margin-top: 15px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -335,7 +337,7 @@ input[type="radio"]{
     color: #666666;
     display: none;
 }
-.main-separator{
+.main_separator{
     display: none;
     margin: auto;
     width: 1200px;
@@ -343,7 +345,7 @@ input[type="radio"]{
     margin-bottom: 50px;
 }
 
-.information-container{
+.information_container{
     margin: auto;
     display: none;
     /* margin-left: 10px;
@@ -353,7 +355,7 @@ input[type="radio"]{
     margin-bottom: 50px;
 }
 
-.description-content{
+.description_content{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 400;
@@ -362,7 +364,7 @@ input[type="radio"]{
     color: #666666;
     margin-bottom: 20px;
 }
-.information-title{    
+.information_title{    
     height: 32px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -372,7 +374,7 @@ input[type="radio"]{
     color: #666666;
 }
 
-.address-content{
+.address_content{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 400;
@@ -382,7 +384,7 @@ input[type="radio"]{
     line-height: 23px;
 }
 
-.information-title{    
+.information_title{    
     height: 32px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -391,7 +393,7 @@ input[type="radio"]{
     color: #666666;
 }
 
-.transport-content{
+.transport_content{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 400;
@@ -411,7 +413,7 @@ footer{
     position: relative;
     bottom: 0px;
 }
-.copyright-block{
+.copyright_block{
     
     height: 14px;
     font-family: 'Noto Sans TC';
@@ -423,7 +425,7 @@ footer{
     text-align: center;
 }
 
-.sign-menu-backgroung{
+.sign_menu_backgroung{
     background: #000000;
     opacity: 0.25;
     position: fixed;
@@ -434,7 +436,7 @@ footer{
     display: none;
 }
 
-.signin-form{
+.signin_form{
     position: fixed;
     /* height: 275px; */
     width: 340px;
@@ -447,7 +449,7 @@ footer{
     display: none;
 }
 
-.signup-form{
+.signup_form{
     position: fixed;
     /* height: 332px; */
     width: 340px;
@@ -461,33 +463,33 @@ footer{
     
 }
 
-.upper-decorator{
+.upper_decorator{
     height: 10px;    
     background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
     border-radius: 6px;
 }
-.upper-decorator-modification{
+.upper_decorator_modification{
     background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
     margin-top: -5px;
     height: 5px;
     margin-bottom: 15px;
 }
 
-.signin-container{
+.signin_container{
     width: 310px;
     /* height: 235px; */
     margin-left: auto;
     margin-right: auto;
 }
 
-.signup-container{
+.signup_container{
     width: 310px;
     /* height: 292px; */
     margin-left: auto;
     margin-right: auto;
 }
 
-.sign-menu-title{
+.sign_menu_title{
     position: relative;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -501,14 +503,14 @@ footer{
     margin: auto;
     margin-bottom: 15px;
 }
-.close-icon{
+.close_icon{
     position: absolute;
     top: 0px;
     right: 0px;
     cursor: pointer;
 }
 
-.sign-input{
+.sign_input{
     
     width: 278px;
     height: 17px;
@@ -525,7 +527,7 @@ footer{
     color: #757575;
 }
 
-.signin-btn{
+.signin_btn{
     width: 310px;
     height: 47px;
     background: #448899;
@@ -541,7 +543,7 @@ footer{
     cursor: pointer;
 }
 
-.signup-btn{
+.signup_btn{
     width: 310px;
     height: 47px;
     background: #448899;
@@ -557,7 +559,7 @@ footer{
     cursor: pointer;
 }
 
-.menu-status-info{
+.menu_status_info{
     text-align: center;
     display: none;
     margin-bottom: 15px;
@@ -566,18 +568,18 @@ footer{
     font-weight: 500;
     font-size: 16px;
 }
-.status-ok{
+.status_ok{
     display: block;
     color: forestgreen;
 }
 
-.status-error{
+.status_error{
     display: block;
     color: red;
 }
 
 
-.menu-other-info{
+.menu_other_info{
     text-align: center;
     display: block;
     margin-bottom: 15px;
@@ -594,29 +596,29 @@ footer{
     section{
         width: 100%;
     }
-    .main-separator{
+    .main_separator{
         width: 97%;
     }
-    .information-container{
+    .information_container{
         width: 90%;
         min-height: 712px;
     }
 }
 
 @media (max-width:1050px){
-    .nav-separator{
+    .nav_separator{
         margin: 0px;
     }
     section{
         flex-wrap: wrap;
     }
-    .profile-pic-container{
+    .profile_pic_container{
         width: 100%;
         height: 350px;
         margin: 0px;
         margin-bottom: 20px;
     }
-    .profile-pic{
+    .profile_pic{
         height: 350px;
         width: 100%;
     }

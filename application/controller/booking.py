@@ -57,7 +57,7 @@ def insert_booking():
 @bookings.route("/api/booking", methods=["DELETE"])
 def delete_booking():
     token=request.cookies.get("user")
-    print(token)
+
     if(not token):
         return Api_view.response_delete_booking(-1)
     else:         
@@ -70,9 +70,6 @@ def delete_booking():
             attraction_id=request.json["attractionId"]
             date=request.json["date"]
             time=request.json["time"]
-            
-            print(attraction_id)
-            print(date)
-            print(time)
+
             row_count=Database.delete_booking(user_id, attraction_id, date, time)
             return Api_view.response_delete_booking(row_count)

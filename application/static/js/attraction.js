@@ -35,8 +35,8 @@ let model={
     this.showSlides(this.slideIdx = n);
   }, 
   sendSignIn: async function() {
-    const email=document.querySelector("#sign_in_email").value;
-    const password=document.querySelector("#sign_in_password").value;
+    const email=document.querySelector("#sign-in-email").value;
+    const password=document.querySelector("#sign-in-password").value;
     this.memberData={};
 
     if(!email || !password){
@@ -63,9 +63,9 @@ let model={
     }
   },
   sendSignUp: async function() {
-    const name=document.querySelector("#sign_up_name").value;
-    const email=document.querySelector("#sign_up_email").value;
-    const password=document.querySelector("#sign_up_password").value;
+    const name=document.querySelector("#sign-up-name").value;
+    const email=document.querySelector("#sign-up-email").value;
+    const password=document.querySelector("#sign-up-password").value;
 
     if(!name || !email || !password){
       this.memberData={
@@ -114,9 +114,9 @@ let view={
   checkSingIn: function(data) {
     //auth success action
     if(data.data){
-      document.querySelector(".nav_signin").style.display="none";
+      document.querySelector(".nav-signin").style.display="none";
   
-      const signOutEl = document.querySelector(".nav_signout");
+      const signOutEl = document.querySelector(".nav-signout");
       signOutEl.style.display="block";
       signOutEl.addEventListener("click", ()=> {
         controller.signOut();
@@ -129,19 +129,19 @@ let view={
     }
   },
   sendSignUp: function(data) {
-    const menuStatusEl=document.querySelector("#signup_menu_status");
-    const signUpFormEl=document.querySelector(".signup_form");
+    const menuStatusEl=document.querySelector("#signup-menu-status");
+    const signUpFormEl=document.querySelector(".signup-form");
 
     if(data.ok){
-      menuStatusEl.classList.add("status_ok");
+      menuStatusEl.classList.add("status-ok");
       menuStatusEl.textContent="註冊成功!";
       signUpFormEl.addEventListener("mouseup", function() {
-        menuStatusEl.classList.remove("status_ok");
+        menuStatusEl.classList.remove("status-ok");
       })
     } else {
-      menuStatusEl.classList.add("status_error");
+      menuStatusEl.classList.add("status-error");
       signUpFormEl.addEventListener("mouseup", function() {
-        menuStatusEl.classList.remove("status_error");
+        menuStatusEl.classList.remove("status-error");
       })
       if(data.message==="email existed"){
         menuStatusEl.textContent="此email已被人使用!";
@@ -158,15 +158,15 @@ let view={
     }
   },
   sendSignIn: function(data) {
-    const signInFormEl = document.querySelector(".signin_form");
-    const menuStatusEl=document.querySelector("#signin_menu_status");
+    const signInFormEl = document.querySelector(".signin-form");
+    const menuStatusEl=document.querySelector("#signin-menu-status");
 
     if(data.ok){
       location.reload();
     } else {
-      menuStatusEl.classList.add("status_error");
+      menuStatusEl.classList.add("status-error");
       signInFormEl.addEventListener("mousedown", function() {
-        menuStatusEl.classList.remove("status_error");
+        menuStatusEl.classList.remove("status-error");
       })
       if(data.message==="wrong password, try again!"){
         menuStatusEl.textContent="密碼錯誤，請再試一次!";
@@ -199,10 +199,10 @@ let view={
     const nameEl=document.querySelector(".name");
     const catEl=document.querySelector(".cat");
     const mrtEl=document.querySelector(".mrt");
-    const descriptionContentEl=document.querySelector(".description_content");
-    const addressContentEl=document.querySelector(".address_content");
-    const transportContentEl=document.querySelector(".transport_content");
-    const profilePicContainerEls=document.querySelectorAll(".profile_pic_container");
+    const descriptionContentEl=document.querySelector(".description-content");
+    const addressContentEl=document.querySelector(".address-content");
+    const transportContentEl=document.querySelector(".transport-content");
+    const profilePicContainerEls=document.querySelectorAll(".profile-pic-container");
     // slide part variables
     const divSlideContainer=document.createElement("div");
     const divCircleContainer=document.createElement("div");
@@ -217,13 +217,13 @@ let view={
     addressContentEl.textContent=response.address;
     transportContentEl.textContent=response.transport;  
     //previous and next slide part
-    divSlideContainer.className="slide_container";
-    divCircleContainer.className="circle_container";
-    divSlideBtnContainer.className="slide_btn_container";
+    divSlideContainer.className="slide-container";
+    divCircleContainer.className="circle-container";
+    divSlideBtnContainer.className="slide-btn-container";
     imgPrev.className="prev";
     imgNext.className="next";
-    imgPrev.src="/static/images/btn_leftArrow.png";
-    imgNext.src="/static/images/btn_rightArrow.png";
+    imgPrev.src="/static/images/btn_leftArrow.png"; 
+    imgNext.src="/static/images/btn_rightArrow.png"; 
     imgPrev.onclick=function(event){
       controller.plusSlide(-1);
     }
@@ -240,7 +240,7 @@ let view={
       const spanCircle=document.createElement("span");
       
       divSlide.classList.add("slides", "fade");
-      imgProfile.className="profile_pic";
+      imgProfile.className="profile-pic";
       spanCircle.className="circle";
       imgProfile.src=response.images[i];
       // spanCircle.onclick=function(event){
@@ -265,7 +265,7 @@ let view={
     }  
 
     //money display    
-    const spanMoney=document.querySelector(".book_form_price_number")
+    const spanMoney=document.querySelector(".book-form-price-number")
     const formTime = document.bookingForm.time;
     for (let i = 0; i < formTime.length; i++) {
       //only listen to "change to checked" dom
@@ -277,38 +277,38 @@ let view={
     // loading done, display the pic and other component
     document.title = model.attractionData.name;
     document.querySelector("section").style.display = "flex";		
-    document.querySelector(".information_container").style.display = "block";		
+    document.querySelector(".information-container").style.display = "block";		
     document.querySelector("footer").style.display = "flex";	
-    document.querySelector(".main_separator").style.display = "block";
+    document.querySelector(".main-separator").style.display = "block";
   }, 
   signMenu: function() {
     //close menu
-    const triggerCloseEls=document.querySelectorAll(".trigger_close_menu");
+    const triggerCloseEls=document.querySelectorAll(".trigger-close-menu");
     triggerCloseEls.forEach(triggerCloseEl => {
       triggerCloseEl.addEventListener("click", () => {
-        document.querySelector(".sign_menu_backgroung").style.display = "none";
-        document.querySelector(".signin_form").style.display = "none";
-        document.querySelector(".signup_form").style.display = "none";
+        document.querySelector(".sign-menu-backgroung").style.display = "none";
+        document.querySelector(".signin-form").style.display = "none";
+        document.querySelector(".signup-form").style.display = "none";
       });
     });
 
 
     //show sign in menu
-    const showSignInEls=document.querySelectorAll(".show_sign_in");
+    const showSignInEls=document.querySelectorAll(".show-sign-in");
     showSignInEls.forEach(showSignInEl =>{
       showSignInEl.addEventListener("click", ()=> {
-        document.querySelector(".sign_menu_backgroung").style.display="block";
-        document.querySelector(".signin_form").style.display="block";
-        document.querySelector(".signup_form").style.display="none";
+        document.querySelector(".sign-menu-backgroung").style.display="block";
+        document.querySelector(".signin-form").style.display="block";
+        document.querySelector(".signup-form").style.display="none";
       });    
     });
     //show sign up menu
-    const showSignUpEls=document.querySelectorAll(".show_sign_up");
+    const showSignUpEls=document.querySelectorAll(".show-sign-up");
     showSignUpEls.forEach(showSignUpEl =>{
       showSignUpEl.addEventListener("click", ()=> {
-        document.querySelector(".sign_menu_backgroung").style.display="block";
-        document.querySelector(".signin_form").style.display="none";
-        document.querySelector(".signup_form").style.display="block";
+        document.querySelector(".sign-menu-backgroung").style.display="block";
+        document.querySelector(".signin-form").style.display="none";
+        document.querySelector(".signup-form").style.display="block";
       });
     });
   }
@@ -352,7 +352,7 @@ controller.init();
 //pending MVC
 
 {
-  const bookingBtnEl=document.querySelector(".booking_btn");
+  const bookingBtnEl=document.querySelector(".booking-btn");
   bookingBtnEl.addEventListener("click", addBooking);
 }
 
@@ -400,11 +400,11 @@ async function addBooking() {
         });
         const data = await response.json();
         if(data.error){
-          const statusMemoEl=document.querySelector(".status_memo");
-          const bookingFormEl=document.querySelector(".booking_form");
-          statusMemoEl.classList.add("status_error");
+          const statusMemoEl=document.querySelector(".status-memo");
+          const bookingFormEl=document.querySelector(".booking-form");
+          statusMemoEl.classList.add("status-error");
           bookingFormEl.addEventListener("click", function() {
-            statusMemoEl.classList.remove("status_error");
+            statusMemoEl.classList.remove("status-error");
           })
           if(data.message==="duplicated booking"){
             statusMemoEl.textContent="重複預定行程，請重選";
@@ -428,7 +428,7 @@ async function addBooking() {
 
 
 //booking page
-const navSchedule = document.querySelector(".nav_schedule");
+const navSchedule = document.querySelector(".nav-schedule");
 navSchedule.addEventListener("click", bookingPage);
 async function bookingPage() {
   const checkUrl="/api/user/auth";
@@ -451,7 +451,7 @@ async function bookingPage() {
 }
 
 async function login() {
-  document.querySelector(".sign_menu_backgroung").style.display="block";
-  document.querySelector(".signin_form").style.display="block";
-  document.querySelector(".signup_form").style.display="none";
+  document.querySelector(".sign-menu-backgroung").style.display="block";
+  document.querySelector(".signin-form").style.display="block";
+  document.querySelector(".signup-form").style.display="none";
 }

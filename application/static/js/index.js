@@ -37,14 +37,14 @@ let model={
   search: async function() {
     this.loading=true;
     this.attractionData=null;
-    const attractionsContainerEl = document.querySelector(".attractions_container");
+    const attractionsContainerEl = document.querySelector(".attractions-container");
     let url ="api/attractions";
     if(!this.keyword) {
       url= url+"?page=0";
     } else {
       url= url+`?page=0&keyword=${this.keyword}`;
     }
-    attractionsContainerEl.textContent=""; //remove all elements inside attractions_container 
+    attractionsContainerEl.textContent=""; //remove all elements inside attractions-container 
     try {
       const response = await fetch(url);
       const data = await response.json();
@@ -56,8 +56,8 @@ let model={
     }
   },
   sendSignIn: async function() {
-    const email=document.querySelector("#sign_in_email").value;
-    const password=document.querySelector("#sign_in_password").value;
+    const email=document.querySelector("#sign-in-email").value;
+    const password=document.querySelector("#sign-in-password").value;
     this.memberData={};
 
     if(!email || !password){
@@ -84,9 +84,9 @@ let model={
     }
   },
   sendSignUp: async function() {
-    const name=document.querySelector("#sign_up_name").value;
-    const email=document.querySelector("#sign_up_email").value;
-    const password=document.querySelector("#sign_up_password").value;
+    const name=document.querySelector("#sign-up-name").value;
+    const email=document.querySelector("#sign-up-email").value;
+    const password=document.querySelector("#sign-up-password").value;
 
     if(!name || !email || !password){
       this.memberData={
@@ -162,9 +162,9 @@ let view={
   checkSingIn: function(data) {
     //auth success action
     if(data.data){
-      document.querySelector(".nav_signin").style.display="none";
+      document.querySelector(".nav-signin").style.display="none";
   
-      const signOutEl = document.querySelector(".nav_signout");
+      const signOutEl = document.querySelector(".nav-signout");
       signOutEl.style.display="block";
       signOutEl.addEventListener("click", ()=> {
         controller.signOut();
@@ -177,19 +177,19 @@ let view={
     }
   },
   sendSignUp: function(data) {
-    const menuStatusEl=document.querySelector("#signup_menu_status");
-    const signUpFormEl=document.querySelector(".signup_form");
+    const menuStatusEl=document.querySelector("#signup-menu-status");
+    const signUpFormEl=document.querySelector(".signup-form");
 
     if(data.ok){
-      menuStatusEl.classList.add("status_ok");
+      menuStatusEl.classList.add("status-ok");
       menuStatusEl.textContent="註冊成功!";
       signUpFormEl.addEventListener("mouseup", function() {
-        menuStatusEl.classList.remove("status_ok");
+        menuStatusEl.classList.remove("status-ok");
       })
     } else {
-      menuStatusEl.classList.add("status_error");
+      menuStatusEl.classList.add("status-error");
       signUpFormEl.addEventListener("mouseup", function() {
-        menuStatusEl.classList.remove("status_error");
+        menuStatusEl.classList.remove("status-error");
       })
       if(data.message==="email existed"){
         menuStatusEl.textContent="此email已被人使用!";
@@ -206,15 +206,15 @@ let view={
     }
   },
   sendSignIn: function(data) {
-    const signInFormEl = document.querySelector(".signin_form");
-    const menuStatusEl=document.querySelector("#signin_menu_status");
+    const signInFormEl = document.querySelector(".signin-form");
+    const menuStatusEl=document.querySelector("#signin-menu-status");
 
     if(data.ok){
       location.reload();
     } else {
-      menuStatusEl.classList.add("status_error");
+      menuStatusEl.classList.add("status-error");
       signInFormEl.addEventListener("mousedown", function() {
-        menuStatusEl.classList.remove("status_error");
+        menuStatusEl.classList.remove("status-error");
       })
       if(data.message==="wrong password, try again!"){
         menuStatusEl.textContent="密碼錯誤，請再試一次!";
@@ -228,12 +228,12 @@ let view={
     }
   },
   search: function(response) {
-    const attractionsContainerEl = document.querySelector(".attractions_container");
+    const attractionsContainerEl = document.querySelector(".attractions-container");
     if (response.length===0) {
-      //create img tag in attractions_container
+      //create img tag in attractions-container
       const imgNoResultImg = document.createElement("img");
-      imgNoResultImg.className="no_result_img";
-      imgNoResultImg.src="/static/images/no_results.png";
+      imgNoResultImg.className="no-result-img";
+      imgNoResultImg.src="/static/images/no_results.png"; 
       attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
       return;
   
@@ -242,24 +242,24 @@ let view={
     }	
   },
   addCatShadow: function() {
-    let catItemEls=document.querySelectorAll(".cat_item");
+    let catItemEls=document.querySelectorAll(".cat-item");
     catItemEls.forEach(function(catItemEl) {
       catItemEl.addEventListener("mouseover", mouseOver);
       catItemEl.addEventListener("mouseout", mouseOut);
     })
     function mouseOver() {
-      this.classList.add("cat_item_change_color");
+      this.classList.add("cat-item-change-color");
     }
     function mouseOut() {
-      this.classList.remove("cat_item_change_color");
+      this.classList.remove("cat-item-change-color");
     }
   },
   category: function(catData) {
     catData.data.forEach(function(category) {
-      const searchBarTextEl = document.querySelector(".search_bar_text");
-      const searchCategoryEls=document.querySelectorAll(".search_category");
+      const searchBarTextEl = document.querySelector(".search-bar-text");
+      const searchCategoryEls=document.querySelectorAll(".search-category");
       const divCatItem=document.createElement("div");
-      divCatItem.className="cat_item";
+      divCatItem.className="cat-item";
       divCatItem.textContent=category;
       
       divCatItem.addEventListener("click", function (event) {
@@ -272,14 +272,14 @@ let view={
 
     //click search bar pop up and other place to close category panel
     document.addEventListener('click', function (e) {
-      const searchBarEl = document.querySelector(".search_bar");
+      const searchBarEl = document.querySelector(".search-bar");
       if (searchBarEl.contains(e.target)) {
-        document.querySelector(".search_category").style.display = "flex";		
+        document.querySelector(".search-category").style.display = "flex";		
       }
     });
     document.addEventListener('click', function (e) {
-      const searchBarEl = document.querySelector(".search_bar");
-        const categoryContainerEl = document.querySelector(".search_category");
+      const searchBarEl = document.querySelector(".search-bar");
+        const categoryContainerEl = document.querySelector(".search-category");
         if (!categoryContainerEl.contains(e.target) && !searchBarEl.contains(e.target)) {
           categoryContainerEl.style.display = "none";
         }
@@ -303,18 +303,18 @@ let view={
       const divInfoLower=document.createElement("div");
       const divMrt=document.createElement("div");
       const divCat=document.createElement("div");
-      const AttractionsContainerEls=document.querySelectorAll(".attractions_container"); 
-      //.attractions_container use querySelector to append will have sequence problem, keep use querySelectorAll or getElementByClassName
+      const AttractionsContainerEls=document.querySelectorAll(".attractions-container"); 
+      //.attractions-container use querySelector to append will have sequence problem, keep use querySelectorAll or getElementByClassName
   
       //add class name
-      aAttractionUrl.className="attraction_url";
-      divAttractionGroup.className="attraction_group";
-      divAttractionImgBox.className="attraction_img_box";
-      imgAttractionImg.className="attraction_img";
-      divDetailsUpper.className="details_upper";
-      divInfoUpper.className="info_upper";
-      divDetailsLower.className="details_lower";
-      divInfoLower.className="info_lower";
+      aAttractionUrl.className="attraction-url";
+      divAttractionGroup.className="attraction-group";
+      divAttractionImgBox.className="attraction-img-box";
+      imgAttractionImg.className="attraction-img";
+      divDetailsUpper.className="details-upper";
+      divInfoUpper.className="info-upper";
+      divDetailsLower.className="details-lower";
+      divInfoLower.className="info-lower";
       divMrt.className="mrt";
       divCat.className="cat";		
       //load data
@@ -336,10 +336,10 @@ let view={
       AttractionsContainerEls[0].insertBefore(aAttractionUrl, AttractionsContainerEls.lastElementChild);
     })	
     //add click search button function
-    const searchBtnEl = document.querySelector(".search_btn");
+    const searchBtnEl = document.querySelector(".search-btn");
     searchBtnEl.onclick = function query() { 
       model.currentPage=0; 	//reset status
-      model.keyword=document.querySelector(".search_bar_text").value;
+      model.keyword=document.querySelector(".search-bar-text").value;
       controller.search();
     }  
 
@@ -348,32 +348,32 @@ let view={
   },
   signMenu: function() {
     //close menu
-    const triggerCloseEls=document.querySelectorAll(".trigger_close_menu");
+    const triggerCloseEls=document.querySelectorAll(".trigger-close-menu");
     triggerCloseEls.forEach(triggerCloseEl => {
       triggerCloseEl.addEventListener("click", () => {
-        document.querySelector(".sign_menu_backgroung").style.display = "none";
-        document.querySelector(".signin_form").style.display = "none";
-        document.querySelector(".signup_form").style.display = "none";
+        document.querySelector(".sign-menu-backgroung").style.display = "none";
+        document.querySelector(".signin-form").style.display = "none";
+        document.querySelector(".signup-form").style.display = "none";
       });
     });
 
 
     //show sign in menu
-    const showSignInEls=document.querySelectorAll(".show_sign_in");
+    const showSignInEls=document.querySelectorAll(".show-sign-in");
     showSignInEls.forEach(showSignInEl =>{
       showSignInEl.addEventListener("click", ()=> {
-        document.querySelector(".sign_menu_backgroung").style.display="block";
-        document.querySelector(".signin_form").style.display="block";
-        document.querySelector(".signup_form").style.display="none";
+        document.querySelector(".sign-menu-backgroung").style.display="block";
+        document.querySelector(".signin-form").style.display="block";
+        document.querySelector(".signup-form").style.display="none";
       });    
     });
     //show sign up menu
-    const showSignUpEls=document.querySelectorAll(".show_sign_up");
+    const showSignUpEls=document.querySelectorAll(".show-sign-up");
     showSignUpEls.forEach(showSignUpEl =>{
       showSignUpEl.addEventListener("click", ()=> {
-        document.querySelector(".sign_menu_backgroung").style.display="block";
-        document.querySelector(".signin_form").style.display="none";
-        document.querySelector(".signup_form").style.display="block";
+        document.querySelector(".sign-menu-backgroung").style.display="block";
+        document.querySelector(".signin-form").style.display="none";
+        document.querySelector(".signup-form").style.display="block";
       });
     });
   }
@@ -422,14 +422,14 @@ controller.init();
     threshold: 0.5,
   };
   const observer = new IntersectionObserver(controller.scrollLoadMore, options);
-  const targetEl = document.querySelector(".copyright_block");
+  const targetEl = document.querySelector(".copyright-block");
   observer.observe(targetEl);
 }
 
 
 //pending MVC
 //booking page
-const navSchedule = document.querySelector(".nav_schedule");
+const navSchedule = document.querySelector(".nav-schedule");
 navSchedule.addEventListener("click", bookingPage);
 async function bookingPage() {
   
@@ -453,9 +453,9 @@ async function bookingPage() {
 }
 
 async function login() {
-  document.querySelector(".sign_menu_backgroung").style.display="block";
-  document.querySelector(".signin_form").style.display="block";
-  document.querySelector(".signup_form").style.display="none";
+  document.querySelector(".sign-menu-backgroung").style.display="block";
+  document.querySelector(".signin-form").style.display="block";
+  document.querySelector(".signup-form").style.display="none";
 }
 
 
@@ -467,7 +467,7 @@ async function login() {
 //     const data = await response.json();
 
 //     console.log(data.data.length);
-//     document.querySelector(".nav_schedule").textContent=`預定行程(${data.data.length})`
+//     document.querySelector(".nav-schedule").textContent=`預定行程(${data.data.length})`
 
 //   } catch (error) {
 //     console.log(error);

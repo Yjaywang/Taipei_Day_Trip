@@ -7,17 +7,17 @@ nav{
     justify-content: center;
     align-items: center;
 }
-.nav_container{
+.nav-container{
     width: 1200px;
     height: 54px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-.nav_left{
+.nav-left{
     text-decoration:none;
 }
-.nav_left_content{
+.nav-left-content{
     padding-left: 10px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -27,7 +27,7 @@ nav{
     color: #448899;
     cursor: pointer;
 }
-.nav_right{
+.nav-right{
     padding: 0px;
     width: 175px;
     height: 34px;
@@ -39,7 +39,7 @@ nav{
 
     
 
-.nav_schedule{
+.nav-schedule{
     height: 14px;
     padding: 10px;
     font-family: 'Noto Sans TC';
@@ -51,7 +51,7 @@ nav{
     cursor: pointer;
     
 }
-.nav_signin{
+.nav-signin{
     height: 14px;
     padding: 10px;
     cursor: pointer;
@@ -64,7 +64,7 @@ nav{
 
 }
 
-.nav_signout{
+.nav-signout{
     height: 14px;
     padding: 10px;
     cursor: pointer;
@@ -77,14 +77,14 @@ nav{
     display: none;
 }
 
-.nav_separator{
+.nav-separator{
     height: 0px;
     border: 1px solid #E8E8E8;
     margin-bottom: 40px;
 }
 
 
-.booking_container{
+.booking-container{
     max-width: 1180px;
     margin-left: auto;
     margin-right: auto;
@@ -92,13 +92,13 @@ nav{
     padding-right: 10px;
 }
 
-.no_schedule_img{
+.no-schedule-img{
     /* display: block; */
     display: none;
     margin: auto;
     width: 50%;
 }
-.booking_headline{
+.booking-headline{
     max-width: 1000px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -110,15 +110,13 @@ nav{
     font-size: 0px;
 }
 
-.booking_headline >span{
+.booking-headline >span{
     font-size: 19px;
 }
 
-.booking_info_container{
-    
-}
 
-.booking_info_sub_container{
+
+.booking-info-sub-container{
     display: flex;
     max-width: 980px;    
     justify-content: space-between;
@@ -128,24 +126,24 @@ nav{
 }
 
 
-.booking_img{
+.booking-img{
     width: 250px;
     height: 200px;
     object-fit: cover;
     margin-right: 30px;
 }
 
-.booking_item_container{
+.booking-item-container{
     max-width: 700px;    
     position: relative;
     flex: auto;
 }
 
-.booking_attraction_link{
+.booking-attraction-link{
     text-decoration: none;
 }
 
-.booking_attraction_title {
+.booking-attraction-title {
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -155,11 +153,11 @@ nav{
     margin-bottom: 20px;
 }
 
-.booking_attraction_title > span{
+.booking-attraction-title > span{
     font-size:16px;
 }
 
-.booking_date{
+.booking-date{
     
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -171,11 +169,11 @@ nav{
 }
 
 
-.booking_date_content{
+.booking-date-content{
     font-weight: 500;
 }
 
-.booking_time{
+.booking-time{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -184,11 +182,11 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-.booking_time_content{
+.booking-time-content{
     font-weight: 500;
 }
 
-.booking_fee{
+.booking-fee{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -197,12 +195,12 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-.booking_fee>span{
+.booking-fee>span{
     font-weight: 500;
 }
 
 
-.booking_address{
+.booking-address{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -211,29 +209,29 @@ nav{
     color: #666666;
     margin-bottom: 20px;
 }
-.booking_address_content{
+.booking-address-content{
     font-weight: 500;
 }
 
-.delete_icon{
+.delete-icon{
     position: absolute;
     top: 0px;
     right: 0px;
     cursor: pointer;
 }
 
-.booking_separator{
+.booking-separator{
     height: 0px;
     border: 1px solid #E8E8E8;
     margin-bottom: 40px;
 }
 
-.user_info_container{
+.user-info-container{
     max-width: 980px;
     margin: auto;
 }
 
-.booking_title{
+.booking-title{
     max-width: 1000px;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -245,7 +243,7 @@ nav{
     margin-bottom: 20px;   
 }
 
-.user_name{
+.user-name{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;    
@@ -255,7 +253,7 @@ nav{
     margin-bottom: 15px;
 }
 
-.user_name >input{
+.user-name >input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
@@ -263,7 +261,7 @@ nav{
     border-radius: 5px;
 }
 
-.user_email{
+.user-email{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;    
@@ -273,7 +271,7 @@ nav{
     margin-bottom: 15px;
 }
 
-.user_email > input{
+.user-email > input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
@@ -281,7 +279,7 @@ nav{
     border-radius: 5px;
 }
 
-.user_phone{
+.user-phone{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;    
@@ -291,7 +289,7 @@ nav{
     margin-bottom: 15px;
 }
 
-.user_phone > input{
+.user-phone > input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
@@ -299,7 +297,7 @@ nav{
     border-radius: 5px;
 }
 
-.remind_memo{
+.remind-memo{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -309,12 +307,12 @@ nav{
     margin-bottom: 45px;
 }
 
-.card_container{
+.card-container{
     max-width: 980px;
     margin: auto;
 }
 
-.card_num{
+.card-num{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;    
@@ -324,7 +322,7 @@ nav{
     margin-bottom: 15px;
 }
 
-.card_num > input{
+.card-num > input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
@@ -332,7 +330,7 @@ nav{
     border-radius: 5px;
 }
 
-.card_exp{
+.card-exp{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;    
@@ -342,7 +340,7 @@ nav{
     margin-bottom: 15px;
 }
 
-.card_exp > input{
+.card-exp > input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
@@ -350,7 +348,7 @@ nav{
     border-radius: 5px;
 }
 
-.card_valid_pw{
+.card-valid-pw{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 500;    
@@ -360,7 +358,7 @@ nav{
     margin-bottom: 40px;
 }
 
-.card_valid_pw > input{
+.card-valid-pw > input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
@@ -368,7 +366,7 @@ nav{
     border-radius: 5px;
 }
 
-.summary_container{
+.summary-container{
     max-width: 980px;
     height: 100px;
     margin: auto;
@@ -376,7 +374,7 @@ nav{
     position: relative;
 }
 
-.total_money{
+.total-money{
     font-family: 'Noto Sans TC';
     font-style: normal;
     font-weight: 700;
@@ -387,11 +385,8 @@ nav{
     margin-bottom: 25px;
 }
 
-.total_money > span{
-    
-}
 
-.booking_btn{
+.booking-btn{
     background: #448899;
     border-radius: 5px;
     width: 173px;
@@ -422,7 +417,7 @@ footer{
     position: relative;
     bottom: 0px;
 }
-.copyright_block{
+.copyright-block{
     
     height: 14px;
     font-family: 'Noto Sans TC';
@@ -434,7 +429,7 @@ footer{
     text-align: center;
 }
 
-.sign_menu_backgroung{
+.sign-menu-backgroung{
     background: #000000;
     opacity: 0.25;
     position: fixed;
@@ -445,7 +440,7 @@ footer{
     display: none;
 }
 
-.signin_form{
+.signin-form{
     position: fixed;
     /* height: 275px; */
     width: 340px;
@@ -458,7 +453,7 @@ footer{
     display: none;
 }
 
-.signup_form{
+.signup-form{
     position: fixed;
     /* height: 332px; */
     width: 340px;
@@ -472,33 +467,33 @@ footer{
     
 }
 
-.upper_decorator{
+.upper-decorator{
     height: 10px;    
     background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
     border-radius: 6px;
 }
-.upper_decorator_modification{
+.upper-decorator-modification{
     background: linear-gradient(270deg, #337788 0%, #66AABB 100%);
     margin-top: -5px;
     height: 5px;
     margin-bottom: 15px;
 }
 
-.signin_container{
+.signin-container{
     width: 310px;
     /* height: 235px; */
     margin-left: auto;
     margin-right: auto;
 }
 
-.signup_container{
+.signup-container{
     width: 310px;
     /* height: 292px; */
     margin-left: auto;
     margin-right: auto;
 }
 
-.sign_menu_title{
+.sign-menu-title{
     position: relative;
     font-family: 'Noto Sans TC';
     font-style: normal;
@@ -512,14 +507,14 @@ footer{
     margin: auto;
     margin-bottom: 15px;
 }
-.close_icon{
+.close-icon{
     position: absolute;
     top: 0px;
     right: 0px;
     cursor: pointer;
 }
 
-.sign_input{
+.sign-input{
     
     width: 278px;
     height: 17px;
@@ -536,7 +531,7 @@ footer{
     color: #757575;
 }
 
-.signin_btn{
+.signin-btn{
     width: 310px;
     height: 47px;
     background: #448899;
@@ -552,7 +547,7 @@ footer{
     cursor: pointer;
 }
 
-.signup_btn{
+.signup-btn{
     width: 310px;
     height: 47px;
     background: #448899;
@@ -568,7 +563,7 @@ footer{
     cursor: pointer;
 }
 
-.menu_status_info{
+.menu-status-info{
     text-align: center;
     display: none;
     margin-bottom: 15px;
@@ -577,18 +572,18 @@ footer{
     font-weight: 500;
     font-size: 16px;
 }
-.status_ok{
+.status-ok{
     display: block;
     color: forestgreen;
 }
 
-.status_error{
+.status-error{
     display: block;
     color: red;
 }
 
 
-.menu_other_info{
+.menu-other-info{
     text-align: center;
     display: block;
     margin-bottom: 15px;
@@ -601,22 +596,19 @@ footer{
 }
 
 
-@media (max-width:1200px){
-
-}
 
 @media (max-width:600px){
-    .booking_info_sub_container{
+    .booking-info-sub-container{
         flex-wrap: wrap;
         margin-bottom: 30px;
     }
-    .booking_img{
+    .booking-img{
         margin-bottom: 40px;
         height: 200px;
         width: 100%;
         margin-right: 0px;
     }
-    .delete_icon{
+    .delete-icon{
         bottom: 0px;
         top: auto;
     }
