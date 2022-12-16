@@ -296,6 +296,7 @@ let view={
       const divAttractionGroup=document.createElement("div");
       const divAttractionImgBox=document.createElement("div");
       const imgAttractionImg=document.createElement("img");
+      // const imgAttractionImg=new Image();
       const divDetailsUpper=document.createElement("div");
       const divInfoUpper=document.createElement("div");
       const divDetailsLower=document.createElement("div");

@@ -3,6 +3,9 @@
 <html lang="en">
 <head>
     {% block css %}    
+    <link rel="preload" href="/static/images/welcome.png" as="image" />
+    <link rel="preload" href="/static/images/icon_search.png" as="image" />
+    <link rel="preload" href="/static/images/no_results.png" as="image" />    
     <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/index.css') }}" /> 
     {% endblock %}
 </head>

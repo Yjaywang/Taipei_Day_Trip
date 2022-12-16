@@ -86,14 +86,16 @@
 
 
 -- select * from price
--- select b.attraction_id, a.name, a.address, i.file, b.date, p.time, p.price from(
--- select attraction_id, date, time_id from booking 
--- where user_id=1) as b
--- inner join image as i on b.attraction_id=i.attr_id
--- inner join attraction as a on b.attraction_id=a._id
--- inner join price as p on b.time_id=p.id
--- group by i.attr_id, b.date, p.time
--- order by b.date
+select b.attraction_id, ANY_VALUE(a.name), ANY_VALUE(a.address), ANY_VALUE(i.file), b.date, p.time, ANY_VALUE(p.price) from(
+select attraction_id, date, time_id from booking 
+where user_id=1) as b
+inner join image as i on b.attraction_id=i.attr_id
+inner join attraction as a on b.attraction_id=a._id
+inner join price as p on b.time_id=p.id
+group by b.attraction_id, b.date, p.time
+order by b.date
+
+
 
 -- select * from booking
 

@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
     {% block css %}  
+    <link rel="preload" href="/static/images/no_schedule.png" as="image" />
     <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/booking.css') }}" />
     {% endblock %}
 </head>

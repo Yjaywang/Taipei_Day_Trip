@@ -3,6 +3,8 @@
 <html lang="en">
 <head>
     {% block css %}  
+    <link rel="preload" href="/static/images/btn_leftArrow.png" as="image" />
+    <link rel="preload" href="/static/images/btn_rightArrow.png" as="image" />
     <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/attraction.css') }}" /> 
     {% endblock %}
 </head>
