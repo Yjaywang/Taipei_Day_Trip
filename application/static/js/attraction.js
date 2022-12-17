@@ -361,7 +361,6 @@ async function addBooking() {
   try{
     const response = await fetch(checkUrl);
     const data = await response.json();
-    console.log(data.data);
     if(!data.data){
       login();
     } else{
@@ -409,7 +408,7 @@ async function addBooking() {
           if(data.message==="duplicated booking"){
             statusMemoEl.textContent="重複預定行程，請重選";
           }
-          else{
+          else if (data.message==="empty input"){
             statusMemoEl.textContent="日期、時間不可空白";
           }
         }

@@ -58,7 +58,7 @@ class Database:
             time_id=1
         elif time=="afternoon":
             time_id=2
-
+            
         try:        
             mySql_query = (
                 """

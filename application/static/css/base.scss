@@ -112,6 +112,7 @@ footer{
     box-shadow: 0px 4px 60px #AAAAAA;
     border-radius: 6px;
     display: none;
+    transition: 2s;
 }
 
 .signup-form{
@@ -182,6 +183,7 @@ footer{
     color: #757575;
 }
 
+
 .signin-btn{
     width: 310px;
     height: 47px;
@@ -218,13 +220,13 @@ footer{
     font-size: 16px;
 }
 .status-ok{
-    display: block;
-    color: forestgreen;
+    display: block !important; 
+    color: forestgreen !important;
 }
 
 .status-error{
-    display: block;
-    color: red;
+    display: block !important;
+    color: red !important;
 }
 .menu-other-info{
     text-align: center;

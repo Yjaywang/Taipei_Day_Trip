@@ -112,6 +112,7 @@ footer {
   box-shadow: 0px 4px 60px #AAAAAA;
   border-radius: 6px;
   display: none;
+  transition: 2s;
 }
 
 .signup-form {
@@ -184,6 +185,12 @@ footer {
   color: #757575;
 }
 
+#sign-input:focus {
+  outline: none !important;
+  border: 1px solid red;
+  box-shadow: 0 0 50px red;
+}
+
 .signin-btn {
   width: 310px;
   height: 47px;
@@ -238,6 +245,12 @@ footer {
   font-size: 16px;
   color: #666666;
   cursor: pointer;
+}
+
+input:focus {
+  outline: none !important;
+  border: 1px solid #448899;
+  box-shadow: 0 0 10px #719ECE;
 }
 
 .slogan {
@@ -343,12 +356,6 @@ footer {
   font-size: 16px;
   line-height: 13px;
   border-width: 0px;
-}
-
-input:focus {
-  outline: none !important;
-  border: 1px solid #448899;
-  box-shadow: 0 0 10px #719ECE;
 }
 
 .search-btn {

@@ -50,12 +50,13 @@ def insert_booking() ->tuple[dict[str:bool], int]:
         user_id=jwt_res["id"]
         auth_result=auth.check_auth(user_id)
         if (not auth_result):
-            return Api_view.response_insert_booking(-1)
+            return Api_view.response_insert_booking(-1) #-1: no access
         else: 
             attraction_id=request.json["attractionId"]
             date=request.json["date"]
             time=request.json["time"]            
-
+            if not date or not time:
+                return Api_view.response_insert_booking(-2) #-2: empty input
             row_count=Database.insert_booking(user_id, attraction_id, date, time)
             return Api_view.response_insert_booking(row_count)
 

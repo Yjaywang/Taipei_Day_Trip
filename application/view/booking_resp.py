@@ -40,6 +40,11 @@ class Api_view:
                 "error": True,
                 "message": "duplicated booking"
             }, 400
+        elif row_count==-2:
+            return {
+                "error": True,
+                "message": "empty input"
+            }, 400
         else:
             return {"ok":True}, 200
     def response_delete_booking(row_count):
