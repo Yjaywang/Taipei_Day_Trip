@@ -34,7 +34,6 @@ nav {
 
 .nav-right {
   padding: 0px;
-  width: 175px;
   height: 34px;
   display: flex;
   align-items: center;
@@ -222,13 +221,13 @@ footer {
 }
 
 .status-ok {
-  display: block;
-  color: forestgreen;
+  display: block !important;
+  color: forestgreen !important;
 }
 
 .status-error {
-  display: block;
-  color: red;
+  display: block !important;
+  color: red !important;
 }
 
 .menu-other-info {
@@ -238,6 +237,24 @@ footer {
   font-weight: 500;
   font-size: 16px;
   color: #666666;
+  cursor: pointer;
+}
+
+.hidden-password {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 11px;
+  left: 260px;
+  cursor: pointer;
+}
+
+.shown-password {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 11px;
+  left: 260px;
   cursor: pointer;
 }
 
@@ -463,6 +480,7 @@ input:focus {
   color: #666666;
   font-size: 16px;
   margin-bottom: 15px;
+  position: relative;
 }
 
 .card-num > input {

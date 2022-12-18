@@ -423,3 +423,21 @@ async function login() {
   document.querySelector(".signin-form").style.display="block";
   document.querySelector(".signup-form").style.display="none";
 }
+
+
+
+
+//add eye
+document.querySelector(".hidden-password").addEventListener("click", function(e) {
+  if(e.target.classList.contains("hidden-password")){
+    e.target.classList.remove("hidden-password");
+    e.target.classList.add("shown-password");
+    e.target.src="/static/images/eye.png";
+    e.target.parentElement.querySelector("input").type="text";
+  } else {
+    e.target.classList.remove("shown-password");
+    e.target.classList.add("hidden-password");
+    e.target.src="/static/images/eye_slash.png";
+    e.target.parentElement.querySelector("input").type="password";
+  }
+});

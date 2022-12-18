@@ -34,7 +34,6 @@ nav {
 
 .nav-right {
   padding: 0px;
-  width: 175px;
   height: 34px;
   display: flex;
   align-items: center;
@@ -185,12 +184,6 @@ footer {
   color: #757575;
 }
 
-#sign-input:focus {
-  outline: none !important;
-  border: 1px solid red;
-  box-shadow: 0 0 50px red;
-}
-
 .signin-btn {
   width: 310px;
   height: 47px;
@@ -228,13 +221,13 @@ footer {
 }
 
 .status-ok {
-  display: block;
-  color: forestgreen;
+  display: block !important;
+  color: forestgreen !important;
 }
 
 .status-error {
-  display: block;
-  color: red;
+  display: block !important;
+  color: red !important;
 }
 
 .menu-other-info {

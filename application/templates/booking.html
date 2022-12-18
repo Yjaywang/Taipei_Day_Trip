@@ -68,6 +68,7 @@
             <div class="booking-title">信用卡付款資訊</div>
             <div class="card-num">卡片號碼：
                 <input type="password" name="card-number" placeholder="**** **** **** ****">
+                <img class="eye-img hidden-password" src="/static/images/eye_slash.png" alt="">                
             </div>
             <div class="card-exp">過期時間：
                 <input type="text" name="card-expiration" placeholder="MM / YY">
@@ -93,7 +94,7 @@
     {% endblock %}
 
     {% block script%}
-    <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/booking_main.js') }}"></script>
     {% endblock %}
 </body>
 </html>

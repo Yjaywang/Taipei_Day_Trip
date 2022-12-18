@@ -261,8 +261,8 @@ let view={
       divCatItem.className="cat-item";
       divCatItem.textContent=category;
       
-      divCatItem.addEventListener("click", function (event) {
-        searchBarTextEl.value=event.srcElement.textContent;
+      divCatItem.addEventListener("click", function (e) {
+        searchBarTextEl.value=this.textContent;
         searchCategoryEls[0].style.display = "none";
       });
       searchCategoryEls[0].insertBefore(divCatItem, searchCategoryEls.lastElementChild);
@@ -460,16 +460,16 @@ async function login() {
 
 
 // show booking counts, need to redesign UI
-// (async function checkBookingCount() {
-//   const url="/api/booking";
-//   try {
-//     const response = await fetch(url);
-//     const data = await response.json();
+(async function checkBookingCount() {
+  const url="/api/booking";
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
 
-//     console.log(data.data.length);
-//     document.querySelector(".nav-schedule").textContent=`預定行程(${data.data.length})`
+    console.log(data.data.length);
+    document.querySelector(".nav-schedule").textContent=`預定行程 (${data.data.length})`
 
-//   } catch (error) {
-//     console.log(error);
-//   }
-// })();
+  } catch (error) {
+    console.log(error);
+  }
+})();
