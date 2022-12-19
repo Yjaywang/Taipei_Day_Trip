@@ -40,7 +40,7 @@ let model={
           body:JSON.stringify(body),
         });
         const data = await response.json();
-        this.deleteStatus=data;        
+        this.deleteStatus=data;   
 
       } catch (error) {
         console.log(error);

@@ -23,7 +23,7 @@ class Database:
                 mySql_query=(
                     """
                     SELECT 
-                        s._id, 
+                        s.id, 
                         s.name, 
                         s.CAT, 
                         s.description, 
@@ -35,7 +35,6 @@ class Database:
                         i.file
                     FROM 
                         (SELECT 
-                            a._id, 
                             a.id, 
                             a.MRT_id, 
                             a.name, 
@@ -77,7 +76,7 @@ class Database:
                 mySql_query_count=("""SELECT count(*) FROM attraction""")
                 mySql_query=(
                     """SELECT 
-                        s._id, 
+                        s.id, 
                         s.name, 
                         s.CAT, 
                         s.description, 
@@ -89,7 +88,6 @@ class Database:
                         i.file
                     FROM 
                         (SELECT 
-                            a._id, 
                             a.id, 
                             a.MRT_id, 
                             a.name, 
@@ -141,7 +139,7 @@ class Database:
             mySql_query=(
                 """
                 SELECT 
-                    a._id,
+                    a.id,
                     a.name, 
                     c.CAT, 
                     a.description, 
@@ -160,7 +158,7 @@ class Database:
                 INNER JOIN 
                     image as i on i.attr_id=a.id
                 WHERE 
-                    a._id=%s
+                    a.id=%s
                 """
             )
             connection=connection_pool.get_connection()
