@@ -5,6 +5,7 @@ let view={
     const attractionsContainerEl = document.querySelector(".attractions-container");
     if (response.length===0) {
       //create img tag in attractions-container
+      attractionsContainerEl.textContent=""; //clear attraction container
       const imgNoResultImg = document.createElement("img");
       imgNoResultImg.className="no-result-img";
       imgNoResultImg.src="/static/images/no_results.png"; 

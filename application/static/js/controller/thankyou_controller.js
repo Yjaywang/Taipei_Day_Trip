@@ -6,6 +6,9 @@ import controller from "../controller/member_controller.js";
 
 
 controller.init=async function() {
+  //page init
+  await model.init();
+  view.render(model.orderData, model.orderNumber);
   //member init
   memberView.signMenu();  
   await memberModel.checkSingIn(); 
@@ -15,9 +18,7 @@ controller.init=async function() {
   memberView.bookingCount(memberModel.bookingCounts); 
   memberView.addSignMenu();
   memberView.addEye();
-  //page init
-  await model.init();
-  view.render(model.orderData, model.orderNumber);
+
 }
 
 

@@ -15,6 +15,10 @@ controller.init=async function() {
   memberView.bookingCount(memberModel.bookingCounts); 
   memberView.addSignMenu();
   memberView.addEye();
+  if(!memberModel.authData.data){
+    //not login
+    memberView.needLogin();
+  }
   //page init
   await model.init();
   if(model.bookingData){

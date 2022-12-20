@@ -1,4 +1,10 @@
-.hidden-password {
+input:focus {
+  outline: none !important;
+  border: 1px solid #448899;
+  box-shadow: 0 0 10px #719ECE;
+}
+
+.signup-eye-img {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -7,7 +13,7 @@
   cursor: pointer;
 }
 
-.shown-password {
+.signin-eye-img {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -275,6 +281,7 @@ input[type=radio] {
   background-color: white;
   border-radius: 50%;
   border: 0px;
+  box-shadow: 0 0 0px white;
 }
 
 input[type=radio]:checked {
