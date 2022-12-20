@@ -4,28 +4,28 @@ import memberView from "../view/member_view.js";
 
 let controller={
   init: async function() {
-    memberView.signMenu();  //**
-    await memberModel.checkSingIn(); ///** 
-    memberView.checkSingIn(memberModel.authData); ///** 
-    memberView.bookingPage(); ///** 
+    memberView.signMenu();  
+    await memberModel.checkSingIn(); 
+    memberView.checkSingIn(memberModel.authData); 
+    memberView.bookingPage(); 
     await memberModel.checkBookingCount(); 
-    memberView.bookingCount(memberModel.bookingCounts); ///** 
-    memberView.addSignMenu();///**
+    memberView.bookingCount(memberModel.bookingCounts); 
+    memberView.addSignMenu();
   }, 
-  sendSignIn: async function() {///** 
+  sendSignIn: async function() {
     await memberModel.sendSignIn();
     memberView.sendSignIn(memberModel.memberData);
   },
-  sendSignUp: async function() {///** 
+  sendSignUp: async function() {
     await memberModel.sendSignUp();
     memberView.sendSignUp(memberModel.memberData);
   }, 
-  signOut: async function() {///** 
+  signOut: async function() {
     await memberModel.signOut();
     memberView.signOut(memberModel.authData);
   },
   goBookingPage: async function() {
-    await memberModel.checkSingIn(); ///** 
+    await memberModel.checkSingIn(); 
     memberView.goBookingPage(memberModel.authData);
   },
 };

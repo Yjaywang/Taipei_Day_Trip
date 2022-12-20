@@ -65,7 +65,7 @@
         <div class="booking-separator"></div>
 
         <div class="card-container">
-            <div class="booking-title">信用卡付款資訊</div>
+            <!-- <div class="booking-title">信用卡付款資訊</div>
             <div class="card-num">卡片號碼：
                 <input type="password" name="card-number" placeholder="**** **** **** ****">
                 <img class="eye-img hidden-password" src="/static/images/eye_slash.png" alt="">                
@@ -75,7 +75,19 @@
             </div>
             <div class="card-valid-pw">驗證密碼：
                 <input type="text" name="card-validation" placeholder="CVV">
+            </div> -->
+
+            <div class="booking-title">信用卡付款資訊</div>
+            <div class="card-num">卡片號碼：
+                <div class="tpfield" id="card-number"></div>
             </div>
+            <div class="card-exp">過期時間：
+                <div class="tpfield" id="card-expiration-date"></div>
+            </div>
+            <div class="card-valid-pw">驗證密碼：
+                <div class="tpfield" id="card-ccv"></div>
+            </div>            
+            
         </div>
         <div class="booking-separator"></div>
 
@@ -85,16 +97,19 @@
                 <span id="money">2000</span>
                 <span>元</span>
             </div>
-            <div class="booking-btn">確認訂購並付款</div>
+            <div class="booking-btn" >確認訂購並付款</div>
         </div>
         <img src="/static/images/no_schedule.png" alt="" class="no-schedule-img"> 
     </div>
     
 
+
     {% endblock %}
 
     {% block script%}
+    
     <script type="module" src="{{ url_for('static', filename='js/booking_main.js') }}"></script>
+    <script src="https://js.tappaysdk.com/tpdirect/v5.1.0"></script>
     {% endblock %}
 </body>
 </html>

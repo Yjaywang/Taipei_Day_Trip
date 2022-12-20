@@ -41,7 +41,6 @@ class Database:
                 print("signup End MySQL connection")
 
     def query_signin(email: str):
-        print(connection_pool)
         try:        
             mySql_query = (
                 """

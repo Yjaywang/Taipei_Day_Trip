@@ -475,47 +475,35 @@ input:focus {
 }
 
 .card-num {
+  display: flex;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 37px;
   color: #666666;
   font-size: 16px;
   margin-bottom: 15px;
   position: relative;
 }
 
-.card-num > input {
-  width: 180px;
-  padding: 10px;
-  background: #FFFFFF;
-  border: 1px solid #E8E8E8;
-  border-radius: 5px;
-}
-
 .card-exp {
+  display: flex;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 37px;
   color: #666666;
   font-size: 16px;
   margin-bottom: 15px;
 }
 
-.card-exp > input {
-  width: 180px;
-  padding: 10px;
-  background: #FFFFFF;
-  border: 1px solid #E8E8E8;
-  border-radius: 5px;
-}
-
 .card-valid-pw {
+  display: flex;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 37px;
   color: #666666;
   font-size: 16px;
   margin-bottom: 40px;
 }
 
-.card-valid-pw > input {
+.tpfield {
+  height: 15px;
   width: 180px;
   padding: 10px;
   background: #FFFFFF;

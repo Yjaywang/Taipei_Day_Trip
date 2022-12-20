@@ -45,7 +45,6 @@ def sign_in() ->tuple[dict[str:bool], int]:
         return Api_view.response_query_signin(0, 0, email, password)
 
     record, row_count=Database.query_signin(email)
-    print(record)
     return Api_view.response_query_signin(record, row_count, email, password)
     
          

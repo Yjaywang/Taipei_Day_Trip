@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block css %}  
+    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/booking.css') }}" />
+    {% endblock %}
+</head>
+<body>
+    {% block content%} 
+    <div class="nav-separator"></div>
+    <div class="booking-container">
+        <div class="booking-headline">
+            <span>您好，</span>
+            <span id="user"></span>
+            <span>，您的訂單編號 </span>
+            <span id="order-number"></span>
+            <br>
+            <span>預訂的行程如下：</span>
+        </div>
+        <div class="booking-info-container">
+            <!-- <div class="booking-info-sub-container">
+                <img src="/static/images/welcome.png" alt="" class="booking-img">
+                <div class="booking-item-container">
+                    <a href="" class="booking-attraction-link">
+                        <div class="booking-attraction-title">
+                            <span >台北一日遊：</span>
+                            <span class="attraction">平安鐘</span>
+                        </div>
+                    </a>
+    
+                    <div class="booking-date">日期：
+                        <span class="booking-date-content">2021-04-23</span>
+                    </div>
+                    <div class="booking-time">時間：
+                        <span class="booking-time-content">早上 9 點到下午 4 點</span>
+                    </div>
+                    <div class="booking-fee">費用：
+                        <span >新台幣</span>
+                        <span class="booking-fee-content"> 2000 </span>
+                        <span>元</span>
+                    </div>
+                    <div class="booking-address">地點：
+                        <span class="booking-address-content">臺北市 大安區忠孝東路4段</span>
+                    </div>
+                    <img src="/static/images/icon-delete.png" alt="" class="delete-icon">
+                </div>
+            </div>     -->
+
+        </div>
+            
+        <div class="booking-separator"></div>
+        <div class="summary-container">
+            <div class="total-money">
+                <span>總價：新台幣 </span>
+                <span id="money">2000</span>
+                <span>元</span>
+            </div>
+            
+        </div>
+         
+    </div>
+    {% endblock %}
+
+    {% block script%}
+    
+    <script type="module" src="{{ url_for('static', filename='js/thankyou_main.js') }}"></script>
+    {% endblock %}
+</body>
+</html>
