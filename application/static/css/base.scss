@@ -1,4 +1,35 @@
-
+.signup-eye-img{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+.signin-eye-img{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 16px;
+    right: 16px;
+    cursor: pointer;
+}
+// .hidden-password{
+//     position: absolute;
+//     width: 16px;
+//     height: 16px;
+//     top: 16px;
+//     right: 16px;
+//     cursor: pointer;
+// }
+// .shown-password{
+//     position: absolute;
+//     width: 16px;
+//     height: 16px;
+//     top: 16px;
+//     right: 16px;
+//     cursor: pointer;
+// }
 
 body{
     margin: 0px;
@@ -140,6 +171,9 @@ footer{
     width: 310px;
     margin-left: auto;
     margin-right: auto;
+}
+.password-container{
+    position: relative;
 }
 
 .signup-container{

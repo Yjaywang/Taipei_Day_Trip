@@ -14,7 +14,7 @@ controller.init=async function() {
   await memberModel.checkBookingCount(); 
   memberView.bookingCount(memberModel.bookingCounts); 
   memberView.addSignMenu();
-
+  memberView.addEye();
   //page init
   await model.init();
   if(model.bookingData){

@@ -11,6 +11,7 @@ let controller={
     await memberModel.checkBookingCount(); 
     memberView.bookingCount(memberModel.bookingCounts); 
     memberView.addSignMenu();
+    memberView.addEye();
   }, 
   sendSignIn: async function() {
     await memberModel.sendSignIn();

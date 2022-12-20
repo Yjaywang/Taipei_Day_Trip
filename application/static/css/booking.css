@@ -1,3 +1,21 @@
+.hidden-password {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
+.shown-password {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+}
+
 body {
   margin: 0px;
   position: relative;
@@ -145,6 +163,10 @@ footer {
   margin-right: auto;
 }
 
+.password-container {
+  position: relative;
+}
+
 .signup-container {
   width: 310px;
   margin-left: auto;
@@ -237,24 +259,6 @@ footer {
   font-weight: 500;
   font-size: 16px;
   color: #666666;
-  cursor: pointer;
-}
-
-.hidden-password {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 11px;
-  left: 260px;
-  cursor: pointer;
-}
-
-.shown-password {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  top: 11px;
-  left: 260px;
   cursor: pointer;
 }
 

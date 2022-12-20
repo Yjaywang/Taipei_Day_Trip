@@ -5,6 +5,7 @@ import memberView from "../view/member_view.js";
 import controller from "../controller/member_controller.js";
 
 
+
 controller.init=async function() {
 
   //member init
@@ -15,6 +16,7 @@ controller.init=async function() {
   await memberModel.checkBookingCount(); 
   memberView.bookingCount(memberModel.bookingCounts); 
   memberView.addSignMenu();
+  memberView.addEye();
   //page init
   await model.init();
   view.render(model.attractionData);
