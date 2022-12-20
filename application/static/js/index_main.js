@@ -1,5 +1,4 @@
 import controller from "./controller/index_controller.js";
-
 controller.init();
 
 

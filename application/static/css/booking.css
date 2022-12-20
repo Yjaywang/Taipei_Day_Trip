@@ -1,4 +1,4 @@
-.hidden-password {
+.signup-eye-img {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -7,7 +7,7 @@
   cursor: pointer;
 }
 
-.shown-password {
+.signin-eye-img {
   position: absolute;
   width: 16px;
   height: 16px;
@@ -530,6 +530,20 @@ input:focus {
   text-align: right;
   color: #666666;
   margin-bottom: 25px;
+}
+
+.error-msg {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 16px;
+  position: absolute;
+  color: red;
+  margin-bottom: 25px;
+  display: none;
+}
+
+.show-error {
+  display: block !important;
 }
 
 .booking-btn {

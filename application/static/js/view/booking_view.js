@@ -86,6 +86,9 @@ let view={
       divBookingInfoSubContainer.appendChild(divBookingItemContainer);
   
       bookingInfoContainerEls[0].insertBefore(divBookingInfoSubContainer, bookingInfoContainerEls.lastElementChild);
+
+      document.querySelector(".booking-btn").addEventListener("click", controller.submitBooking);
+
     });
   },
   totalMoney:function () {
@@ -109,9 +112,10 @@ let view={
     document.querySelector(".summary-container").remove();
     document.querySelector(".no-schedule-img").style.display = "block";
   },
-  username: function(authData) {
-    const user = document.querySelector("#user");
-    user.textContent=authData.data.name;
+  userinfo: function(authData) {
+    document.querySelector("#user").textContent=authData.data.name;
+    document.querySelector(".user-name input").value=authData.data.name;
+    document.querySelector(".user-email input").value=authData.data.email;
   },
   deleteBooking: function() {
     document.addEventListener("click", async function(e) {

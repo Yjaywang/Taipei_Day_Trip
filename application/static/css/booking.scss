@@ -267,6 +267,18 @@ input:focus {
     margin-bottom: 25px;
 }
 
+.error-msg{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    position: absolute;
+    color:red;
+    margin-bottom: 25px;
+    display: none;
+}
+.show-error{
+    display: block!important; 
+}
 
 .booking-btn{
     background: #448899;
