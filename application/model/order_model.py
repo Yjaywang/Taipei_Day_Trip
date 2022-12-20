@@ -6,18 +6,18 @@ class Database:
             mySql_query = (
                 """
                 SELECT
-                    trans.order_number AS number,
-                    trans.total_money AS price,
-                    m.username AS username,
-                    m.email AS email,
-                    trans.phone AS phone,
-                    trans.status AS status,
-                    ods.attraction_id AS attraction_id,
-                    a.name AS attraction_name,
-                    a.address AS address,
-                    i.file AS image,
-                    ods.date AS date,
-                    p.time AS time
+                    ANY_VALUE(trans.order_number) AS number,
+                    ANY_VALUE(trans.total_money) AS price,
+                    ANY_VALUE(m.username) AS username,
+                    ANY_VALUE(m.email) AS email,
+                    ANY_VALUE(trans.phone) AS phone,
+                    ANY_VALUE(trans.status) AS status,
+                    ods.attraction_id AS attraction_id, 
+                    ANY_VALUE(a.name) AS attraction_name,
+                    ANY_VALUE(a.address) AS address,
+                    ANY_VALUE(i.file) AS image,
+                    ods.date AS date, 
+                    p.time AS time  
                 FROM (
                     SELECT 
                         id, 
@@ -33,7 +33,7 @@ class Database:
                 INNER JOIN member AS m ON m.id=trans.user_id
                 INNER JOIN attraction AS a ON a.id=ods.attraction_id
                 INNER JOIN image AS i ON i.attr_id=ods.attraction_id
-                GROUP BY ods.attraction_id, ods.date, ods.time_id
+                GROUP BY ods.attraction_id, ods.date, p.time
                 ORDER BY ods.date
                 """
                 )
