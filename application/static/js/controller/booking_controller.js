@@ -1,23 +1,23 @@
 import model from "../model/booking_model.js"
 import view from "../view/booking_view.js"
-import memberModel from "../model/member_model.js";
-import memberView from "../view/member_view.js";
-import controller from "../controller/member_controller.js";
+import baseModel from "../model/base_model.js";
+import baseView from "../view/base_view.js";
+import controller from "../controller/base_controller.js";
 
 controller.init=async function() {
 
   //member init
-  memberView.signMenu();  
-  await memberModel.checkSingIn(); 
-  memberView.checkSingIn(memberModel.authData); 
-  memberView.bookingPage(); 
-  await memberModel.checkBookingCount(); 
-  memberView.bookingCount(memberModel.bookingCounts); 
-  memberView.addSignMenu();
-  memberView.addEye();
-  if(!memberModel.authData.data){
+  baseView.signMenu();  
+  await baseModel.checkSingIn(); 
+  baseView.checkSingIn(baseModel.authData); 
+  baseView.bookingPage(); 
+  await baseModel.checkBookingCount(); 
+  baseView.bookingCount(baseModel.bookingCounts); 
+  baseView.addSignMenu();
+  baseView.addEye();
+  if(!baseModel.authData.data){
     //not login
-    memberView.needLogin();
+    baseView.needLogin();
   }
   //page init
   await model.init();
@@ -27,7 +27,7 @@ controller.init=async function() {
   } else {
     view.noBooking();
   }
-  view.userinfo(memberModel.authData);    
+  view.userinfo(baseModel.authData);    
 };
 
 //page controller

@@ -1,5 +1,5 @@
 import controller from "../controller/booking_controller.js";
-import memberModel from "../model/member_model.js";
+import baseModel from "../model/base_model.js";
 let view={
   render: function(response) {
     response.forEach(data => {
@@ -121,8 +121,8 @@ let view={
     document.addEventListener("click", async function(e) {
       let container=e.target.parentElement.parentElement;
       container.remove();
-      memberModel.bookingCounts=memberModel.bookingCounts-1;
-      if (memberModel.bookingCounts===0){
+      baseModel.bookingCounts=baseModel.bookingCounts-1;
+      if (baseModel.bookingCounts===0){
         location.reload();
       }
     })

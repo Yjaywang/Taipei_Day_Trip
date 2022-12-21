@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block css %}  
+    <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/member.css') }}" />
+    {% endblock %}
+</head>
+<body>
+    {% block content%} 
+    <div class="nav-separator"></div>
+    <div class="order-container">
+        <div class="description-title">
+            <span>您好，</span>
+            <span id="user"></span>
+            <span>，您的歷史訂單資訊如下： </span>
+        </div>
+        
+        <div class="order-info-container"> 
+            <div class="order-headline-container">
+                <div class="order-number-container">
+                    <span>訂單編號：</span>
+                    <span class="order-number">xxxxxxx</span>
+                </div>
+                <div class="refund-btn">取消訂單</div>
+            </div>
+            <div class="user-info-container">
+                <div class="user-phone">
+                    <span>手機號碼：</span>
+                    <span id="phone">xxxxx</span>
+                </div>
+                <div class="total-money">
+                    <span>總價：新台幣 </span>
+                    <span id="money">2000</span>
+                    <span>元</span>
+                </div>
+            </div>
+            <div class="sub-order-info-container">
+                <img src="/static/images/welcome.png" alt="" class="order-img">
+                <div class="order-item-container">
+                    <a href="" class="order-attraction-link">
+                        <div class="order-attraction-title">
+                            <span >台北一日遊：</span>
+                            <span class="attraction">平安鐘</span>
+                        </div>
+                    </a>
+                    <div class="order-date">日期：
+                        <span class="order-date-content">2021-04-23</span>
+                    </div>
+                    <div class="order-time">時間：
+                        <span class="order-time-content">早上 9 點到下午 4 點</span>
+                    </div>
+                    <div class="order-address">地點：
+                        <span class="order-address-content">臺北市 大安區忠孝東路4段</span>
+                    </div>
+                </div>
+            </div>
+            <div class="order-separator"></div>            
+            
+        </div>
+        
+    </div>
+
+
+
+
+    {% endblock %}
+
+
+    {% block script%}
+    <script type="module" src="{{ url_for('static', filename='js/thankyou_main.js') }}"></script>
+    {% endblock %}
+</body>
+</html>

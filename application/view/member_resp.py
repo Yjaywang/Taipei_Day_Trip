@@ -2,13 +2,16 @@ import time
 import jwt
 import json
 from flask import make_response
+from flask import render_template
 from dotenv import dotenv_values
 from application import bcrypt
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 
 class Api_view:
-    
+    def response_member_page():
+        return render_template("member.html")
+        
     def response_query_member(record : tuple):
         output={}
         if record==-1:

@@ -58,7 +58,16 @@ nav{
     align-items: center;
     justify-content: space-around;
 }
-   
+
+.nav-member{
+    height: 14px;
+    padding: 10px;   
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 14px;
+    color: #666666;
+    cursor: pointer;
+}
 
 .nav-schedule{
     height: 14px;

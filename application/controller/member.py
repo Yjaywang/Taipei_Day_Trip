@@ -18,6 +18,10 @@ member = Blueprint(
     template_folder="templates",
     )
 
+@member.route("/member")
+def member_page():
+    return Api_view.response_member_page()
+
 
 @member.route("/api/user/auth", methods=["GET"])
 def query_member() ->tuple[dict[str:bool], int]:

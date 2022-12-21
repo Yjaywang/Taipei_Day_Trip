@@ -1,4 +1,4 @@
-let memberModel={
+let baseModel={
   authData:null,
   bookingCounts:0,
   memberData:null,
@@ -90,4 +90,4 @@ let memberModel={
   }
 }
 
-export default memberModel;
+export default baseModel;

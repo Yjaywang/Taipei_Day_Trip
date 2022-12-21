@@ -1,5 +1,5 @@
-import controller from "../controller/member_controller.js"
-let memberView={
+import controller from "../controller/base_controller.js"
+let baseView={
   signMenu: function() {
     //close menu
     const triggerCloseEls=document.querySelectorAll(".trigger-close-menu");
@@ -153,4 +153,4 @@ let memberView={
 }
 
 
-export default memberView;
+export default baseView;

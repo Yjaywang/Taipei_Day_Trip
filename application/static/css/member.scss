@@ -1,0 +1,328 @@
+@import "base";
+
+
+input:focus {
+    outline: none !important;
+    border:1px solid #448899;
+    box-shadow: 0 0 3px  #448899;
+}
+
+.nav-separator{
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 40px;
+}
+
+.order-container{
+    max-width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.description-title{
+    margin-bottom: 30px;
+}
+
+.order-number-container{
+    height: 36px;
+    line-height: 36px;
+    font-weight: 700;
+    font-size: 16px;
+    color: #666666;
+}
+.refund-btn{
+    background: #448899;
+    border-radius: 5px;
+    width: 140px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+}
+.user-info-container{
+    font-weight: 700;
+    font-size: 16px;
+    color: #666666;
+    margin-bottom: 25px;    
+}
+
+
+.sub-order-info-container{
+    display: flex; 
+    margin-bottom: 40px;   
+}
+
+.order-headline-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+.user-phone{
+    margin-bottom: 10px;
+}
+
+.total-money{
+    margin-bottom: 10px;
+}
+.no-schedule-img{
+    display: none;
+    margin: auto;
+    width: 50%;
+}
+.order-headline{
+    max-width: 1000px;
+    font-weight: 700;
+    line-height: 19px;
+    color: #666666;
+    margin: auto;
+    margin-bottom: 30px;      
+    font-size: 0px;
+}
+
+.order-headline >span{
+    font-size: 19px;
+}
+
+.order-info-sub-container{
+    display: flex;
+    max-width: 980px;    
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+.order-img{
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    margin-right: 30px;
+}
+
+.order-item-container{
+    max-width: 700px;    
+    position: relative;
+    flex: auto;
+}
+
+.order-attraction-link{
+    text-decoration: none;
+}
+
+.order-attraction-title {   
+    font-weight: 700;
+    line-height: 16px;
+    color: #448899;
+    font-size:0px;
+    margin-bottom: 20px;
+}
+
+.order-attraction-title > span{
+    font-size:16px;
+}
+
+.order-date{   
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+
+.order-date-content{
+    font-weight: 500;
+}
+
+.order-time{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.order-time-content{
+    font-weight: 500;
+}
+
+.order-fee{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.order-fee>span{
+    font-weight: 500;
+}
+
+.order-address{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 20px;
+}
+.order-address-content{
+    font-weight: 500;
+}
+
+.delete-icon{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+}
+
+.order-separator{
+    height: 0px;
+    border: 1px solid #E8E8E8;
+    margin-bottom: 40px;
+}
+
+
+
+.order-title{
+    max-width: 1000px;
+    font-weight: 700;
+    font-size: 19px;
+    line-height: 19px;
+    color: #666666;
+    margin: auto;
+    margin-bottom: 20px;   
+}
+
+.user-name{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user-name >input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+.user-email{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.user-email > input{
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+}
+
+
+.remind-memo{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    color: #666666;
+    margin-bottom: 45px;
+}
+
+.card-container{
+    max-width: 980px;
+    margin: auto;
+}
+
+.card-num{
+    display: flex;
+    font-weight: 500;    
+    line-height: 37px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+
+.card-exp{
+    display: flex;
+    font-weight: 500;    
+    line-height: 37px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.card-valid-pw{
+    display: flex;
+    font-weight: 500;    
+    line-height: 37px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 40px;
+}
+.tpfield {                  
+    height: 15px;                    
+    width:180px;
+    padding: 10px;
+    background: #FFFFFF;
+    border: 1px solid #E8E8E8;
+    border-radius: 5px;
+    
+}
+
+
+.summary-container{
+    max-width: 980px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+
+
+.error-msg{
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 16px;
+    position: absolute;
+    color:red;
+    margin-bottom: 25px;
+    display: none;
+}
+.show-error{
+    display: block!important; 
+}
+
+
+
+@media (max-width:600px){
+    .order-info-sub-container{
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+    }
+    .order-img{
+        margin-bottom: 40px;
+        height: 200px;
+        width: 100%;
+        margin-right: 0px;
+    }
+    .delete-icon{
+        bottom: 0px;
+        top: auto;
+    }
+}
