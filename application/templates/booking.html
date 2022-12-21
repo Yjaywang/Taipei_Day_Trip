@@ -3,98 +3,115 @@
 <html lang="en">
 <head>
     {% block css %}  
-    <!-- <link rel="stylesheet" type="text/css" href="attraction.css"> -->
+    <link rel="preload" href="/static/images/no_schedule.png" as="image" />
     <link rel= "stylesheet" type ="text/css" href = "{{ url_for('static', filename='css/booking.css') }}" />
     {% endblock %}
 </head>
 <body>
     {% block content%} 
-    <div class="nav_separator"></div>
-    <div class="booking_container">
-        <div class="booking_headline">
+    <div class="nav-separator"></div>
+    <div class="booking-container">
+        <div class="booking-headline">
             <span>您好，</span>
             <span id="user"></span>
             <span>，待預訂的行程如下：</span>
         </div>
-        <div class="booking_info_container">
-            <!-- <div class="booking_info_sub_container">
-                <img src="/static/images/welcome.png" alt="" class="booking_img">
-                <div class="booking_item_container">
-                    <a href="" class="booking_attraction_link">
-                        <div class="booking_attraction_title">
+        <div class="booking-info-container">
+            <!-- <div class="booking-info-sub-container">
+                <img src="/static/images/welcome.png" alt="" class="booking-img">
+                <div class="booking-item-container">
+                    <a href="" class="booking-attraction-link">
+                        <div class="booking-attraction-title">
                             <span >台北一日遊：</span>
                             <span class="attraction">平安鐘</span>
                         </div>
                     </a>
     
-                    <div class="booking_date">日期：
-                        <span class="booking_date_content">2021-04-23</span>
+                    <div class="booking-date">日期：
+                        <span class="booking-date-content">2021-04-23</span>
                     </div>
-                    <div class="booking_time">時間：
-                        <span class="booking_time_content">早上 9 點到下午 4 點</span>
+                    <div class="booking-time">時間：
+                        <span class="booking-time-content">早上 9 點到下午 4 點</span>
                     </div>
-                    <div class="booking_fee">費用：
+                    <div class="booking-fee">費用：
                         <span >新台幣</span>
-                        <span class="booking_fee_content"> 2000 </span>
+                        <span class="booking-fee-content"> 2000 </span>
                         <span>元</span>
                     </div>
-                    <div class="booking_address">地點：
-                        <span class="booking_address_content">臺北市 大安區忠孝東路4段</span>
+                    <div class="booking-address">地點：
+                        <span class="booking-address-content">臺北市 大安區忠孝東路4段</span>
                     </div>
-                    <img src="/static/images/icon_delete.png" alt="" class="delete_icon">
+                    <img src="/static/images/icon-delete.png" alt="" class="delete-icon">
                 </div>
             </div>     -->
 
         </div>
             
-        <div class="booking_separator"></div>
+        <div class="booking-separator"></div>
 
-        <div class="user_info_container">
-            <div class="booking_title">您的聯絡資訊</div>
-            <div class="user_name">聯絡姓名：
+        <div class="user-info-container">
+            <div class="booking-title">您的聯絡資訊</div>
+            <div class="user-name">聯絡姓名：
                 <input type="text" name="username">
             </div>
-            <div class="user_email">連絡信箱：
+            <div class="user-email">連絡信箱：
                 <input type="text" name="email">
             </div>
-            <div class="user_phone">手機號碼：
+            <div class="user-phone">手機號碼：
                 <input type="text" name="phone">
             </div>
-            <div class="remind_memo">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
+            <div class="remind-memo">請保持手機暢通，準時到達，導覽人員將用手機與您聯繫，務必留下正確的聯絡方式。</div>
         </div>
-        <div class="booking_separator"></div>
+        <div class="booking-separator"></div>
 
-        <div class="card_container">
-            <div class="booking_title">信用卡付款資訊</div>
-            <div class="card_num">卡片號碼：
-                <input type="password" name="card_number" placeholder="**** **** **** ****">
+        <div class="card-container">
+            <!-- <div class="booking-title">信用卡付款資訊</div>
+            <div class="card-num">卡片號碼：
+                <input type="password" name="card-number" placeholder="**** **** **** ****">
+                <img class="eye-img hidden-password" src="/static/images/eye_slash.png" alt="">                
             </div>
-            <div class="card_exp">過期時間：
-                <input type="text" name="card_expiration" placeholder="MM / YY">
+            <div class="card-exp">過期時間：
+                <input type="text" name="card-expiration" placeholder="MM / YY">
             </div>
-            <div class="card_valid_pw">驗證密碼：
-                <input type="text" name="card_validation" placeholder="CVV">
+            <div class="card-valid-pw">驗證密碼：
+                <input type="text" name="card-validation" placeholder="CVV">
+            </div> -->
+
+            <div class="booking-title">信用卡付款資訊</div>
+            <div class="card-num">卡片號碼：
+                <div class="tpfield" id="card-number"></div>
             </div>
+            <div class="card-exp">過期時間：
+                <div class="tpfield" id="card-expiration-date"></div>
+            </div>
+            <div class="card-valid-pw">驗證密碼：
+                <div class="tpfield" id="card-ccv"></div>
+            </div>            
+            
         </div>
-        <div class="booking_separator"></div>
+        <div class="booking-separator"></div>
 
-        <div class="summary_container">
-            <div class="total_money">
+        <div class="summary-container">
+            <div class="error-msg">error</div>
+            <div class="total-money">
                 <span>總價：新台幣 </span>
                 <span id="money">2000</span>
                 <span>元</span>
             </div>
-            <div class="booking_btn">確認訂購並付款</div>
+            <div class="booking-btn" >確認訂購並付款</div>
         </div>
-        <img src="/static/images/no_schedule.png" alt="" class="no_schedule_img">
+        <img src="/static/images/no_schedule.png" alt="" class="no-schedule-img"> 
+        
     </div>
     
+
 
     {% endblock %}
 
     {% block script%}
-    <!-- <script src="attraction.js"></script> -->
-    <script src="{{ url_for('static', filename='js/booking.js') }}"></script>
+    
+    <script type="module" src="{{ url_for('static', filename='js/booking_main.js') }}"></script>
+    <script src="https://js.tappaysdk.com/tpdirect/v5.1.0"></script>
     {% endblock %}
 </body>
 </html>

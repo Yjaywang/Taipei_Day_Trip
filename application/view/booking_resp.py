@@ -1,8 +1,6 @@
 from flask import render_template
-import datetime
 
 class Api_view:
-
     def response_booking_page():
         return render_template("booking.html")
     def response_query_booking(records, row_count):
@@ -41,6 +39,11 @@ class Api_view:
             return {
                 "error": True,
                 "message": "duplicated booking"
+            }, 400
+        elif row_count==-2:
+            return {
+                "error": True,
+                "message": "empty input"
             }, 400
         else:
             return {"ok":True}, 200

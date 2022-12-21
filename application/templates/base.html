@@ -5,20 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taipei-day-trip</title>
+    <link rel="icon" href="/static/images/1671173242.ico" />
+    
     {% block css%}
     {% endblock %}
     
 </head>
 <body>
     <nav>
-        <div class="nav_container">
-            <a href ="/" class="nav_left">
-                <div class="nav_left_content">台北一日遊</div>
+        <div class="nav-container">
+            <a href ="/" class="nav-left">
+                <div class="nav-left-content">台北一日遊</div>
             </a>            
-            <div class="nav_right">
-                <div class="nav_schedule" >預定行程</div>
-                <div class="nav_signin show_sign_in">登入/註冊</div>
-                <div class="nav_signout">登出系統</div>
+            <div class="nav-right">
+                <div class="nav-schedule" >預定行程</div>
+                <div class="nav-signin show-sign-in">登入/註冊</div>
+                <div class="nav-signout">登出系統</div>
             </div>
         </div>
     </nav>
@@ -28,42 +30,50 @@
     
     
 
-    <div class="sign_menu_backgroung trigger_close_menu"></div>
-    <form action="/api/user/auth" class="signin_form" method="put">
-        <div class="upper_decorator"></div>
-        <div class="upper_decorator_modification"></div>
-        <div class="signin_container">            
-            <div class="sign_menu_title">登入會員帳號
-                <img src="/static/images/icon_close.png" alt="" class="close_icon trigger_close_menu">
+    <div class="sign-menu-backgroung trigger-close-menu"></div>
+    <form action="/api/user/auth" class="signin-form" method="put">
+        <div class="upper-decorator"></div>
+        <div class="upper-decorator-modification"></div>
+        <div class="signin-container">            
+            <div class="sign-menu-title">登入會員帳號
+                <img src="/static/images/icon_close.png" alt="" class="close-icon trigger-close-menu"> 
             </div>
-            <input id="sign_in_email" class="sign_input" type="text" placeholder="輸入電子信箱" name="email">
-            <input id="sign_in_password" class="sign_input" type="password" placeholder="輸入密碼" name="password">
-            <div class="signin_btn" onclick="controller.sendSignIn()">登入帳戶</div>
-            <div class="menu_status_info" id="signin_menu_status"></div>  
-            <div class="menu_other_info show_sign_up">還沒有帳戶？點此註冊</div>
+            <input id="sign-in-email" class="sign-input" type="text" placeholder="輸入電子信箱" name="email">
+            <div class="password-container">
+                <input id="sign-in-password" class="sign-input" type="password" placeholder="輸入密碼" name="password">
+            <img class="signin-eye-img hidden-password" src="/static/images/eye_slash.png" alt="">                
+            </div>
+            
+            <div class="signin-btn" >登入帳戶</div>
+            <div class="menu-status-info" id="signin-menu-status"></div>  
+            <div class="menu-other-info show-sign-up">還沒有帳戶？點此註冊</div>
         </div>
     </form>
 
-    <form action="" class="signup_form" method="post">
-        <div class="upper_decorator"></div>
-        <div class="upper_decorator_modification"></div>
-        <div class="signup_container">            
-            <div class="sign_menu_title">註冊會員帳號
-                <img src="/static/images/icon_close.png" alt="" class="close_icon trigger_close_menu">
+    <form action="" class="signup-form" method="post">
+        <div class="upper-decorator"></div>
+        <div class="upper-decorator-modification"></div>
+        <div class="signup-container">            
+            <div class="sign-menu-title">註冊會員帳號
+                <img src="/static/images/icon_close.png" alt="" class="close-icon trigger-close-menu">  
             </div>
-            <input class="sign_input" id="sign_up_name" type="text" placeholder="輸入姓名" name="name">
-            <input class="sign_input" id="sign_up_email" type="text" placeholder="輸入電子信箱" name="email">
-            <input class="sign_input" id="sign_up_password" type="password" placeholder="密碼至少8個英數，包含至少1個大寫" name="password">
-            <!-- <button class="signin_btn" type="submit">註冊新帳戶</button> -->
-            <div class="signin_btn" onclick="controller.sendSignUp()">註冊新帳戶</div>
-            <div class="menu_status_info" id="signup_menu_status"></div>  
-            <!-- add status_ok, status_error -->
-            <div class="menu_other_info show_sign_in" >已經有帳戶了？點此登入</div>
+            <input class="sign-input" id="sign-up-name" type="text" placeholder="輸入姓名" name="name">
+            <input class="sign-input" id="sign-up-email" type="text" placeholder="輸入電子信箱" name="email">
+            <div class="password-container">
+                <input class="sign-input" id="sign-up-password" type="password" placeholder="密碼至少8個英數，包含至少1個大寫" name="password">
+                <img class="signup-eye-img hidden-password" src="/static/images/eye_slash.png" alt="">                
+            </div>
+            
+            <!-- <button class="signin-btn" type="submit">註冊新帳戶</button> -->
+            <div class="signup-btn" >註冊新帳戶</div>
+            <div class="menu-status-info" id="signup-menu-status"></div>  
+            <!-- add status-ok, status-error -->
+            <div class="menu-other-info show-sign-in" >已經有帳戶了？點此登入</div>
         </div>
     </form>
 
     <footer>
-        <div class="copyright_block">COPYRIGHT © 2022 台北一日遊</div>
+        <div class="copyright-block">COPYRIGHT © 2022 台北一日遊</div>
     </footer>
 
     {% block script%}
