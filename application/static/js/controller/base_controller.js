@@ -3,7 +3,7 @@ import baseView from "../view/base_view.js";
 
 
 let controller={
-  init: async function() {
+  baseInit: async function() {
     baseView.signMenu();  
     await baseModel.checkSingIn(); 
     baseView.checkSingIn(baseModel.authData); 
@@ -12,7 +12,7 @@ let controller={
     baseView.bookingCount(baseModel.bookingCounts); 
     baseView.addSignMenu();
     baseView.addEye();
-  }, 
+  },
   sendSignIn: async function() {
     await baseModel.sendSignIn();
     baseView.sendSignIn(baseModel.memberData);

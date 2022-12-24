@@ -9,10 +9,76 @@
 <body>
     {% block content%} 
     <div class="nav-separator"></div>
+    <div class="member-function-container">
+        <div class="member-info function-checked">會員資訊</div>
+        <div class="order-list">歷史訂單</div>
+        <div class="member-info-remaining"></div>
+    </div>
+    <div class="member-container">
+        <div class="description-title">
+            <span>您好，</span>
+            <span class="user"></span>
+            <span>，您的會員資訊如下： </span>
+        </div>
+        <div class="member-info-container">
+            <div class="unchangable-info">
+                <div class="user-id">
+                    <span>使用者ID號碼：</span>
+                    <span class="id">xxxxxxx</span>
+                </div>
+                <div class="user-email">
+                    <span>使用者email：</span>
+                    <span class="email">sxxxxx</span>
+                </div>
+            </div>
+            <div class="order-separator"></div>
+
+            <div class="user-name-container">
+                <div class="user-name">
+                    <span>目前使用者名稱：</span>
+                    <span class="name">sxxxxx</span>
+                </div>
+                <div class="change-name">
+                    <span>更新使用者名稱：</span>
+                    <input class="change-name-input" type="text" placeholder="請輸入新的使用者名稱">
+                    <div class="change-name-btn">更新名稱</div>
+                </div>                
+            </div>
+            <div class="order-separator"></div>
+
+            <div class="user-password-container">
+                <div class="change-password-container">
+                    <div class="current-password-container">
+                        <span>目前密碼：</span>
+                        <input class="current-password" type="password"  placeholder="請輸入目前密碼">
+                    </div>
+                    <div class="new-password-container">
+                        <span>新的密碼：</span>
+                        <input class="new-password" type="password" placeholder="請輸入新密碼">
+                    </div>
+                    <div class="new-password-container">
+                        <span>確認密碼：</span>
+                        <input class="new-password" type="password"  placeholder="請再輸入一次新密碼">
+                    </div>
+                    <div class="change-password-btn">更新密碼</div>
+                </div>
+            </div>
+            <div class="order-separator"></div>
+        </div>
+        
+
+
+
+    </div>
+
+
+
+
+
     <div class="order-container">
         <div class="description-title">
             <span>您好，</span>
-            <span id="user"></span>
+            <span class="user"></span>
             <span>，您的歷史訂單資訊如下： </span>
         </div>
         

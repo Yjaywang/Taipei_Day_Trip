@@ -1,5 +1,5 @@
-import model from "../model/index_model.js";
-import view from "../view/index_view.js";
+import model from "../model/member_model.js";
+import view from "../view/member_view.js";
 import controller from "../controller/base_controller.js";
 
 

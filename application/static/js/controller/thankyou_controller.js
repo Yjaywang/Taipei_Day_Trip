@@ -6,14 +6,7 @@ import controller from "../controller/base_controller.js";
 
 
 controller.init=async function() {
-  //member init
-  baseView.signMenu();  
-  await baseModel.checkSingIn(); 
-  baseView.checkSingIn(baseModel.authData); 
-  baseView.bookingPage(); 
-
-  baseView.addSignMenu();
-  baseView.addEye();
+  await controller.baseInit();
   if(!baseModel.authData.data){
     //not login
     baseView.needLogin();
@@ -21,12 +14,9 @@ controller.init=async function() {
   //page init
   await model.init();
   view.render(model.orderData, model.orderNumber);
-
   await baseModel.checkBookingCount(); 
   baseView.bookingCount(baseModel.bookingCounts); 
-  
-
-}
+};
 
 
 export default controller;

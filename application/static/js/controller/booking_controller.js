@@ -4,17 +4,10 @@ import baseModel from "../model/base_model.js";
 import baseView from "../view/base_view.js";
 import controller from "../controller/base_controller.js";
 
-controller.init=async function() {
 
-  //member init
-  baseView.signMenu();  
-  await baseModel.checkSingIn(); 
-  baseView.checkSingIn(baseModel.authData); 
-  baseView.bookingPage(); 
-  await baseModel.checkBookingCount(); 
-  baseView.bookingCount(baseModel.bookingCounts); 
-  baseView.addSignMenu();
-  baseView.addEye();
+
+controller.init=async function() {
+  await controller.baseInit();
   if(!baseModel.authData.data){
     //not login
     baseView.needLogin();
@@ -27,7 +20,7 @@ controller.init=async function() {
   } else {
     view.noBooking();
   }
-  view.userinfo(baseModel.authData);    
+  view.userinfo(baseModel.authData);  
 };
 
 //page controller
