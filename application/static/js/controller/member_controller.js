@@ -14,13 +14,7 @@ controller.init=async function() {
 };
 
 //page controller
-controller.search=async function() {
-  await model.search();
-  view.search(model.attractionData);
-};
-controller.scrollLoadMore=function(entries) {
-  model.scrollLoadMore(entries);
-}
+
 
 export default controller;
 

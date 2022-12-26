@@ -5,10 +5,22 @@ from flask import make_response
 from flask import render_template
 from dotenv import dotenv_values
 from application import bcrypt
-
+from flask_jwt_extended import create_access_token, set_refresh_cookies
+from flask_jwt_extended import set_access_cookies, JWTManager
+from flask import jsonify
+from flask_jwt_extended import create_refresh_token
+from flask_jwt_extended import unset_access_cookies
+from flask_jwt_extended import unset_refresh_cookies
+from flask_jwt_extended import unset_jwt_cookies
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 
 class Api_view:
+    def response_member_token_refresh(identity):
+        access_token = create_access_token(identity=identity)
+        response = jsonify({"ok":True})
+        set_access_cookies(response, access_token)
+        return response, 200
+
     def response_member_page():
         return render_template("member.html")
         
@@ -36,6 +48,9 @@ class Api_view:
                 "message": "email existed",
             }, 400
     def response_query_signin(record: tuple, record_count: int, email: str, password: str):
+        identity={
+            "id":record[0]
+        }
         if (not email or not password):
             return {
                 "error": True,
@@ -47,17 +62,14 @@ class Api_view:
                     "error": True,
                     "message": "wrong password, try again!",
                 }, 400            
-            
-            now = time.time()
-            exp= 60*60*24*7
-            payload = {
-                "id": record[0],
-                "expire": now + exp,
-            }
-            token=jwt.encode(payload, secret_key, algorithm='HS256')            
-            resp = make_response({"ok":True}, 200)
-            resp.set_cookie(key="user",value= token, expires=time.time()+7*60*60*24) #unit: second
-            return resp
+            access_token= create_access_token(identity=identity) 
+            refresh_token = create_refresh_token(identity=identity)
+            response = jsonify({"ok": True})
+            set_access_cookies(response, access_token)
+            set_refresh_cookies(response, refresh_token)
+            return response, 200
+
+
         else: 
             return {
                 "error": True,
@@ -77,6 +89,11 @@ class Api_view:
 
 
     def response_sign_out():
-        resp = make_response({"ok":True}, 200)
-        resp.set_cookie(key="user",value= "", expires=0) #unit: second
-        return resp
+        response = jsonify({"ok": True})
+        unset_jwt_cookies(response)
+        return response, 200
+        # resp = make_response({"ok":True}, 200)
+        # resp.set_cookie(key="access_token_cookie",value= "", expires=0) #unit: second
+        # resp.set_cookie(key="refresh_token_cookie",value= "", expires=0) #unit: second
+        # return resp
+        

@@ -4,14 +4,18 @@ import baseView from "../view/base_view.js";
 
 let controller={
   baseInit: async function() {
-    baseView.signMenu();  
+    await baseModel.refreshToken();
+
     await baseModel.checkSingIn(); 
     baseView.checkSingIn(baseModel.authData); 
-    baseView.bookingPage(); 
+
     await baseModel.checkBookingCount(); 
     baseView.bookingCount(baseModel.bookingCounts); 
+
+    baseView.bookingPage(); 
     baseView.addSignMenu();
     baseView.addEye();
+    baseView.signMenu();  
   },
   sendSignIn: async function() {
     await baseModel.sendSignIn();

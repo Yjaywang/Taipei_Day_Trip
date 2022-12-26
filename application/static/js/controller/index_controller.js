@@ -4,6 +4,8 @@ import controller from "../controller/base_controller.js";
 
 
 
+
+
 controller.init=async function() {
   await controller.baseInit();
   await model.init();
@@ -12,6 +14,7 @@ controller.init=async function() {
   view.category(model.categoryData);
   view.addCatShadow();
 };
+
 
 //page controller
 controller.search=async function() {

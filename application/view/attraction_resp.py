@@ -1,4 +1,8 @@
 from flask import render_template
+from flask_jwt_extended import create_access_token, set_refresh_cookies, get_jwt_identity
+from flask_jwt_extended import set_access_cookies, JWTManager, jwt_required
+from flask import jsonify
+from flask_jwt_extended import create_refresh_token
 
 class Api_view:
     def response_attraction_page():

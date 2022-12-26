@@ -3,14 +3,11 @@ from flask import request
 import requests
 from application.model.order_model import Database
 from application.view.order_resp import Api_view
-from utils import auth
-import jwt
 import json
 from dotenv import dotenv_values
-from application import bcrypt
-from utils import validate_input
 import datetime
-
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt
 
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
@@ -27,19 +24,10 @@ order =Blueprint(
 
 
 @order.route("/api/orders", methods=["POST"])
+@jwt_required(refresh=False) #use access token
 def create_order():
-    status=-4 #unknown fail status
-    token=request.cookies.get("user")
-    if(not token):
-        return Api_view.response_create_order(-1, "", status)
-        
-    jwt_res = jwt.decode(token, secret_key, algorithms='HS256')
-    user_id=jwt_res["id"]
-    auth_result=auth.check_auth(user_id)
-    if (not auth_result):
-        return Api_view.response_create_order(-1, "", status)
-    
-    
+    status=-4 #unknown fail status       
+    user_id = get_jwt()["sub"]["id"]
     prime=request.json["prime"]
     order=request.json["order"]
     total_money=order["price"]
@@ -100,21 +88,10 @@ def create_order():
 
     
 
-    
-    
-    
 
 @order.route("/api/order/<orderNumber>", methods=["GET"])
+@jwt_required(refresh=False) #use access token
 def get_order(orderNumber: str):
-    token=request.cookies.get("user")
-    if(not token):
-        return Api_view.response_get_order(-1, 1)
-
-    jwt_res = jwt.decode(token, secret_key, algorithms='HS256')
-    user_id=jwt_res["id"]
-    auth_result=auth.check_auth(user_id)
-    if (not auth_result):
-        return Api_view.response_get_order(-1, 1)
 
     records, rowcount=Database.query_order_details(orderNumber)
     return Api_view.response_get_order(records, rowcount)

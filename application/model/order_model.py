@@ -11,7 +11,7 @@ class Database:
                     ANY_VALUE(m.username) AS username,
                     ANY_VALUE(m.email) AS email,
                     ANY_VALUE(trans.phone) AS phone,
-                    ANY_VALUE(trans.status) AS status,
+                    ANY_VALUE(trans.trade_status) AS status,
                     ods.attraction_id AS attraction_id, 
                     ANY_VALUE(a.name) AS attraction_name,
                     ANY_VALUE(a.address) AS address,
@@ -25,7 +25,7 @@ class Database:
                         total_money, 
                         user_id, 
                         phone, 
-                        status 
+                        trade_status 
                     FROM transaction 
                     WHERE order_number=%s) AS trans
                 INNER JOIN order_details AS ods ON ods.order_id=trans.id
@@ -117,7 +117,7 @@ class Database:
                         transaction_time,
                         user_id,
                         phone,
-                        status  
+                        trade_status  
                     )
                 SELECT %s, %s, %s, %s, %s, %s
                 WHERE NOT EXISTS(
@@ -183,7 +183,7 @@ class Database:
                 SET 
                     rec_trade_id = %s, 
                     tappay_msg=%s, 
-                    status=%s
+                    trade_status=%s
                 WHERE id=%s
                 """
             )

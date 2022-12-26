@@ -1,15 +1,8 @@
-from flask import render_template
-
 class Api_view:
     def response_get_order(records, rowcount):
         data=[]
         trip=[]
-        if records==-1:
-            return {
-                "error": True,
-                "message": "not login or no access"
-            }, 403
-        elif not rowcount:
+        if not rowcount:
             return {"data":None}, 200
         else:
             for record in records:
@@ -41,12 +34,7 @@ class Api_view:
             return {"data":data}, 200
     def response_create_order(rowcount, order_number, status):
 
-        if rowcount==-1:
-            return {
-                "error": True,
-                "message": "not login or no access"
-            }, 403
-        elif rowcount==0:
+        if rowcount==0:
             return {
                 "error": True,
                 "message": "name, email, or phone empty, or duplicated order"

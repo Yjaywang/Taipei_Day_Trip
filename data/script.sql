@@ -90,7 +90,12 @@
 --     phone VARCHAR(255) NOT NULL,
 --     rec_trade_id VARCHAR(255),
 --     tappay_msg VARCHAR(255),
---     status INT NOT NULL,    
+--     trade_status INT NOT NULL,    
+--     refund INT,    
+--     refund_status INT,    
+--     refund_reason VARCHAR(255),
+--     refund_msg VARCHAR(255),
+--     refund_bank_status INT,
 --     foreign key (user_id) references member(id)
 -- );
 
@@ -104,6 +109,9 @@
 --     foreign key (attraction_id) references attraction(id),
 --     foreign key (time_id) references price(id)
 -- );
+
+
+
 
 
 

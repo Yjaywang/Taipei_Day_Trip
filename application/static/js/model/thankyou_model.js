@@ -1,3 +1,4 @@
+import baseModel from "../model/base_model.js";
 let model={
   orderData:null,
   orderNumber:null,
@@ -19,7 +20,8 @@ let model={
       const date=trip.date;
       const time=trip.time;
       const header={
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": baseModel.getCookie("csrf_access_token")
       }
       const body={
         "attractionId": attractionID,

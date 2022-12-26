@@ -113,7 +113,13 @@ let baseView={
   },
 
   bookingCount: function(bookingCounts) {
-    document.querySelector(".nav-schedule").textContent=`預定行程 (${bookingCounts})`
+    if (!bookingCounts){
+      document.querySelector(".nav-schedule").textContent=`預定行程 (0)`;
+    }
+    else{
+      document.querySelector(".nav-schedule").textContent=`預定行程 (${bookingCounts.length})`;
+    }
+    
   }, 
   addSignMenu: function() {
     const signinBtnEl= document.querySelector(".signin-btn");
