@@ -9,7 +9,7 @@
 <body>
     {% block content%} 
     <div class="nav-separator"></div>
-    <div class="booking-container">
+    <div class="booking-container hidden">
         <div class="booking-headline">
             <span>您好，</span>
             <span id="user"></span>
@@ -58,7 +58,21 @@
             </div>
             
         </div>
-         
+    </div>
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="loading-number">0%</div>
     </div>
     {% endblock %}
 

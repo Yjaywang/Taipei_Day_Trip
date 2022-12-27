@@ -1,12 +1,15 @@
 let view={
   render: function(data, orderNumber) {
+    let imgCount=0;
+    let loadingNumberEl=document.querySelector(".loading-number");
+    const ldSpinnerEl=document.querySelector(".lds-spinner");
+    ldSpinnerEl.classList.remove("hidden");
+    const bookingContainer=document.querySelector(".booking-container");
     const trips=data.data.trip;
     const price=data.data.price;  
     const status=data.data.status;
     const name=data.data.contact.name;
-    document.querySelector("#user").textContent=name;
-    document.querySelector("#order-number").textContent=orderNumber;
-    document.querySelector("#money").textContent=price;
+
 
     trips.forEach(trip => {
       const bookingInfoContainerEls=document.querySelectorAll(".booking-info-container");
@@ -54,6 +57,23 @@ let view={
       spanAddressContent.textContent=trip.attraction.address;
       aBookingAttractionLink.href=`/attraction/${trip.attraction.id}` 
 
+      
+      imgBooking.addEventListener("load", function(e) {
+        imgCount++;
+        let loadingNum=Math.round(imgCount/trips.length*100);
+        loadingNumberEl.textContent=`${loadingNum}%`;
+        if(imgCount===trips.length){
+          loadingNum=0;
+          loadingNumberEl.textContent=`${loadingNum}%`;
+          ldSpinnerEl.classList.add("hidden");
+          bookingContainer.classList.remove("hidden");
+          document.querySelector("#user").textContent=name;
+          document.querySelector("#order-number").textContent=orderNumber;
+          document.querySelector("#money").textContent=price;
+          document.querySelector("footer").style.display = "flex";
+        }
+      })
+
       divBookingAttractionTitle.appendChild(spanAttractionPrefix);
       divBookingAttractionTitle.appendChild(spanAttraction);
 
@@ -72,7 +92,7 @@ let view={
 
       bookingInfoContainerEls[0].insertBefore(divBookingInfoSubContainer, bookingInfoContainerEls.lastElementChild);
 
-      document.querySelector("footer").style.display = "flex";
+      
     });
   }
 }

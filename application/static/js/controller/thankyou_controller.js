@@ -15,7 +15,7 @@ controller.init=async function() {
   await model.init();
   view.render(model.orderData, model.orderNumber);
   await baseModel.checkBookingCount(); 
-  baseView.bookingCount(baseModel.bookingCounts); 
+  baseView.bookingCount(baseModel.bookingCount); 
 
 };
 
