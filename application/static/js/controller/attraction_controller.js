@@ -11,7 +11,6 @@ controller.init=async function() {
   //page init
   await model.init();
   view.render(model.attractionData);
-  view.showSlides(model.slideIdx);
 };
 
 

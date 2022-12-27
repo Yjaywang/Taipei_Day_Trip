@@ -38,14 +38,14 @@ let model={
     search: async function() {
       this.loading=true;
       this.attractionData=null;
-      const attractionsContainerEl = document.querySelector(".attractions-container");
+      const attractionsEl = document.querySelector(".attractions");
       let url ="api/attractions";
       if(!this.keyword) {
         url= url+"?page=0";
       } else {
         url= url+`?page=0&keyword=${this.keyword}`;
       }
-      attractionsContainerEl.textContent=""; //remove all elements inside attractions-container 
+      attractionsEl.textContent=""; //remove all elements inside attractions-container 
       try {
         const response = await fetch(url);
         const data = await response.json();

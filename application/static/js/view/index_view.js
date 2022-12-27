@@ -2,14 +2,20 @@ import model from "../model/index_model.js";
 import controller from "../controller/index_controller.js";
 let view={
   search: function(response) {
-    const attractionsContainerEl = document.querySelector(".attractions-container");
+    const ldSpinnerEl=document.querySelector(".lds-spinner");
+    ldSpinnerEl.classList.remove("hidden");
+    const attractionsEl = document.querySelector(".attractions");
+    attractionsEl.textContent=""; //clear attraction container
     if (response.length===0) {
       //create img tag in attractions-container
-      attractionsContainerEl.textContent=""; //clear attraction container
       const imgNoResultImg = document.createElement("img");
+      imgNoResultImg.addEventListener("load", function(e) {
+        ldSpinnerEl.classList.add("hidden");
+      })
       imgNoResultImg.className="no-result-img";
       imgNoResultImg.src="/static/images/no_results.png"; 
-      attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
+      attractionsEl.appendChild(imgNoResultImg);
+      // attractionsContainerEl.insertBefore(imgNoResultImg, attractionsContainerEl.lastElementChild);
       return;
   
     } else {
@@ -66,6 +72,15 @@ let view={
     if (response===null){
       return;
     }
+    let imgCount=0;
+    let loadingNumberEl=document.querySelector(".loading-number");
+    const ldSpinnerEl=document.querySelector(".lds-spinner");
+    ldSpinnerEl.classList.remove("hidden");
+    const attractionsEls=document.querySelectorAll(".attractions");
+    const divAttractionsContainer=document.createElement("div");
+    divAttractionsContainer.className="attractions-container";
+    divAttractionsContainer.style.display="none";
+    
     response.forEach(function(data) {
       //variables
       const aAttractionUrl=document.createElement("a");
@@ -79,8 +94,19 @@ let view={
       const divInfoLower=document.createElement("div");
       const divMrt=document.createElement("div");
       const divCat=document.createElement("div");
-      const AttractionsContainerEls=document.querySelectorAll(".attractions-container"); 
-      //.attractions-container use querySelector to append will have sequence problem, keep use querySelectorAll or getElementByClassName
+      
+      imgAttractionImg.addEventListener("load", function(e){
+        imgCount++;
+        let loadingNum=Math.round(imgCount/response.length*100);
+        loadingNumberEl.textContent=`${loadingNum}%`;
+        if(imgCount===response.length){
+          loadingNum=0;
+          loadingNumberEl.textContent=`${loadingNum}%`;
+          attractionsEls[0].appendChild(divAttractionsContainer);
+          ldSpinnerEl.classList.add("hidden");
+          divAttractionsContainer.style.display="flex";
+        }
+      })
   
       //add class name
       aAttractionUrl.className="attraction-url";
@@ -109,8 +135,14 @@ let view={
       divAttractionGroup.appendChild(divDetailsUpper);
       divAttractionGroup.appendChild(divDetailsLower);
       aAttractionUrl.appendChild(divAttractionGroup);
-      AttractionsContainerEls[0].insertBefore(aAttractionUrl, AttractionsContainerEls.lastElementChild);
+      divAttractionsContainer.appendChild(aAttractionUrl);
     })	
+
+
+    model.loading=false;	
+    model.attractionData=null;
+  },
+  addClickSearch: async function() {
     //add click search button function
     const searchBtnEl = document.querySelector(".search-btn");
     searchBtnEl.addEventListener("click", async function(){
@@ -118,14 +150,7 @@ let view={
       model.keyword=document.querySelector(".search-bar-text").value;
       await controller.search();
     });
-
-
-    model.loading=false;	
-    model.attractionData=null;
-  },
-
-
-  
+  }
 }
 
 export default view;

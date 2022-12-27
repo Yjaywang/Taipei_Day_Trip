@@ -13,6 +13,7 @@ controller.init=async function() {
   await model.category();
   view.category(model.categoryData);
   view.addCatShadow();
+  view.addClickSearch();
 };
 
 

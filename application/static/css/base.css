@@ -22,12 +22,25 @@ input:focus {
   cursor: pointer;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.loading-number {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  color: #666666;
+}
+
 .lds-spinner {
   color: official;
-  display: inline-block;
+  display: block;
   position: relative;
   width: 80px;
   height: 80px;
+  margin: auto;
 }
 
 .lds-spinner div {
@@ -45,7 +58,7 @@ input:focus {
   width: 6px;
   height: 18px;
   border-radius: 20%;
-  background: #cef;
+  background: #448899;
 }
 
 .lds-spinner div:nth-child(1) {

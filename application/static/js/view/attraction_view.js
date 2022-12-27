@@ -19,6 +19,8 @@ let view={
   },
   render: function(response) {
     //description part variables
+    const ldSpinnerEl=document.querySelector(".lds-spinner");
+    ldSpinnerEl.classList.remove("hidden");
     const nameEl=document.querySelector(".name");
     const catEl=document.querySelector(".cat");
     const mrtEl=document.querySelector(".mrt");
@@ -57,15 +59,54 @@ let view={
     divSlideBtnContainer.appendChild(imgNext);
   
     //circles, images and final construction
-    for(let i=0;i<response.images.length;i++){
+    let imgCount=0;
+    let loadingNumberEl=document.querySelector(".loading-number");
+    response.images.forEach(image => {
       const divSlide=document.createElement("div");            
       const imgProfile=document.createElement("img");
       const spanCircle=document.createElement("span");
       
+      imgProfile.addEventListener("load", function(e) {
+        imgCount++;
+        let loadingNum=Math.round(imgCount/response.images.length*100);
+        loadingNumberEl.textContent=`${loadingNum}%`;
+
+        if(imgCount===response.images.length){
+          loadingNum=0;
+          loadingNumberEl.textContent=`${loadingNum}%`;
+          //the last one, final construction
+          profilePicContainerEls[0].insertBefore(divSlideContainer, profilePicContainerEls.lastElementChild);
+          profilePicContainerEls[0].insertBefore(divSlideBtnContainer, profilePicContainerEls.lastElementChild);            
+          profilePicContainerEls[0].insertBefore(divCircleContainer, profilePicContainerEls.lastElementChild);
+          profilePicContainerEls[0].style.display="block";
+          ldSpinnerEl.classList.add("hidden");
+          showSlides(model.slideIdx);
+
+          function showSlides(slideIdx) {
+            let slidesEls = document.querySelectorAll(".slides");
+            let circleEls = document.querySelectorAll(".circle");
+            //deactivate all elements
+            slidesEls.forEach(slidesEl => {
+              slidesEl.style.display = "none";
+            });
+            circleEls.forEach(circleEl => {
+              circleEl.classList.remove("active");
+            })
+            //only activate current one
+            slidesEls[slideIdx-1].style.display = "block";  
+            circleEls[slideIdx-1].classList.add("active");
+        
+          }
+          
+          
+          
+        }
+      });
+
       divSlide.classList.add("slides", "fade");
       imgProfile.className="profile-pic";
       spanCircle.className="circle";
-      imgProfile.src=response.images[i];
+      imgProfile.src=image;
       // spanCircle.onclick=function(event){
       //     currentSlide(i+1);
       // }
@@ -74,32 +115,30 @@ let view={
       divSlideContainer.appendChild(divSlide);
       divCircleContainer.appendChild(spanCircle);
   
-      //the last one, final construction
-      if(i+1===response.images.length){
-        profilePicContainerEls[0].insertBefore(divSlideContainer, profilePicContainerEls.lastElementChild);
-        profilePicContainerEls[0].insertBefore(divSlideBtnContainer, profilePicContainerEls.lastElementChild);            
-        profilePicContainerEls[0].insertBefore(divCircleContainer, profilePicContainerEls.lastElementChild);
-      }
-    }  
+      
+
+    });
+    
     //add currentSlide event to circles by set attribute.
     const circleEls = document.querySelectorAll(".circle");
-    for(let i=0;i<circleEls.length;i++){
-      circleEls[i].setAttribute("onclick", `controller.currentSlide(${String(i+1)})`);
-    }  
+    circleEls.forEach(circleEl => {
+      circleEl.setAttribute("onclick", `controller.currentSlide(${String(i+1)})`);
+    });
+
 
     //money display    
     const spanMoney=document.querySelector(".book-form-price-number")
-    const formTime = document.bookingForm.time;
-    for (let i = 0; i < formTime.length; i++) {
+    const formTimes = document.bookingForm.time;
+    formTimes.forEach( formTime=> {
       //only listen to "change to checked" dom
-      formTime[i].addEventListener("change", function() {
+      formTime.addEventListener("change", function() {
         spanMoney.textContent=this.value;
       });  
-    }   
+    });
+
 
     // loading done, display the pic and other component
-    document.title = model.attractionData.name;
-    document.querySelector("section").style.display = "flex";		
+    document.title = model.attractionData.name;    
     document.querySelector(".information-container").style.display = "block";		
     document.querySelector("footer").style.display = "flex";	
     document.querySelector(".main-separator").style.display = "block";
