@@ -137,8 +137,6 @@ let view={
       aAttractionUrl.appendChild(divAttractionGroup);
       divAttractionsContainer.appendChild(aAttractionUrl);
     })	
-
-
     model.loading=false;	
     model.attractionData=null;
   },

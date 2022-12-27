@@ -95,11 +95,7 @@ let view={
             //only activate current one
             slidesEls[slideIdx-1].style.display = "block";  
             circleEls[slideIdx-1].classList.add("active");
-        
           }
-          
-          
-          
         }
       });
 
@@ -107,16 +103,10 @@ let view={
       imgProfile.className="profile-pic";
       spanCircle.className="circle";
       imgProfile.src=image;
-      // spanCircle.onclick=function(event){
-      //     currentSlide(i+1);
-      // }
-      // can not work, all events are currentSlide(1)
+
       divSlide.appendChild(imgProfile);
       divSlideContainer.appendChild(divSlide);
       divCircleContainer.appendChild(spanCircle);
-  
-      
-
     });
     
     //add currentSlide event to circles by set attribute.
@@ -124,7 +114,6 @@ let view={
     circleEls.forEach(circleEl => {
       circleEl.setAttribute("onclick", `controller.currentSlide(${String(i+1)})`);
     });
-
 
     //money display    
     const spanMoney=document.querySelector(".book-form-price-number")
@@ -167,7 +156,6 @@ let view={
       location.href="/booking";
     }
   },
-
 }
 
 export default view;

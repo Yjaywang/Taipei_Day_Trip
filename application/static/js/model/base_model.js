@@ -1,6 +1,6 @@
 let baseModel={
   authData:null,
-  bookingCounts:0,
+  bookingCount:0,
   memberData:null,
   checkSingIn: async function() {
     this.authData={};
@@ -98,7 +98,12 @@ let baseModel={
         headers:header
       });
       const data = await response.json();
-      this.bookingCounts=data.data;
+      
+      if(!data.data){
+        this.bookingCount=0;
+      } else {
+        this.bookingCount=data.data.length;
+      }
     } catch (error) {
       console.log(error);
     }

@@ -26,7 +26,7 @@ controller.init=async function() {
 //page controller
 controller.deleteBooking=async function() {
   await model.deleteBooking();
-  view.deleteBooking();      //can add check access?
+  view.deleteBooking(baseModel.bookingCount);      //can add check access?
 };
 
 controller.submitBooking=async function(event) {

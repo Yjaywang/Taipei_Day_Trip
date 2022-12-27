@@ -112,14 +112,8 @@ let baseView={
     }  
   },
 
-  bookingCount: function(bookingCounts) {
-    if (!bookingCounts){
-      document.querySelector(".nav-schedule").textContent=`預定行程 (0)`;
-    }
-    else{
-      document.querySelector(".nav-schedule").textContent=`預定行程 (${bookingCounts.length})`;
-    }
-    
+  bookingCount: function(bookingCount) {
+    document.querySelector(".nav-schedule").textContent=`預定行程 (${bookingCount})`;    
   }, 
   addSignMenu: function() {
     const signinBtnEl= document.querySelector(".signin-btn");

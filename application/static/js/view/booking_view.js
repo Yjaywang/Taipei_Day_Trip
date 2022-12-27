@@ -118,11 +118,11 @@ let view={
     document.querySelector(".user-email input").value=authData.data.email;
   },
   deleteBooking: function() {
-    document.addEventListener("click", async function(e) {
+    document.addEventListener("click", function(e) {
       let container=e.target.parentElement.parentElement;
       container.remove();
-      baseModel.bookingCounts=baseModel.bookingCounts-1;
-      if (baseModel.bookingCounts===0){
+      baseModel.bookingCount--;
+      if (baseModel.bookingCount===0){
         location.reload();
       }
     })

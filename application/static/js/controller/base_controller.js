@@ -10,7 +10,7 @@ let controller={
     baseView.checkSingIn(baseModel.authData); 
 
     await baseModel.checkBookingCount(); 
-    baseView.bookingCount(baseModel.bookingCounts); 
+    baseView.bookingCount(baseModel.bookingCount); 
 
     baseView.bookingPage(); 
     baseView.addSignMenu();
