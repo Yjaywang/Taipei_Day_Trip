@@ -10,7 +10,7 @@
 <body>
     {% block content%} 
     <div class="nav-separator"></div>
-    <div class="booking-container">
+    <div class="booking-container hidden">
         <div class="booking-headline">
             <span>您好，</span>
             <span id="user"></span>
@@ -100,10 +100,24 @@
             </div>
             <div class="booking-btn" >確認訂購並付款</div>
         </div>
-        <img src="/static/images/no_schedule.png" alt="" class="no-schedule-img"> 
+        <img src="/static/images/no_schedule.png" alt="" class="no-schedule-img hidden"> 
         
     </div>
-    
+    <div class="lds-spinner">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="loading-number">0%</div>
+    </div>
 
 
     {% endblock %}

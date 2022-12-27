@@ -150,6 +150,10 @@ input:focus {
     opacity: 0;
   }
 }
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0px;
   position: relative;
@@ -241,7 +245,6 @@ footer {
   justify-content: center;
   align-items: center;
   position: relative;
-  bottom: 0px;
 }
 
 .copyright-block {

@@ -17,10 +17,12 @@ controller.init=async function() {
   if(model.bookingData){
     view.render(model.bookingData);
     view.totalMoney();
+    // view.userinfo(baseModel.authData);  
   } else {
     view.noBooking();
+    // view.userinfo(baseModel.authData);  
   }
-  view.userinfo(baseModel.authData);  
+  
 };
 
 //page controller
