@@ -14,7 +14,6 @@ secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 parent_key=str({ **dotenv_values(".env")}["parent_key"])
 
 
-
 order =Blueprint(
     "order",
     __name__,
@@ -75,17 +74,8 @@ def create_order():
     tappay_msg=response.json()["msg"]
     tappay_rec_trade_id=response.json()["rec_trade_id"]
 
-    if status==0:
-        update_record=Database.update_tappay_msg(tappay_rec_trade_id, tappay_msg, status, order_id)
-        return Api_view.response_create_order(update_record, order_number, status)
-    else:
-        update_record=Database.update_tappay_msg(tappay_rec_trade_id, tappay_msg, status, order_id)
-        return Api_view.response_create_order(update_record, order_number, status)
-
-
-    # records, row_count=Database.query_booking(user_id)
-    # return Api_view.response_query_booking(records, row_count)
-
+    update_record=Database.update_tappay_msg(tappay_rec_trade_id, tappay_msg, status, order_id)
+    return Api_view.response_create_order(update_record, order_number, status)
     
 
 
@@ -96,4 +86,44 @@ def get_order(orderNumber: str):
     records, rowcount=Database.query_order_details(orderNumber)
     return Api_view.response_get_order(records, rowcount)
 
+@order.route("/api/order/refund", methods=["PATCH"])
+@jwt_required(refresh=False) #use access token
+def refund():    
+    
+    order_number=request.json["orderNumber"]
+    refund_reason=request.json["refundReason"]
+    refund_id_record=Database.query_refund_id(order_number)
+    if(not refund_id_record):
+        #DB return None
+        return Api_view.response_update_refund(-1) #can not find transaction
+    refund_id=refund_id_record[0]
+    refund_time = datetime.datetime.now()
+    
 
+    ####tappay post####
+    url="https://sandbox.tappaysdk.com/tpc/transaction/refund"
+    headers={
+    "Content-Type": "application/json",
+    "x-api-key": parent_key,
+    }
+    data={
+        "partner_key": parent_key,
+        "rec_trade_id": refund_id,
+    }
+    response = requests.post(url, json=data, headers=headers)
+    if(response.json()["status"]==10050):
+        return Api_view.response_update_refund(-2) #already refund
+
+    record_count=Database.update_refund(response.json(), refund_reason, refund_time, order_number)
+    return Api_view.response_update_refund(record_count)
+
+
+@order.route("/api/order", methods=["GET"])
+@jwt_required(refresh=False) #use access token
+def query_user_orders():
+
+    user_id = get_jwt()["sub"]["id"]
+    records=Database.query_user_transactions_detail(user_id)
+    print(not records)
+    return Api_view.response_query_user_transactions_detail(records)
+    

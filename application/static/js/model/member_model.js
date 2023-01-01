@@ -3,3 +3,5 @@ let model={
 
     },
 }
+
+export default model;

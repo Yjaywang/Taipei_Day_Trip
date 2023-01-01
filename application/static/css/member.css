@@ -22,6 +22,138 @@ input:focus {
   cursor: pointer;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.loading-number {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  color: #666666;
+}
+
+.lds-spinner {
+  color: official;
+  display: block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  -webkit-animation: lds-spinner 1.2s linear infinite;
+          animation: lds-spinner 1.2s linear infinite;
+}
+
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #448899;
+}
+
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+}
+
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
+}
+
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  -webkit-animation-delay: -0.4s;
+          animation-delay: -0.4s;
+}
+
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  -webkit-animation-delay: -0.2s;
+          animation-delay: -0.2s;
+}
+
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  -webkit-animation-delay: -0.1s;
+          animation-delay: -0.1s;
+}
+
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+@-webkit-keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0px;
   position: relative;
@@ -113,7 +245,6 @@ footer {
   justify-content: center;
   align-items: center;
   position: relative;
-  bottom: 0px;
 }
 
 .copyright-block {
@@ -291,47 +422,91 @@ input:focus {
 }
 
 .member-function-container {
-  color: #448899;
+  color: #666666;
   font-weight: 700;
   font-size: 20px;
   max-width: 1180px;
   margin-left: auto;
   margin-right: auto;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
   display: flex;
-  justify-content: flex-start;
-}
-
-.member-info-remaining {
-  flex: auto;
-  border-bottom: 2px solid #E8E8E8;
+  justify-content: space-around;
 }
 
 .member-info {
+  text-align: center;
   padding: 10px;
-  padding-left: 0px;
-  border-bottom: 2px solid #E8E8E8;
+  border-bottom: 2px solid white;
   transition: border-bottom 0.5s ease-in-out;
   cursor: pointer;
 }
 
 .member-info:hover {
+  color: #448899;
   border-bottom: 2px solid #448899;
 }
 
 .order-list {
   padding: 10px;
-  border-bottom: 2px solid #E8E8E8;
+  border-bottom: 2px solid white;
   transition: border-bottom 0.5s ease-in-out;
   cursor: pointer;
 }
 
 .order-list:hover {
+  color: #448899;
   border-bottom: 2px solid #448899;
 }
 
 .function-checked {
+  color: #448899;
   border-bottom: 2px solid #448899;
+}
+
+.headshot-container {
+  min-height: 200px;
+}
+
+.headshot {
+  width: 250px;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 5px;
+}
+
+.lds-spinner {
+  position: absolute;
+  top: 60px;
+  left: 85px;
+}
+
+#upload-form {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+label {
+  background: #448899;
+  border-radius: 5px;
+  width: 140px;
+  height: 36px;
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 36px;
+  text-align: center;
+  color: #FFFFFF;
+  position: absolute;
+  right: 0px;
+  bottom: -135px;
+  cursor: pointer;
+}
+
+#file-chosen {
+  color: #666666;
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
 }
 
 .order-container {
@@ -391,7 +566,7 @@ input:focus {
   line-height: 16px;
   color: #666666;
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 65px;
 }
 
 .user-id {
@@ -565,7 +740,7 @@ input:focus {
   line-height: 16px;
   color: #666666;
   font-size: 16px;
-  margin-bottom: 15px;
+  margin-bottom: 65px;
   position: relative;
 }
 
@@ -589,7 +764,7 @@ input:focus {
   color: #FFFFFF;
   position: absolute;
   right: 0px;
-  top: 0px;
+  bottom: -50px;
   cursor: pointer;
 }
 
@@ -623,12 +798,29 @@ input:focus {
   position: relative;
 }
 
-.new-password-container > input {
+.confirm-password-container {
+  font-weight: 500;
+  line-height: 16px;
+  color: #666666;
+  font-size: 16px;
+  margin-bottom: 65px;
+  position: relative;
+}
+
+.new-password-container > input, .confirm-password-container > input {
   width: 180px;
   padding: 10px;
   background: #FFFFFF;
   border: 1px solid #E8E8E8;
   border-radius: 5px;
+}
+
+.changePW-eye-img {
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 260px;
+  top: 10px;
 }
 
 .change-password-btn {
@@ -643,7 +835,7 @@ input:focus {
   color: #FFFFFF;
   position: absolute;
   right: 0px;
-  bottom: 0px;
+  bottom: -50px;
   cursor: pointer;
 }
 
@@ -721,11 +913,10 @@ input:focus {
   position: relative;
 }
 
-.error-msg {
+.headshot-error-msg, .username-error-msg, .userpw-error-msg {
   font-weight: 700;
   font-size: 16px;
   line-height: 16px;
-  position: absolute;
   color: red;
   margin-bottom: 25px;
   display: none;
@@ -733,6 +924,11 @@ input:focus {
 
 .show-error {
   display: block !important;
+}
+
+.show-ok {
+  display: block !important;
+  color: green;
 }
 
 @media (max-width: 600px) {

@@ -14,48 +14,94 @@ input:focus {
 }
 
 .member-function-container{
-    color: #448899;
+    color: #666666;
     font-weight: 700;
     font-size: 20px;
     max-width: 1180px;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
 }
-.member-info-remaining{
-    flex: auto;
-    border-bottom: 2px solid #E8E8E8;
-}
+
 .member-info{
-    padding: 10px;       
-    padding-left: 0px;
-    border-bottom: 2px solid #E8E8E8;
+    text-align: center;
+    padding: 10px;           
+    border-bottom: 2px solid white;
     transition: border-bottom 0.5s ease-in-out;
     cursor: pointer;
 }
 
 .member-info:hover{
+    color: #448899;
     border-bottom: 2px solid #448899;
 }
 
 .order-list{
     padding: 10px;
-    border-bottom: 2px solid #E8E8E8;
+    border-bottom: 2px solid white;
     transition: border-bottom 0.5s ease-in-out;
     cursor: pointer;
 }
 
 .order-list:hover{
+    color: #448899;
     border-bottom: 2px solid #448899;
 }
 
 
 .function-checked{
+    color: #448899;
     border-bottom: 2px solid #448899;    
 }
 
+.headshot-container{
+    min-height: 200px;
+}
+.headshot{
+    width: 250px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;    
+    
+}
+.lds-spinner{
+    position: absolute;
+    top: 60px;
+    left: 85px;
+}
+
+
+#upload-form{
+    position: relative;
+    margin-bottom: 30px;
+}
+
+label {
+    // actual-btn
+    background: #448899;
+    border-radius: 5px;
+    width: 140px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    right: 0px;
+    bottom: -135px;
+    cursor: pointer;
+    
+}
+  
+#file-chosen{
+    color: #666666;
+    position: absolute;
+    right: 20px;
+    bottom: 40px;
+}
 
 .order-container{
     max-width: 1180px;
@@ -115,7 +161,7 @@ input:focus {
     line-height: 16px;
     color: #666666;
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 65px;
 }
 .user-id{
     margin-bottom: 25px;
@@ -285,7 +331,7 @@ input:focus {
     line-height: 16px;
     color: #666666;
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 65px;
     position: relative;
 }
 
@@ -309,7 +355,7 @@ input:focus {
     color: #FFFFFF;
     position: absolute;
     right: 0px;
-    top: 0px;
+    bottom: -50px;
     cursor: pointer;
 }
 
@@ -341,12 +387,30 @@ input:focus {
     margin-bottom: 15px;
     position: relative;
 }
-.new-password-container >input{
+
+
+.confirm-password-container{
+    font-weight: 500;    
+    line-height: 16px;
+    color: #666666;
+    font-size: 16px;
+    margin-bottom: 65px;
+    position: relative;
+}
+.new-password-container >input, .confirm-password-container >input{
     width:180px;
     padding: 10px;
     background: #FFFFFF;
     border: 1px solid #E8E8E8;
     border-radius: 5px;
+}
+
+.changePW-eye-img{
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    left: 260px;
+    top: 10px;
 }
 .change-password-btn{
     background: #448899;
@@ -360,7 +424,7 @@ input:focus {
     color: #FFFFFF;
     position: absolute;
     right: 0px;
-    bottom: 0px;
+    bottom: -50px;
     cursor: pointer;
 }
 
@@ -443,17 +507,24 @@ input:focus {
 
 
 
-.error-msg{
+.headshot-error-msg, .username-error-msg, .userpw-error-msg{
     font-weight: 700;
     font-size: 16px;
     line-height: 16px;
-    position: absolute;
+    // position: absolute;
     color:red;
     margin-bottom: 25px;
     display: none;
 }
+
+
 .show-error{
     display: block!important; 
+}
+
+.show-ok{
+    display: block!important; 
+    color:green;
 }
 
 
