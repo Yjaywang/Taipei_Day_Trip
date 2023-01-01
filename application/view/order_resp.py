@@ -83,7 +83,6 @@ class Api_view:
         order_num=[]
         price=[]
         status=[]
-        print(records)
         for record in records:
             if not order_num:
                 names.append(record[2])

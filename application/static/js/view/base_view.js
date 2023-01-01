@@ -34,13 +34,26 @@ let baseView={
   checkSingIn: function(data) {
     //auth success action
     if(data.data){
-      document.querySelector(".nav-signin").style.display="none";
-  
+      document.querySelector(".nav-signin").classList.add("hidden");
+      const navMemberEl=document.querySelector(".nav-member");
+      navMemberEl.classList.remove("hidden");
+      const memberListEl=document.querySelector(".member-list");
       const signOutEl = document.querySelector(".nav-signout");
-      signOutEl.style.display="block";
+      const memberInfoEl = document.querySelector(".member-info");
+      navMemberEl.addEventListener("click", ()=> {
+        if (memberListEl.classList.contains("hidden")){
+          memberListEl.classList.remove("hidden");
+        } else {
+          memberListEl.classList.add("hidden");
+        }
+      });
+      memberInfoEl.addEventListener("click", ()=> {
+        location.href="/user";
+      })
+
       signOutEl.addEventListener("click", ()=> {
         controller.signOut();
-      })   
+      });  
     }
   },
   signOut: function(data) {

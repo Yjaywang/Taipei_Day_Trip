@@ -148,6 +148,7 @@ nav{
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;
 }
 
 .nav-member{
@@ -158,6 +159,35 @@ nav{
     line-height: 14px;
     color: #666666;
     cursor: pointer;
+}
+
+.member-list{
+    position: absolute;
+    color: #666666;
+    background-color: white;    
+    border-radius: 5px;   
+    top: 43px;
+    right: 0px;
+    width: 85px;
+    text-align: center;
+    z-index: 9999;
+}
+
+.member-info{
+    padding: 5px;
+    cursor: pointer;
+}
+.nav-signout{
+    padding: 5px;
+    cursor: pointer;
+}
+.member-info:hover{
+    background: #448899;
+    color: white;
+}
+.nav-signout:hover{
+    background: #448899;
+    color: white;
 }
 
 .nav-schedule{
@@ -180,16 +210,6 @@ nav{
     color: #666666;
 }
 
-.nav-signout{
-    height: 14px;
-    padding: 10px;
-    cursor: pointer;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 14px;
-    color: #666666;
-    display: none;
-}
 
 
 footer{

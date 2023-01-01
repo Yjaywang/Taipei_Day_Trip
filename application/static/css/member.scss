@@ -25,7 +25,7 @@ input:focus {
     justify-content: space-around;
 }
 
-.member-info{
+.member-info-tab{
     text-align: center;
     padding: 10px;           
     border-bottom: 2px solid white;
@@ -33,7 +33,7 @@ input:focus {
     cursor: pointer;
 }
 
-.member-info:hover{
+.member-info-tab:hover{
     color: #448899;
     border-bottom: 2px solid #448899;
 }
@@ -43,6 +43,7 @@ input:focus {
     border-bottom: 2px solid white;
     transition: border-bottom 0.5s ease-in-out;
     cursor: pointer;
+
 }
 
 .order-list:hover{
@@ -109,7 +110,7 @@ label {
     margin-right: auto;
     padding-left: 10px;
     padding-right: 10px;   
-    display: none; 
+    min-height: calc(100% - 331px);
 }
 
 
@@ -118,7 +119,8 @@ label {
     margin-left: auto;
     margin-right: auto;
     padding-left: 10px;
-    padding-right: 10px;    
+    padding-right: 10px;  
+    
 }
 .description-title{
     margin-bottom: 30px;
@@ -129,8 +131,14 @@ label {
     line-height: 36px;
     font-weight: 700;
     font-size: 16px;
+    background-color: #AADDEE;
+    border-radius: 5px;
     color: #666666;
+    margin-bottom: 15px;
+    text-align: center;
+    cursor: pointer;
 }
+
 
 
 .refund-btn{
@@ -174,14 +182,118 @@ label {
 .sub-order-info-container{
     display: flex; 
     margin-bottom: 40px;   
+    flex-wrap: wrap;
 }
 
-.order-headline-container{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
+.popup-background{
+    background: #000000;
+    opacity: 0.25;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
 }
+
+.popup-container{    
+    position: fixed;
+    width: 340px;
+    top: 80px;
+    left: 50%;
+    margin-left: -170px;
+    background: #FFFFFF;
+    box-shadow: 0px 4px 60px #AAAAAA;
+    border-radius: 6px;
+    
+    transition: 2s;
+}
+.popup-order-number-container{
+    margin-left: 9px;
+    margin-bottom: 15px;
+    color: #666666;
+    position: relative;    
+}
+
+.popup-message-order-number-container{
+    margin-left: 9px;
+    margin-bottom: 15px;
+    color: #666666;
+    position: relative;    
+    text-align: center;
+}
+
+
+
+textarea{
+    padding: 5px;
+    margin-left: 9px;
+    margin-bottom: 15px;
+    color: #666666;
+    
+}
+
+.popup-close-icon {
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    right: 9px;
+    cursor: pointer;   
+}
+.popup-status{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.ok{
+    color: green;
+}
+.false{
+    color: red;
+}
+
+textarea:focus{
+    outline: none !important;
+    border:1px solid #448899;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+
+.refund-reason-btn{
+    background: #448899;
+    border-radius: 5px;
+    width: 140px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.refund-message-btn{
+    background: #448899;
+    border-radius: 5px;
+    width: 140px;
+    height: 36px;
+    font-weight: 400;
+    font-size: 19px;
+    line-height: 36px;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+
+.refund-container{
+    position: relative;
+    height: 36px;
+    margin: 15px;
+}
+
 .user-phone{
     margin-bottom: 10px;
 }

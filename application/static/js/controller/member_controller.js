@@ -15,7 +15,9 @@ controller.init=async function() {
     document.querySelector(".name").textContent=baseModel.authData.data.name;
     document.querySelector(".id").textContent=baseModel.authData.data.id;
     document.querySelector(".email").textContent=baseModel.authData.data.email;
-    document.querySelector(".user").textContent=baseModel.authData.data.name;
+    document.querySelectorAll(".user").forEach(user => {
+      user.textContent=baseModel.authData.data.name;
+    });
     ldsSpinnerEl.classList.remove("hidden");
     headshotEl.addEventListener("load", function(e) {
       ldsSpinnerEl.classList.add("hidden");
@@ -37,7 +39,7 @@ controller.init=async function() {
     
     const newName=document.querySelector(".change-name-input").value;
     const url="api/user/name";
-    const userEl =document.querySelector(".user");
+    const userEls =document.querySelectorAll(".user");
     const nameEl = document.querySelector(".name");
     const userNameContainer=document.querySelector(".user-name-container");
     const usernameErrorMsg=document.querySelector(".username-error-msg");
@@ -70,7 +72,9 @@ controller.init=async function() {
       userNameContainer.addEventListener("mouseup", function() {
         usernameErrorMsg.classList.remove("show-ok");
       });
-      userEl.textContent=newName;
+      userEls.forEach(userEl => {
+        userEl.textContent=newName;
+      });
       nameEl.textContent=newName;
       usernameErrorMsg.textContent="名稱更改成功!";
     }
