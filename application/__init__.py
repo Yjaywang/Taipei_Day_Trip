@@ -46,21 +46,21 @@ def create_app():
         return Response(status=500, mimetype="application/json", response=json.dumps(res))
     
     # #expire exceptions
-    # @jwt.expired_token_loader
-    # @jwt.needs_fresh_token_loader
-    # def my_expired_token_callback(jwt_header, jwt_payload): 
-    #     return {
-    #         "error": True,
-    #         "message": "no access or expired token"
-    #     }, 403
-    # #token failed exceptions
-    # @jwt.unauthorized_loader
-    # @jwt.invalid_token_loader
-    # def my_unauthorized_token_callback(self): 
-    #     return {
-    #         "error": True,
-    #         "message": "no access, expired token, or jwt failed"
-    #     }, 403
+    @jwt.expired_token_loader
+    @jwt.needs_fresh_token_loader
+    def my_expired_token_callback(jwt_header, jwt_payload): 
+        return {
+            "error": True,
+            "message": "no access or expired token"
+        }, 403
+    #token failed exceptions
+    @jwt.unauthorized_loader
+    @jwt.invalid_token_loader
+    def my_unauthorized_token_callback(self): 
+        return {
+            "error": True,
+            "message": "no access, expired token, or jwt failed"
+        }, 403
     
 
     
