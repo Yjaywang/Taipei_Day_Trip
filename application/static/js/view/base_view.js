@@ -1,4 +1,5 @@
 import controller from "../controller/base_controller.js"
+
 let baseView={
   signMenu: function() {
     //close menu
@@ -143,6 +144,9 @@ let baseView={
     document.querySelector(".signin-form").style.display="block";
     document.querySelector(".signup-form").style.display="none";
   }, 
+  toTheRoot: function() {
+    location.href="/";
+  },
   addEye: function() {
     //add eye
     const eyeImgEls=document.querySelectorAll(".hidden-password");

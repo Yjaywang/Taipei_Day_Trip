@@ -25,7 +25,6 @@ member = Blueprint(
     )
 
 @member.route("/user", methods=["GET"])
-@jwt_required(refresh=False) #use access token
 def member_page():
     return Api_view.response_member_page()
 

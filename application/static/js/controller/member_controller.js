@@ -2,10 +2,16 @@ import model from "../model/member_model.js";
 import view from "../view/member_view.js";
 import controller from "../controller/base_controller.js";
 import baseModel from "../model/base_model.js";
+import baseView from "../view/base_view.js";
 
 
 controller.init=async function() {
   await controller.baseInit();
+  if(!baseModel.authData.data){
+    //not login
+    baseView.toTheRoot(); 
+  }
+
   view.authInit(baseModel.authData);
   await model.init();
   if (baseModel.authData.data.photoName){
