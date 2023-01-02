@@ -9,7 +9,7 @@ controller.init=async function() {
   await controller.baseInit();
   if(!baseModel.authData.data){
     //not login
-    baseView.needLogin();
+    baseView.toTheRoot();
   }
   //page init
   await model.init();
