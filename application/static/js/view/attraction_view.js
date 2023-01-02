@@ -139,11 +139,7 @@ let view={
 
     //restrict form date selection
     const bookingFormEl=document.querySelector(".booking-form");
-    const date = new Date();
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-    const year = date.getFullYear();
-    const currentDate = `${year}-${month}-${day}`;
+    const currentDate = new Date().toJSON().slice(0, 10);
     bookingFormEl.date.min=currentDate;
   },   
   addBooking: function(data) {
