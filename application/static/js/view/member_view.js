@@ -308,6 +308,9 @@ let view={
       else if(data.message==="same as previous value"){
         userpwErrorMsgEl.textContent="新舊密碼相同，請再重新輸入一次";
       }
+      else if(data.message==="error password format"){
+        userpwErrorMsgEl.textContent="新密碼必須至少8個以上英數字元，包含至少1個大寫英文字";
+      }
       else if(data.message==="user not found"){
         userpwErrorMsgEl.textContent="使用者未驗證";
       }
@@ -353,14 +356,16 @@ let view={
     }
   },
   validRefundReason:function() {
+    this.validPWResult=true;
     const popupOrderNumberEl=document.querySelector(".popup-order-number");
     const reasonEl=document.querySelector("#reason");   
     const reason=reasonEl.value;
+    const popupStatus=document.querySelector(".popup-status");
+    popupStatus.classList.remove("false");
     if(reason==""){
       this.validPWResult=false;
       const popupContentContainer=document.querySelector(".popup-content-container");
       const popupMessageContainer=document.querySelector(".popup-message-container");
-      const popupStatus=document.querySelector(".popup-status");
       popupContentContainer.classList.add("hidden");
       popupMessageContainer.classList.remove("hidden");
       popupStatus.classList.add("false");
