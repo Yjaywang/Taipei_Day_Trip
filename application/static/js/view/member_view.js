@@ -3,8 +3,14 @@ import controller from "../controller/member_controller.js";
 
 let view={
   validPWResult:true,
+  validrefund:true,
   orderRender: function(data) {
-    data.data.forEach( order=> {
+    if (!data.data){
+      document.querySelector(".no-result-img").classList.remove("hidden");
+      document.querySelector("footer").style.display="flex";
+      return;
+    }
+    data.data.forEach(order=> {
       const orderContainerEl = document.querySelector(".order-container");
       //construct elements    
       const divOrderInfoContainer=document.createElement("div")
@@ -145,6 +151,9 @@ let view={
       divOrderInfoContainer.appendChild(divOrderNumberContainer);
       divOrderInfoContainer.appendChild(divOrderDetailContainer);
       orderContainerEl.appendChild(divOrderInfoContainer);
+
+
+      document.querySelector("footer").style.display="flex";
     });
   },
   orderLinkEvent: function() {
@@ -175,6 +184,7 @@ let view={
       refundBtnEl.addEventListener("click", function(e) {
         const orderNum=e.target.parentElement.parentElement.parentElement.querySelector(".order-number").textContent;
         document.querySelector(".popup-order-number").textContent=orderNum;
+        document.querySelector(".popup-message-order-number").textContent=orderNum;
         popupBackgroundEl.classList.remove("hidden");
         popupContainerEl.classList.remove("hidden");
       });
@@ -183,12 +193,16 @@ let view={
       if (!popupBackgroundEl.classList.contains("hidden")){
         popupBackgroundEl.classList.add("hidden");
         popupContainerEl.classList.add("hidden");
+        popupMessageContainer.classList.add("hidden");
+        popupContentContainer.classList.remove("hidden");
       }
     });
     popupCloseIconEl.addEventListener("click", function() {
       if (!popupBackgroundEl.classList.contains("hidden")){
         popupBackgroundEl.classList.add("hidden");
         popupContainerEl.classList.add("hidden");
+        popupMessageContainer.classList.add("hidden");
+        popupContentContainer.classList.remove("hidden");
       }
     });
   
@@ -201,6 +215,11 @@ let view={
         popupStatus.classList.remove("ok");
         popupStatus.classList.remove("false");
       }
+    });
+
+    const refundReasonBtnEl=document.querySelector(".refund-reason-btn");
+    refundReasonBtnEl.addEventListener("click", async function() {
+      await controller.sendRefund();
     });
   },
   switchTab:function() {
@@ -225,7 +244,6 @@ let view={
   memberInfoRender: function(data) {
     const headshotEl=document.querySelector(".headshot");
     headshotEl.src=data.data;
-    document.querySelector("footer").style.display="flex";
   },
   criticalBtnEvent:function() {
     const changeNameBtnEl=document.querySelector(".change-name-btn");
@@ -237,12 +255,6 @@ let view={
     actualBtnEl.addEventListener("change", async function(event) {
       await controller.uploadPhoto(event);
     });
-
-    const refundReasonBtnEl=document.querySelector(".refund-reason-btn");
-    refundReasonBtnEl.addEventListener("click", async function() {
-      await controller.sendRefund();
-    });
-
     
     const changePasswordBtnEl=document.querySelector(".change-password-btn");
     changePasswordBtnEl.addEventListener("click", async function() {
@@ -340,6 +352,21 @@ let view={
       userpwErrorMsgEl.textContent="新舊密碼相同，請再重新輸入一次";
     }
   },
+  validRefundReason:function() {
+    const popupOrderNumberEl=document.querySelector(".popup-order-number");
+    const reasonEl=document.querySelector("#reason");   
+    const reason=reasonEl.value;
+    if(reason==""){
+      this.validPWResult=false;
+      const popupContentContainer=document.querySelector(".popup-content-container");
+      const popupMessageContainer=document.querySelector(".popup-message-container");
+      const popupStatus=document.querySelector(".popup-status");
+      popupContentContainer.classList.add("hidden");
+      popupMessageContainer.classList.remove("hidden");
+      popupStatus.classList.add("false");
+      popupStatus.textContent="請輸入理由";
+    }
+  },
   changeName:function (data) {
     const newName=document.querySelector(".change-name-input").value;
     const userEls =document.querySelectorAll(".user");
@@ -396,6 +423,21 @@ let view={
       ldsSpinnerEl.classList.remove("hidden");
       headshotEl.src=data.data;
     }  
+  },
+  authInit: function(data) {
+    const userEls=document.querySelectorAll(".user");
+    userEls.forEach(userEl => {
+      userEl.textContent=data.data.name;
+    });
+    const nameEl=document.querySelector(".name");
+    nameEl.textContent=data.data.name;
+
+    const idEl=document.querySelector(".id");
+    idEl.textContent=data.data.id;
+    const emailEl=document.querySelector(".email");
+    emailEl.textContent=data.data.email;
+
+
   }
 }
 

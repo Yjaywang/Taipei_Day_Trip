@@ -23,9 +23,8 @@ let model={
   
   
   },
-  memberInfoInit: async function() {
+  memberInfoInit: async function(photoName) {
     /////////////////////load member info///////////
-    const photoName=baseModel.authData.data.photo_name;
     const headshotEl=document.querySelector(".headshot");
     const ldsSpinnerEl=document.querySelector(".lds-spinner");
     document.querySelector(".name").textContent=baseModel.authData.data.name;
@@ -112,6 +111,10 @@ let model={
     const popupMessageOrderNumber=document.querySelector(".popup-message-order-number");
     const orderNum=popupOrderNumberEl.textContent;
     const reason=reasonEl.value;
+    if(reason==""){
+      console.log("test1");
+    }
+
     popupMessageOrderNumber.textContent=orderNum;
     const url="/api/order/refund";
     const header={

@@ -26,13 +26,14 @@ class Api_view:
         
     def response_query_member(record : tuple):
         output={}
+        print(record)
         if record==-1:
             return {"data":None}, 200
         else:
             output["id"]=record[0]
             output["name"]=record[1]
             output["email"]=record[2]
-            output["photo_name"]=record[4]
+            output["photoName"]=record[4]
             return{"data":output}, 200
 
     def response_user_signup(username: str, email: str, pw_hash: str, record_count: int):

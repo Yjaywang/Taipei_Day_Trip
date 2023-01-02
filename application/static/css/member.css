@@ -443,6 +443,12 @@ input:focus {
   margin-bottom: 40px;
 }
 
+.no-result-img {
+  display: block;
+  margin: auto;
+  width: 50%;
+}
+
 .member-function-container {
   color: #666666;
   font-weight: 700;
