@@ -55,7 +55,7 @@ Taipei_Day_Trip is a website that provides the attractions in Taipei. It offers 
 
 ## <a name='System-Architecture'></a>System Architecture
 
-![](https://i.imgur.com/QjOPMV9.png)
+![](https://i.imgur.com/XIzq7bf.png)
 
 ## <a name='Cloud-Services'></a>Cloud Services
 
