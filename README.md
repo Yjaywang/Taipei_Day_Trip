@@ -4,9 +4,12 @@
 
 Taipei_Day_Trip is a website that provides the attractions in Taipei. It offers visitors the convenience of planning their own trip by this website and selecting the attractions that they want to visit. It also provides users with the option to book a local guide to accompany them during their trip, which can greatly enhance the experience. With its user-friendly interface and wide range of attractions and services, Taipei Day Trip is an excellent resource for anyone planning a visit to Taipei.
 
+This is my first project in WeHelp Bootcamp, you can try it using below url and account.
+
 - Demo website: http://3.234.99.9:3000/
 - test account: (test10@test.com, 123456789aA)
-  ![](https://i.imgur.com/rHESIcz.jpg)
+
+![](https://i.imgur.com/rHESIcz.jpg)
 
 ## Catelog
 
@@ -19,7 +22,6 @@ Taipei_Day_Trip is a website that provides the attractions in Taipei. It offers 
   - [Database](#Database)
   - [Database Schema](#Database-Schema)
   - [Networking](#Networking)
-  - [Unit Test](#Unit-Test)
 - [Frontend Technique](#Frontend-Technique)
 
 - [Version Control](#Version-Control)
@@ -43,7 +45,7 @@ Taipei_Day_Trip is a website that provides the attractions in Taipei. It offers 
   ![](https://i.imgur.com/MxfknjW.gif)
 
 - Member System
-  ![](https://i.imgur.com/MWfVg1V.gif)
+  ![](https://i.imgur.com/keHGdPy.gif)
 
 - Payment System (TapPay)
 
@@ -86,8 +88,6 @@ Taipei_Day_Trip is a website that provides the attractions in Taipei. It offers 
 ### <a name='Networking'></a>Networking
 
 - HTTP
-
-### <a name='Unit-Test'></a>Unit Test
 
 ## <a name='Frontend-Technique'></a>Frontend Technique
 

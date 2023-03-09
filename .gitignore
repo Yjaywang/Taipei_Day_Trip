@@ -1,6 +1,7 @@
 # jwt key
 jwt_key.py
 demoImg
+EC2_SSH/
 
 # shell script and nohup
 nohup*
