@@ -1,4 +1,4 @@
-
+import baseModel from "../model/base_model.js";
 let model={
   attractionData: null, 
   slideIdx: 1,
@@ -50,17 +50,19 @@ let model={
     });
     const price=bookingFormEl.elements.time.value;
     const attractionID=document.URL.split("/").slice(-1)[0];
-  
+    const jwtToken=baseModel.getCookie("user");
+    
     const url="/api/booking";
     const header={
-      "Content-Type": "application/json"
-    }
+      "Content-Type": "application/json",
+      "X-CSRF-TOKEN": baseModel.getCookie("csrf_access_token")       
+    };
     const body={
       "attractionId": attractionID,
       "date": date,
       "time": time,
       "price":price,
-    }
+    };
     try {
       const response = await fetch(url, {
         method:"POST",

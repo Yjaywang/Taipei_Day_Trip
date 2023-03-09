@@ -1,4 +1,5 @@
 import TPDirect from "../tappay_config.js";
+import baseModel from "../model/base_model.js";
 let model={
   bookingData:null,
   deleteStatus:null,
@@ -7,8 +8,14 @@ let model={
   primeStatus:false,
   init: async function() {
     const url= "/api/booking"
+    const header={
+      "X-CSRF-TOKEN": baseModel.getCookie("csrf_access_token")
+    }
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method:"GET",
+        headers:header
+      });
       const data = await response.json();
       this.bookingData=data.data
     } catch (error) {
@@ -29,7 +36,8 @@ let model={
       }
       const url="/api/booking"
       const header={
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": baseModel.getCookie("csrf_access_token")
       }
       const body={
         "attractionId": attractionID,
@@ -130,7 +138,8 @@ let model={
       }
       
       const header={
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "X-CSRF-TOKEN": baseModel.getCookie("csrf_access_token")
       }
       let url = "/api/orders"
       const response = await fetch(url, {

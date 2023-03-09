@@ -22,6 +22,138 @@ input:focus {
   cursor: pointer;
 }
 
+.hidden {
+  display: none !important;
+}
+
+.loading-number {
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  line-height: 80px;
+  color: #666666;
+}
+
+.lds-spinner {
+  color: official;
+  display: block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: auto;
+}
+
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  -webkit-animation: lds-spinner 1.2s linear infinite;
+          animation: lds-spinner 1.2s linear infinite;
+}
+
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #448899;
+}
+
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  -webkit-animation-delay: -1.1s;
+          animation-delay: -1.1s;
+}
+
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  -webkit-animation-delay: -1s;
+          animation-delay: -1s;
+}
+
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  -webkit-animation-delay: -0.9s;
+          animation-delay: -0.9s;
+}
+
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  -webkit-animation-delay: -0.8s;
+          animation-delay: -0.8s;
+}
+
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
+}
+
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  -webkit-animation-delay: -0.4s;
+          animation-delay: -0.4s;
+}
+
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  -webkit-animation-delay: -0.2s;
+          animation-delay: -0.2s;
+}
+
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  -webkit-animation-delay: -0.1s;
+          animation-delay: -0.1s;
+}
+
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  -webkit-animation-delay: 0s;
+          animation-delay: 0s;
+}
+
+@-webkit-keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+html, body {
+  height: 100%;
+}
+
 body {
   margin: 0px;
   position: relative;
@@ -62,6 +194,49 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  position: relative;
+}
+
+.nav-member {
+  height: 14px;
+  padding: 10px;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 14px;
+  color: #666666;
+  cursor: pointer;
+}
+
+.member-list {
+  position: absolute;
+  color: #666666;
+  background-color: white;
+  border-radius: 5px;
+  top: 43px;
+  right: 0px;
+  width: 85px;
+  text-align: center;
+  z-index: 9999;
+}
+
+.member-info {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.nav-signout {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.member-info:hover {
+  background: #448899;
+  color: white;
+}
+
+.nav-signout:hover {
+  background: #448899;
+  color: white;
 }
 
 .nav-schedule {
@@ -84,17 +259,6 @@ nav {
   color: #666666;
 }
 
-.nav-signout {
-  height: 14px;
-  padding: 10px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 14px;
-  color: #666666;
-  display: none;
-}
-
 footer {
   width: 100%;
   height: 104px;
@@ -103,7 +267,6 @@ footer {
   justify-content: center;
   align-items: center;
   position: relative;
-  bottom: 0px;
 }
 
 .copyright-block {
@@ -298,7 +461,7 @@ input[type=radio]:checked {
 section {
   width: 1200px;
   margin: auto;
-  display: none;
+  display: flex;
   justify-content: center;
   margin-bottom: 40px;
 }
@@ -311,6 +474,12 @@ section {
   margin-bottom: 3px;
   margin-top: 3px;
   position: relative;
+  display: none;
+}
+
+.lds-spinner {
+  margin-left: 260px;
+  margin-right: 260px;
 }
 
 .profile-pic {
@@ -319,6 +488,10 @@ section {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
+}
+
+.slide-container {
+  height: 100%;
 }
 
 .slide-btn-container {
@@ -621,5 +794,9 @@ input[type=radio] {
   .profile-pic {
     height: 350px;
     width: 100%;
+  }
+  .lds-spinner {
+    margin-top: 135px;
+    margin-bottom: 135px;
   }
 }/*# sourceMappingURL=attraction.css.map */

@@ -1,37 +1,59 @@
-import memberModel from "../model/member_model.js";
-import memberView from "../view/member_view.js";
+import model from "../model/member_model.js";
+import view from "../view/member_view.js";
+import controller from "../controller/base_controller.js";
+import baseModel from "../model/base_model.js";
+import baseView from "../view/base_view.js";
 
 
-let controller={
-  init: async function() {
-    memberView.signMenu();  
-    await memberModel.checkSingIn(); 
-    memberView.checkSingIn(memberModel.authData); 
-    memberView.bookingPage(); 
-    await memberModel.checkBookingCount(); 
-    memberView.bookingCount(memberModel.bookingCounts); 
-    memberView.addSignMenu();
-    memberView.addEye();
-  }, 
-  sendSignIn: async function() {
-    await memberModel.sendSignIn();
-    memberView.sendSignIn(memberModel.memberData);
-  },
-  sendSignUp: async function() {
-    await memberModel.sendSignUp();
-    memberView.sendSignUp(memberModel.memberData);
-  }, 
-  signOut: async function() {
-    await memberModel.signOut();
-    memberView.signOut(memberModel.authData);
-  },
-  goBookingPage: async function() {
-    await memberModel.checkSingIn(); 
-    memberView.goBookingPage(memberModel.authData);
-  },
+controller.init=async function() {
+  await controller.baseInit();
+  if(!baseModel.authData.data){
+    //not login
+    baseView.toTheRoot(); 
+  }
+
+  view.authInit(baseModel.authData);
+  await model.init();
+  if (baseModel.authData.data.photoName){
+    await model.memberInfoInit(baseModel.authData.data.photoName);
+    view.memberInfoRender(model.headshotUrl);
+  }  
+  view.orderRender(model.orderData);  
+  view.switchTab();
+  view.criticalBtnEvent();
+  if (model.orderData.data){ 
+    //has order history data
+    view.orderLinkEvent();
+    view.refundLinkEvent(); 
+  }   
+};
+
+//page controller
+controller.changeName=async function() {
+  await model.changeName();
+  view.changeName(model.changeNameData);
+};
+controller.uploadPhoto=async function(event) {
+  await model.uploadPhoto(event);
+  view.uploadPhoto(model.photoData);
+};
+
+controller.sendRefund=async function() {
+  view.validRefundReason();
+  if(view.validPWResult){
+    await model.sendRefund();
+    view.sendRefund(model.refundData);
+  }  
+};
+
+controller.changePW=async function() {
+  view.validPW();
+  if(view.validPWResult){
+    await model.changePW();
+    view.changePW(model.passwordData);
+  }
 };
 
 export default controller;
-
 
 

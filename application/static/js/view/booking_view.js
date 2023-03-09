@@ -1,7 +1,13 @@
 import controller from "../controller/booking_controller.js";
-import memberModel from "../model/member_model.js";
+import baseModel from "../model/base_model.js";
 let view={
   render: function(response) {
+    let imgCount=0;
+    const bookingContainerEl = document.querySelector(".booking-container");
+    const ldSpinnerEl = document.querySelector(".lds-spinner");
+    const loadingNumberEl = document.querySelector(".loading-number");
+    
+    
     response.forEach(data => {
       const bookingInfoContainerEls=document.querySelectorAll(".booking-info-container");
       const divBookingInfoSubContainer=document.createElement("div");
@@ -62,7 +68,21 @@ let view={
       aBookingAttractionLink.href=`/attraction/${data.attraction.id}`
   
       imgDeleteIcon.addEventListener("click", controller.deleteBooking)
-  
+      imgBooking.addEventListener("load", function(e) {
+        imgCount++;
+        let loadingNum=Math.round(imgCount/response.length*100);
+        loadingNumberEl.textContent=`${loadingNum}%`;
+        if(imgCount===response.length){
+          loadingNum=0;
+          loadingNumberEl.textContent=`${loadingNum}%`;
+          document.querySelector("#user").textContent=baseModel.authData.data.name;
+          document.querySelector(".user-name input").value=baseModel.authData.data.name;
+          document.querySelector(".user-email input").value=baseModel.authData.data.email;
+          bookingContainerEl.classList.remove("hidden");
+          ldSpinnerEl.classList.add("hidden");
+          document.querySelector("footer").style.display = "flex";
+        }
+      })
   
       divBookingAttractionTitle.appendChild(spanAttractionPrefix);
       divBookingAttractionTitle.appendChild(spanAttraction);
@@ -84,7 +104,8 @@ let view={
   
       divBookingInfoSubContainer.appendChild(imgBooking);
       divBookingInfoSubContainer.appendChild(divBookingItemContainer);
-  
+    
+      
       bookingInfoContainerEls[0].insertBefore(divBookingInfoSubContainer, bookingInfoContainerEls.lastElementChild);
 
       document.querySelector(".booking-btn").addEventListener("click", controller.submitBooking);
@@ -100,17 +121,20 @@ let view={
       temp+=parseInt(bookingFeeContentEl.textContent);    
     });
     money.textContent=temp;
-    document.querySelector("footer").style.display = "flex";
   },
   noBooking: function() {
     const bookingSeparatorEls = document.querySelectorAll(".booking-separator");
     bookingSeparatorEls.forEach(bookingSeparatorEl => {
       bookingSeparatorEl.remove();
     });
+    document.querySelector("#user").textContent=baseModel.authData.data.name;
     document.querySelector(".user-info-container").remove();
     document.querySelector(".card-container").remove();
     document.querySelector(".summary-container").remove();
-    document.querySelector(".no-schedule-img").style.display = "block";
+    document.querySelector(".no-schedule-img").classList.remove("hidden");
+    document.querySelector(".booking-container").classList.remove("hidden");
+    document.querySelector(".lds-spinner").classList.add("hidden");
+    document.querySelector("footer").style.display = "flex";
   },
   userinfo: function(authData) {
     document.querySelector("#user").textContent=authData.data.name;
@@ -118,16 +142,15 @@ let view={
     document.querySelector(".user-email input").value=authData.data.email;
   },
   deleteBooking: function() {
-    document.addEventListener("click", async function(e) {
+    document.addEventListener("click", function(e) {
       let container=e.target.parentElement.parentElement;
       container.remove();
-      memberModel.bookingCounts=memberModel.bookingCounts-1;
-      if (memberModel.bookingCounts===0){
+      baseModel.bookingCount--;
+      if (baseModel.bookingCount===0){
         location.reload();
       }
     })
   },
-  
 }
 
 export default view;

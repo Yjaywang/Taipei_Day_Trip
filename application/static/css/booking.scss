@@ -19,10 +19,11 @@ input:focus {
     margin-right: auto;
     padding-left: 10px;
     padding-right: 10px;
+    min-height: calc(100% - 200px);
 }
 
 .no-schedule-img{
-    display: none;
+    display: block;
     margin: auto;
     width: 50%;
 }

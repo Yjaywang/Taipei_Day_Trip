@@ -1,29 +1,21 @@
 import model from "../model/index_model.js";
-import memberModel from "../model/member_model.js";
 import view from "../view/index_view.js";
-import memberView from "../view/member_view.js";
-import controller from "../controller/member_controller.js";
+import controller from "../controller/base_controller.js";
+
+
+
 
 
 controller.init=async function() {
-
-  //member init
-  memberView.signMenu();  
-  await memberModel.checkSingIn(); 
-  memberView.checkSingIn(memberModel.authData); 
-  memberView.bookingPage(); 
-  await memberModel.checkBookingCount(); 
-  memberView.bookingCount(memberModel.bookingCounts); 
-  memberView.addSignMenu();
-  memberView.addEye();
-
-  //page init
+  await controller.baseInit();
   await model.init();
   view.render(model.attractionData);
   await model.category();
   view.category(model.categoryData);
   view.addCatShadow();
-}
+  view.addClickSearch();
+};
+
 
 //page controller
 controller.search=async function() {

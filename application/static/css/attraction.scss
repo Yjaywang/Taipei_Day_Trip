@@ -24,10 +24,11 @@ input[type="radio"]:checked{
 section{
     width: 1200px;
     margin: auto;
-    display: none;
+    display: flex;
     justify-content: center;
     margin-bottom: 40px;   
 }
+
 .profile-pic-container{
     height: 406px;
     width: 540px;
@@ -36,6 +37,13 @@ section{
     margin-bottom: 3px;
     margin-top: 3px;
     position: relative;
+    display: none;
+}
+
+.lds-spinner {
+    
+    margin-left: 260px;
+    margin-right: 260px;
 }
 .profile-pic{
     height: 406px;
@@ -43,7 +51,9 @@ section{
     object-fit: cover;
     border-radius: 5px;
 }
-
+.slide-container{
+    height: 100%;
+}
 .slide-btn-container{
     top: -55%;
     width: 96%;
@@ -321,5 +331,9 @@ input[type="radio"]{
     .profile-pic{
         height: 350px;
         width: 100%;
+    }
+    .lds-spinner {
+        margin-top: 135px;
+        margin-bottom: 135px;
     }
 }

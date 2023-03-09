@@ -1,16 +1,10 @@
 from flask import render_template
-
 class Api_view:
     def response_booking_page():
         return render_template("booking.html")
     def response_query_booking(records, row_count):
         data=[]
-        if records==-1:
-            return {
-                "error": True,
-                "message": "not login or no access"
-            }, 403
-        elif not row_count:
+        if not row_count:
             return {"data":None}, 200
         else:
             for record in records:
@@ -30,17 +24,12 @@ class Api_view:
 
             return {"data":data}, 200
     def response_insert_booking(row_count):
-        if row_count==-1:
-            return {
-                "error": True,
-                "message": "not login or no access"
-            }, 403
-        elif row_count==0:
+        if row_count==0:
             return {
                 "error": True,
                 "message": "duplicated booking"
             }, 400
-        elif row_count==-2:
+        elif row_count==-1:
             return {
                 "error": True,
                 "message": "empty input"
@@ -48,10 +37,4 @@ class Api_view:
         else:
             return {"ok":True}, 200
     def response_delete_booking(row_count):
-        if row_count==-1:
-            return {
-                "error": True,
-                "message": "not login or no access"
-            }, 403
-        else:
-            return {"ok": True}, 200
+        return {"ok": True}, 200

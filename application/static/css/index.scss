@@ -142,16 +142,18 @@ input:focus {
 .attractions{
     margin: auto;
     margin-top: 55px;
-    margin-bottom: 55px;
+    margin-bottom: 25px;
     width: 1200px;    
-    display: flex;
-    justify-content: center;
+    // display: flex;
+    // justify-content: center;
 }
 .no-result-img{
+    display: block;
     margin: auto;
     width: 50%;
 }
 .attractions-container{
+    margin: auto;
     flex-wrap: wrap;
     width: 1170px;
     display: flex;    

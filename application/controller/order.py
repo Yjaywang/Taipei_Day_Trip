@@ -3,19 +3,15 @@ from flask import request
 import requests
 from application.model.order_model import Database
 from application.view.order_resp import Api_view
-from utils import auth
-import jwt
 import json
 from dotenv import dotenv_values
-from application import bcrypt
-from utils import validate_input
 import datetime
-
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import get_jwt
 
 
 secret_key=str(json.loads({ **dotenv_values(".env")}["secret_key"]))
 parent_key=str({ **dotenv_values(".env")}["parent_key"])
-
 
 
 order =Blueprint(
@@ -27,19 +23,10 @@ order =Blueprint(
 
 
 @order.route("/api/orders", methods=["POST"])
+@jwt_required(refresh=False) #use access token
 def create_order():
-    status=-4 #unknown fail status
-    token=request.cookies.get("user")
-    if(not token):
-        return Api_view.response_create_order(-1, "", status)
-        
-    jwt_res = jwt.decode(token, secret_key, algorithms='HS256')
-    user_id=jwt_res["id"]
-    auth_result=auth.check_auth(user_id)
-    if (not auth_result):
-        return Api_view.response_create_order(-1, "", status)
-    
-    
+    status=-4 #unknown fail status       
+    user_id = get_jwt()["sub"]["id"]
     prime=request.json["prime"]
     order=request.json["order"]
     total_money=order["price"]
@@ -87,36 +74,56 @@ def create_order():
     tappay_msg=response.json()["msg"]
     tappay_rec_trade_id=response.json()["rec_trade_id"]
 
-    if status==0:
-        update_record=Database.update_tappay_msg(tappay_rec_trade_id, tappay_msg, status, order_id)
-        return Api_view.response_create_order(update_record, order_number, status)
-    else:
-        update_record=Database.update_tappay_msg(tappay_rec_trade_id, tappay_msg, status, order_id)
-        return Api_view.response_create_order(update_record, order_number, status)
-
-
-    # records, row_count=Database.query_booking(user_id)
-    # return Api_view.response_query_booking(records, row_count)
-
+    update_record=Database.update_tappay_msg(tappay_rec_trade_id, tappay_msg, status, order_id)
+    return Api_view.response_create_order(update_record, order_number, status)
     
 
-    
-    
-    
 
 @order.route("/api/order/<orderNumber>", methods=["GET"])
+@jwt_required(refresh=False) #use access token
 def get_order(orderNumber: str):
-    token=request.cookies.get("user")
-    if(not token):
-        return Api_view.response_get_order(-1, 1)
-
-    jwt_res = jwt.decode(token, secret_key, algorithms='HS256')
-    user_id=jwt_res["id"]
-    auth_result=auth.check_auth(user_id)
-    if (not auth_result):
-        return Api_view.response_get_order(-1, 1)
 
     records, rowcount=Database.query_order_details(orderNumber)
     return Api_view.response_get_order(records, rowcount)
 
+@order.route("/api/order/refund", methods=["PATCH"])
+@jwt_required(refresh=False) #use access token
+def refund():    
+    
+    order_number=request.json["orderNumber"]
+    refund_reason=request.json["refundReason"]
+    refund_id_record=Database.query_refund_id(order_number)
+    if(not refund_id_record):
+        #DB return None
+        return Api_view.response_update_refund(-1) #can not find transaction
+    refund_id=refund_id_record[0]
+    refund_time = datetime.datetime.now()
+    
 
+    ####tappay post####
+    url="https://sandbox.tappaysdk.com/tpc/transaction/refund"
+    headers={
+    "Content-Type": "application/json",
+    "x-api-key": parent_key,
+    }
+    data={
+        "partner_key": parent_key,
+        "rec_trade_id": refund_id,
+    }
+    response = requests.post(url, json=data, headers=headers)
+    if(response.json()["status"]==10050):
+        return Api_view.response_update_refund(-2) #already refund
+
+    record_count=Database.update_refund(response.json(), refund_reason, refund_time, order_number)
+    return Api_view.response_update_refund(record_count)
+
+
+@order.route("/api/order", methods=["GET"])
+@jwt_required(refresh=False) #use access token
+def query_user_orders():
+
+    user_id = get_jwt()["sub"]["id"]
+    records=Database.query_user_transactions_detail(user_id)
+    print(not records)
+    return Api_view.response_query_user_transactions_detail(records)
+    
