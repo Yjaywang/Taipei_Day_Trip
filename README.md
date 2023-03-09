@@ -8,6 +8,10 @@ This is my first project in WeHelp Bootcamp, you can try it using below url and 
 
 - Demo website: http://3.234.99.9:3000/
 - test account: (test10@test.com, 123456789aA)
+- TapPay test
+  - Card number: 4242 4242 4242 4242
+  - Due date: 04/24
+  - CCV: 123
 
 ![](https://i.imgur.com/rHESIcz.jpg)
 
