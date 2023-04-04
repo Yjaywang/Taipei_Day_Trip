@@ -1,5 +1,5 @@
-.scss
-.map
+*.scss
+*.map
 
 # jwt key
 jwt_key.py
