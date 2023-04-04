@@ -110,7 +110,6 @@ let model = {
     const orderNum = popupOrderNumberEl.textContent;
     const reason = reasonEl.value;
     if (reason == "") {
-      console.log("test1");
     }
 
     popupMessageOrderNumber.textContent = orderNum;
