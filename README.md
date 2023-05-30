@@ -101,7 +101,7 @@ This is my first project in WeHelp Bootcamp, you can try it using below url and 
 * [Link](https://www.figma.com/file/MZkYBH31H5gyLoZoZq116j/Taipei-Trip-%E5%8F%B0%E5%8C%97%E4%B8%80%E6%97%A5%E9%81%8A-2.0?node-id=2%3A139&t=rQKyCe1MtkO42OP5-0)
 ## <a name='Contact'></a>Contact
 * author: Jay Wang
-* [LinkedIn](https://www.linkedin.com/in/%E8%A1%8D%E9%9C%96-%E7%8E%8B-51a934240/)
+* [LinkedIn](https://www.linkedin.com/in/yan-lin-wang-51a934240/)
 
 
 
