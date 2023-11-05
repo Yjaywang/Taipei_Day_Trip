@@ -4,56 +4,53 @@ import controller from "../controller/base_controller.js";
 import baseModel from "../model/base_model.js";
 import baseView from "../view/base_view.js";
 
-
-controller.init=async function() {
+controller.init = async function () {
   await controller.baseInit();
-  if(!baseModel.authData.data){
+  if (!baseModel.authData.data) {
     //not login
-    baseView.toTheRoot(); 
+    baseView.toTheRoot();
   }
 
   view.authInit(baseModel.authData);
   await model.init();
-  if (baseModel.authData.data.photoName){
+  if (baseModel.authData.data.photoName) {
     await model.memberInfoInit(baseModel.authData.data.photoName);
     view.memberInfoRender(model.headshotUrl);
-  }  
-  view.orderRender(model.orderData);  
+  }
+  view.orderRender(model.orderData);
   view.switchTab();
   view.criticalBtnEvent();
-  if (model.orderData.data){ 
+  if (model.orderData.data) {
     //has order history data
     view.orderLinkEvent();
-    view.refundLinkEvent(); 
-  }   
+    view.refundLinkEvent();
+  }
 };
 
 //page controller
-controller.changeName=async function() {
+controller.changeName = async function () {
   await model.changeName();
   view.changeName(model.changeNameData);
 };
-controller.uploadPhoto=async function(event) {
+controller.uploadPhoto = async function (event) {
   await model.uploadPhoto(event);
   view.uploadPhoto(model.photoData);
 };
 
-controller.sendRefund=async function() {
+controller.sendRefund = async function () {
   view.validRefundReason();
-  if(view.validPWResult){
+  if (view.validPWResult) {
     await model.sendRefund();
     view.sendRefund(model.refundData);
-  }  
+  }
 };
 
-controller.changePW=async function() {
+controller.changePW = async function () {
   view.validPW();
-  if(view.validPWResult){
+  if (view.validPWResult) {
     await model.changePW();
     view.changePW(model.passwordData);
   }
 };
 
 export default controller;
-
-
